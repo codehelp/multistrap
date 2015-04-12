@@ -1107,7 +1107,7 @@ bootstrap=Debian
 
 [Debian]
 packages=
-source=http://cdn.debian.net/debian
+source=http://http.debian.net/debian
 keyring=debian-archive-keyring
 suite=stable
 
