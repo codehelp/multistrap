@@ -1,0 +1,743 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: multistrap@packages.debian.org\n"
+"POT-Creation-Date: 2013-08-11 14:22+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: ../multistrap:78
+msgid "Unknown option"
+msgstr ""
+
+#: ../multistrap:87
+#, perl-format
+msgid "Need a configuration file - use %s -f\n"
+msgstr ""
+
+#. Translators: fields are programname, version string, include file.
+#. Translators: fields are: programname, versionstring, configfile.
+#: ../multistrap:100 ../multistrap:128
+#, perl-format
+msgid "%s %s using %s\n"
+msgstr ""
+
+#: ../multistrap:107
+msgid ""
+"Error: Cannot set 'add Priority: important' when packages of 'Priority: "
+"required' are being omitted.\n"
+msgstr ""
+
+#: ../multistrap:110
+msgid "Please also check the included configuration file:"
+msgid_plural "Please also check the included configuration files:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:131 ../multistrap:133
+#, perl-format
+msgid "Defaulting architecture to native: %s\n"
+msgstr ""
+
+#: ../multistrap:135
+#, perl-format
+msgid "Using foreign architecture: %s\n"
+msgstr ""
+
+#: ../multistrap:143
+#, perl-format
+msgid ""
+"No sources defined for a foreign multistrap.\n"
+"\tUsing your existing apt sources. To use different sources,\n"
+"\tlist them with aptsources= in '%s'."
+msgstr ""
+
+#. Translators: fields are: programname, architecture, host architecture.
+#: ../multistrap:153
+#, perl-format
+msgid "%s building %s multistrap on '%s'\n"
+msgstr ""
+
+#: ../multistrap:155
+msgid "No directory specified!"
+msgstr ""
+
+#: ../multistrap:248 ../multistrap:253 ../multistrap:445 ../multistrap:450
+msgid "Cannot open sources list"
+msgstr ""
+
+#: ../multistrap:295
+#, perl-format
+msgid "I: Installing %s\n"
+msgstr ""
+
+#: ../multistrap:303
+#, perl-format
+msgid "Unable to download keyring package: '%s'"
+msgstr ""
+
+#: ../multistrap:321 ../multistrap:329
+msgid "Secure Apt handling failed - try without authentication."
+msgstr ""
+
+#: ../multistrap:354
+#, perl-format
+msgid "Getting package lists: apt-get %s update\n"
+msgstr ""
+
+#: ../multistrap:357
+#, perl-format
+msgid "apt update failed. Exit value: %d\n"
+msgstr ""
+
+#: ../multistrap:362
+msgid "I: Calculating required packages.\n"
+msgstr ""
+
+#: ../multistrap:367
+#, perl-format
+msgid "I: Adding 'Priority: important': %s\n"
+msgstr ""
+
+#: ../multistrap:404
+#, perl-format
+msgid "apt download failed. Exit value: %d\n"
+msgstr ""
+
+#: ../multistrap:414
+#, perl-format
+msgid "setupscript '%s' returned %d.\n"
+msgstr ""
+
+#: ../multistrap:422
+msgid "Native mode configuration reported an error!\n"
+msgstr ""
+
+#: ../multistrap:435
+msgid "Cannot read apt sources list directory.\n"
+msgstr ""
+
+#: ../multistrap:477
+#, perl-format
+msgid ""
+"\n"
+"Multistrap system installed successfully in %s.\n"
+msgstr ""
+
+#: ../multistrap:479
+#, perl-format
+msgid ""
+"\n"
+"Multistrap system reported %d error in %s.\n"
+msgid_plural ""
+"\n"
+"Multistrap system reported %d errors in %s.\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:485
+#, perl-format
+msgid ""
+"\n"
+"Compressing multistrap system in '%s' to a tarball called: '%s'.\n"
+msgstr ""
+
+#: ../multistrap:491
+#, perl-format
+msgid ""
+"\n"
+"Removing build directory: '%s'\n"
+msgstr ""
+
+#: ../multistrap:496
+#, perl-format
+msgid ""
+"\n"
+"Multistrap system packaged successfully as '%s'.\n"
+msgstr ""
+
+#: ../multistrap:498
+#, perl-format
+msgid ""
+"\n"
+"Multistrap system packaged as '%s' with warnings.\n"
+msgstr ""
+
+#: ../multistrap:528
+msgid "Marking automatically installed packages... please wait\n"
+msgstr ""
+
+#: ../multistrap:530 ../multistrap:549 ../multistrap:590 ../multistrap:845
+#: ../multistrap:904
+msgid "Cannot read apt archives directory.\n"
+msgstr ""
+
+#: ../multistrap:538
+#, perl-format
+msgid "Found %d package to mark.\n"
+msgid_plural "Found %d packages to mark.\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:541
+msgid "Marking automatically installed packages completed.\n"
+msgstr ""
+
+#: ../multistrap:562
+msgid "I: Calculating obsolete packages\n"
+msgstr ""
+
+#: ../multistrap:576 ../multistrap:580
+#, perl-format
+msgid "I: Removing %s\n"
+msgstr ""
+
+#: ../multistrap:597
+#, perl-format
+msgid "Using directory %s for unpacking operations\n"
+msgstr ""
+
+#: ../multistrap:599
+#, perl-format
+msgid "I: Extracting %s...\n"
+msgstr ""
+
+#. Translators: imagine "Architecture: all" in quotes.
+#: ../multistrap:617
+#, perl-format
+msgid ""
+"Warning: invalid value '%s' for Multi-Arch field in Architecture: all "
+"package: %s. "
+msgstr ""
+
+#. Translators: Please do not translate 'same', 'foreign' or 'allowed'
+#: ../multistrap:623
+#, perl-format
+msgid ""
+"Warning: unrecognised value '%s' for Multi-Arch field in %s. (Expecting "
+"'same', 'foreign' or 'allowed'.)"
+msgstr ""
+
+#: ../multistrap:638
+#, perl-format
+msgid ""
+"dpkg -X failed with error code %s\n"
+"Skipping...\n"
+msgstr ""
+
+#: ../multistrap:674
+#, perl-format
+msgid " -> Processing conffiles for %s\n"
+msgstr ""
+
+#: ../multistrap:695
+msgid "I: Unpacking complete.\n"
+msgstr ""
+
+#: ../multistrap:702
+#, perl-format
+msgid "I: Copying debconf preseed data to %s.\n"
+msgstr ""
+
+#. Translators: the plural is followed by a single repeat for each
+#: ../multistrap:714
+#, perl-format
+msgid "I: Running %d post-download hook\n"
+msgid_plural "I: Running %d post-download hooks\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: this is a single instance, naming the hook
+#: ../multistrap:718
+#, perl-format
+msgid "I: Running post-download hook: '%s'\n"
+msgstr ""
+
+#: ../multistrap:722
+#, perl-format
+msgid "I: post-download hook '%s' reported an error: %d\n"
+msgstr ""
+
+#. Translators: the plural is followed by a single repeat for each
+#: ../multistrap:732
+#, perl-format
+msgid "I: Starting %d native hook\n"
+msgid_plural "I: Starting %d native hooks\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: this is a single instance, naming the hook
+#: ../multistrap:736
+#, perl-format
+msgid "I: Starting native hook: '%s'\n"
+msgstr ""
+
+#: ../multistrap:740
+#, perl-format
+msgid "I: run-native hook start '%s' reported an error: %d\n"
+msgstr ""
+
+#. Translators: the plural is followed by a single repeat for each
+#: ../multistrap:750
+#, perl-format
+msgid "I: Stopping %d native hook\n"
+msgid_plural "I: Stopping %d native hooks\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: this is a single instance, naming the hook
+#: ../multistrap:754
+#, perl-format
+msgid "I: Stopping native hook: '%s'\n"
+msgstr ""
+
+#: ../multistrap:758
+#, perl-format
+msgid "I: run-native hook end '%s' reported an error: %d\n"
+msgstr ""
+
+#. Translators: the plural is followed by a single repeat for each
+#: ../multistrap:768
+#, perl-format
+msgid "I: Running %d post-configuration hook\n"
+msgid_plural "I: Running %d post-configuration hooks\n"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: this is a single instance, naming the hook
+#: ../multistrap:772
+#, perl-format
+msgid "I: Running post-configuration hook: '%s'\n"
+msgstr ""
+
+#: ../multistrap:776
+#, perl-format
+msgid "I: run-completion hook '%s' reported an error: %d\n"
+msgstr ""
+
+#: ../multistrap:793
+#, perl-format
+msgid "I: Unlinking unsafe %slib64 -> /lib symbolic link.\n"
+msgstr ""
+
+#: ../multistrap:799
+#, perl-format
+msgid "I: Replaced ./lib64 -> /lib symbolic link with new %slib64 directory.\n"
+msgstr ""
+
+#: ../multistrap:802
+#, perl-format
+msgid "I: Setting %slib64 -> %slib symbolic link.\n"
+msgstr ""
+
+#: ../multistrap:820
+msgid "I: ./bin/sh symbolic link does not exist.\n"
+msgstr ""
+
+#: ../multistrap:822
+msgid "I: Setting ./bin/sh -> ./bin/dash\n"
+msgstr ""
+
+#: ../multistrap:827
+msgid "I: ./bin/dash not found. Setting ./bin/sh -> ./bin/bash\n"
+msgstr ""
+
+#: ../multistrap:834
+#, perl-format
+msgid "I: Shell found OK in %s:\n"
+msgstr ""
+
+#: ../multistrap:901
+msgid "I: Tidying up apt cache and list data.\n"
+msgstr ""
+
+#: ../multistrap:921
+msgid "Cannot read apt lists directory.\n"
+msgstr ""
+
+#: ../multistrap:929
+msgid "Cannot read apt cache directory.\n"
+msgstr ""
+
+#: ../multistrap:944
+#, perl-format
+msgid ""
+"I: dpkg configuration settings:\n"
+"\t%s\n"
+msgstr ""
+
+#: ../multistrap:946
+msgid ""
+"W: Cannot use 'chroot' when fakeroot is in use. Skipping package "
+"configuration.\n"
+msgstr ""
+
+#: ../multistrap:949
+msgid "I: Native mode - configuring unpacked packages . . .\n"
+msgstr ""
+
+#: ../multistrap:962
+#, perl-format
+msgid "I: Running debconf for seed file: %s\n"
+msgstr ""
+
+#: ../multistrap:971
+msgid "I: Running preinst scripts with 'install' argument.\n"
+msgstr ""
+
+#: ../multistrap:985
+msgid "ERR: dpkg configure reported an error.\n"
+msgstr ""
+
+#: ../multistrap:1003
+#, perl-format
+msgid "Cannot open %s directory. %s\n"
+msgstr ""
+
+#: ../multistrap:1037
+#, perl-format
+msgid "cannot open apt sources list. %s"
+msgstr ""
+
+#: ../multistrap:1043
+#, perl-format
+msgid "cannot open apt sources.list directory %s\n"
+msgstr ""
+
+#: ../multistrap:1048
+#, perl-format
+msgid "cannot open /etc/apt/sources.list.d/%s %s"
+msgstr ""
+
+#: ../multistrap:1060
+#, perl-format
+msgid ""
+"\n"
+"%s version %s\n"
+"\n"
+"Usage:\n"
+" %s [-a ARCH] [-d DIR] -f CONFIG_FILE\n"
+" %s -?|-h|--help|--version\n"
+"\n"
+"Command:\n"
+" -f|--file CONFIG_FILE:  path to the multistrap configuration file.\n"
+"\n"
+"Options:\n"
+" -a|--arch ARCHITECTURE: override the configuration file architecture.\n"
+" -d|--dir PATH:          override the configuration file directory.\n"
+"    --no-auth:           do not use Secure Apt for any repositories\n"
+"    --tidy-up:           remove apt cache data and downloaded archives.\n"
+"    --dry-run:           output the configuration and exit\n"
+"    --simulate:          output the configuration and exit\n"
+" -?|-h|--help:           print this usage message and exit\n"
+" --version:              print this usage message and exit\n"
+"\n"
+"%s replaces debootstrap to provide support for multiple\n"
+"repositories, using a configuration file to specify the relevant suites,\n"
+"architecture, extra packages and the mirror to use for each repository.\n"
+"\n"
+"Example configuration:\n"
+"[General]\n"
+"arch=armel\n"
+"directory=/opt/multistrap/\n"
+"# same as --tidy-up option if set to true\n"
+"cleanup=true\n"
+"# same as --no-auth option if set to true\n"
+"# keyring packages listed in each bootstrap will\n"
+"# still be installed.\n"
+"noauth=false\n"
+"# extract all downloaded archives (default is true)\n"
+"unpack=true\n"
+"# enable MultiArch for the specified architectures\n"
+"# default is empty\n"
+"multiarch=\n"
+"# aptsources is a list of sections to be used for downloading packages\n"
+"# and lists and placed in the /etc/apt/sources.list.d/multistrap.sources."
+"list\n"
+"# of the target. Order is not important\n"
+"aptsources=Debian\n"
+"# the order of sections is not important.\n"
+"# the bootstrap option determines which repository\n"
+"# is used to calculate the list of Priority: required packages.\n"
+"bootstrap=Debian\n"
+"\n"
+"[Debian]\n"
+"packages=\n"
+"source=http://cdn.debian.net/debian\n"
+"keyring=debian-archive-keyring\n"
+"suite=stable\n"
+"\n"
+"This will result in a completely normal bootstrap of Debian stable from\n"
+"the specified mirror, for armel in /opt/multistrap/.\n"
+"\n"
+"'Architecture' and 'directory' can be overridden on the command line.\n"
+"\n"
+"Specify a package to extend the bootstap to include that package and\n"
+"all dependencies. Dependencies will be calculated by apt so as to use\n"
+"only the most recent suitable version from all configured repositories.\n"
+"\n"
+"General settings:\n"
+"\n"
+"'directory' specifies the top level directory where the bootstrap\n"
+"will be created - it is not packed into a .tgz once complete.\n"
+"\n"
+msgstr ""
+
+#: ../multistrap:1129
+msgid "failed to write usage:"
+msgstr ""
+
+#: ../multistrap:1138
+#, perl-format
+msgid "Failed to parse '%s'!\n"
+msgstr ""
+
+#: ../multistrap:1165
+#, perl-format
+msgid "INF: '%s' exists but is not executable - ignoring.\n"
+msgstr ""
+
+#: ../multistrap:1242
+#, perl-format
+msgid "ERR: Cannot find include file: '%s' for '%s'"
+msgstr ""
+
+#: ../multistrap:1270
+#, perl-format
+msgid ""
+"ERR: Unsupportable option: 'architecture'. Current dpkg version does not "
+"support MultiArch. Packages for '%s' have been ignored.\n"
+msgstr ""
+
+#. Translators: %1 and %2 are the same value here - the erroneous architecture name
+#: ../multistrap:1304
+#, perl-format
+msgid ""
+"ERR: Misconfiguration in: 'architecture' option. Packages of architecture=%s "
+"requested but '%s' is not included in the multiarch="
+msgstr ""
+
+#: ../multistrap:1328
+#, perl-format
+msgid "ERR: system call failed: '%s' %s"
+msgstr ""
+
+#: ../multistrap:1337
+#, perl-format
+msgid "Unable to create directory '%s'"
+msgstr ""
+
+#: ../multistrap:1357
+#, perl-format
+msgid "The supplied configuration file '%s' cannot be parsed correctly."
+msgstr ""
+
+#: ../multistrap:1368
+#, perl-format
+msgid "ERR: The '%s' section is not defined.\n"
+msgstr ""
+
+#: ../multistrap:1372
+msgid "Including configuration file from:"
+msgid_plural "Including configuration files from:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:1376
+msgid "No included configuration files.\n"
+msgstr ""
+
+#: ../multistrap:1392
+msgid "Not listed as a 'Bootstrap' section."
+msgstr ""
+
+#: ../multistrap:1399
+msgid "Section to install"
+msgid_plural "Sections to install"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:1401
+msgid "Section for updates"
+msgid_plural "Sections for updates"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:1408
+msgid "Omit deb-src from sources.list for sections:"
+msgstr ""
+
+#: ../multistrap:1410
+msgid "None."
+msgstr ""
+
+#: ../multistrap:1418
+msgid "Explicit suite selection: Yes\n"
+msgstr ""
+
+#: ../multistrap:1420
+msgid "Explicit suite selection: No - let apt use latest.\n"
+msgstr ""
+
+#: ../multistrap:1423
+msgid "Recommended packages are added to the selection.\n"
+msgstr ""
+
+#: ../multistrap:1425
+msgid "Recommended packages are ignored.\n"
+msgstr ""
+
+#: ../multistrap:1431
+msgid "Marking dependency packages as auto-installed.\n"
+msgstr ""
+
+#: ../multistrap:1433
+msgid "Debconf preseed file"
+msgid_plural "Debconf preseed files"
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: leaving the plural blank to keep the lines shorter.
+#: ../multistrap:1437
+msgid "Download hook: "
+msgid_plural ""
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: leaving the plural blank to keep the lines shorter.
+#: ../multistrap:1442
+msgid "Native hook: "
+msgid_plural ""
+msgstr[0] ""
+msgstr[1] ""
+
+#. Translators: leaving the plural blank to keep the lines shorter.
+#: ../multistrap:1447
+msgid "Completion hook: "
+msgid_plural ""
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:1450
+msgid "Extra Package: "
+msgid_plural "Extra Packages: "
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:1454
+#, perl-format
+msgid "Architecture to download: %s\n"
+msgstr ""
+
+#: ../multistrap:1456
+#, perl-format
+msgid "Cannot determine architecture from '%s'. Using %s.\n"
+msgstr ""
+
+#: ../multistrap:1459
+msgid "Currently installed dpkg does not support MultiArch."
+msgstr ""
+
+#: ../multistrap:1461
+msgid "Foreign architecture"
+msgid_plural "Foreign architectures"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../multistrap:1465
+#, perl-format
+msgid "Output directory: '%s'\n"
+msgstr ""
+
+#: ../multistrap:1467
+#, perl-format
+msgid "Cannot determine directory from '%s'.\n"
+msgstr ""
+
+#: ../multistrap:1470 ../multistrap:1472
+#, perl-format
+msgid "extract all downloaded archives: %s\n"
+msgstr ""
+
+#: ../multistrap:1475
+msgid "Script to be run after unpacking"
+msgstr ""
+
+#: ../multistrap:1477
+msgid "'Priority required' packages are not included."
+msgstr ""
+
+#: ../multistrap:1479
+msgid "'Priority: required' packages are included."
+msgstr ""
+
+#: ../multistrap:1482
+msgid "'Priority: important' packages are included.\n"
+msgstr ""
+
+#: ../multistrap:1484
+msgid "'Priority: important' packages are ignored.\n"
+msgstr ""
+
+#: ../multistrap:1487
+msgid "remove apt cache data: true\n"
+msgstr ""
+
+#: ../multistrap:1489
+msgid "remove apt cache data: false\n"
+msgstr ""
+
+#: ../multistrap:1492
+msgid "allow the use of unauthenticated repositories: true\n"
+msgstr ""
+
+#: ../multistrap:1494
+msgid "allow the use of unauthenticated repositories: false\n"
+msgstr ""
+
+#: ../multistrap:1497
+#, perl-format
+msgid "Sources will be retained in: %s\n"
+msgstr ""
+
+#: ../multistrap:1500
+#, perl-format
+msgid "Tarball name: '%s'\n"
+msgstr ""
+
+#: ../multistrap:1504 ../multistrap:1510
+msgid "Preinst scripts are not executed.\n"
+msgstr ""
+
+#: ../multistrap:1506
+msgid "Preinst scripts are executed with the install argument.\n"
+msgstr ""
+
+#: ../multistrap:1508
+msgid "Packages will be configured.\n"
+msgstr ""
+
+#: ../multistrap:1511
+msgid "Packages will not be configured.\n"
+msgstr ""
+
+#: ../multistrap:1514
+#, perl-format
+msgid "Apt preferences file to use: '%s'\n"
+msgstr ""
+
+#: ../multistrap:1516
+msgid "No apt preferences file. Default release: *\n"
+msgstr ""

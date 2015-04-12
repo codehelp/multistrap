@@ -1,0 +1,445 @@
+multistrap (2.2.0) unstable; urgency=low
+
+  * Add option to specify the apt default release directly and
+    change the manpage content to advise on how this further
+    complicates the permutations of apt configuration. Add
+    commands to direct apt at the apt.conf.d and preferences.d
+    directories within the chroot. (Closes: #717886)
+
+ -- Neil Williams <codehelp@debian.org>  Sun, 11 Aug 2013 14:20:40 +0100
+
+multistrap (2.1.23) unstable; urgency=low
+
+  * Carry changes from experimental into unstable.
+
+ -- Neil Williams <codehelp@debian.org>  Fri, 17 May 2013 21:31:57 +0100
+
+multistrap (2.1.22) experimental; urgency=low
+
+  * Support marking dependencies as auto-installed using apt-mark.
+    (Closes: #702036)
+  * Fix filehandle typo when configuring multiarch (Closes: #695843)
+
+ -- Neil Williams <codehelp@debian.org>  Thu, 21 Mar 2013 19:21:56 +0000
+
+multistrap (2.1.21) experimental; urgency=low
+
+  * Add Foreign arch support to each cross-building configuration.
+    (Closes: #688628). Drop some unused configuration files.
+  * Aim at experimental. 
+  * Add warning if the config script is not executable.
+  * Delete only sources lists created by multistrap.(Closes: #702033)
+  * [INTL:fr] French program (runtime) translation update
+    (Closes: #674771)
+  * [INTL:fr] French documentation (po4a) translation update
+    (Closes: #674772)
+
+ -- Neil Williams <codehelp@debian.org>  Mon, 24 Sep 2012 13:39:56 +0100
+
+multistrap (2.1.20) unstable; urgency=low
+
+  * [INTL:da] Danish translation of multistrap (Closes: #669879)
+  * [INTL:pt] Updated Portuguese manpage translation.
+    (Closes: #670402)
+  * Add an update-alternatives helper.
+  * [INTL:de] updated German translation (Closes: #670835)
+  * Streamline some unique sorting repetitions with a function. Patch
+    from Andres Salomon
+  * [INTL:da] Danish translation of multistrap manual
+    (Closes: #671104)
+  * [INTL:de] update German manpage translation (Closes: #671708)
+  * Upload to unstable. 
+
+ -- Neil Williams <codehelp@debian.org>  Wed, 16 May 2012 20:32:57 +0100
+
+multistrap (2.1.19) experimental; urgency=low
+
+  * Fix multiarch/unstable support for packages listings.
+  * Fix sprintf formatting for new multiarch warning string.
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 21 Apr 2012 14:53:22 +0100
+
+multistrap (2.1.18) experimental; urgency=low
+
+  * Reverse logic of ignorenativearch, thanks to 
+    Andres Salomon <dilinger@queued.net>. (Closes: #669211)
+  * Fix logic in dump_config for missing packages lines.
+    (Closes: #669206)
+  * Check values of the keyring hash. (Closes: #669205)
+  * Update pdebuild-cross conf files to get toolchains from Squeeze.
+  * Improve MultiArch support, still experimental
+
+ -- Neil Williams <codehelp@debian.org>  Fri, 20 Apr 2012 21:36:54 +0100
+
+multistrap (2.1.17) experimental; urgency=low
+
+  * [l10n] French manpages translation (Closes: #656418)
+  * Remove .control files inside the multistrap chroot.
+     (Closes: #668941)
+  * Improve fakeroot environment variable tests. (Closes: #647240)
+  * Implement support to copy an apt preferences file into place.
+    (Closes: #616420)
+  * Support not configuring packages for native arch. (Closes: #651885)
+  * Upload to experimental. 
+
+ -- Neil Williams <codehelp@debian.org>  Tue, 17 Apr 2012 21:14:30 +0100
+
+multistrap (2.1.16) unstable; urgency=low
+
+  * Allow empty aptsources lines. (Closes: #633525)
+  * Add support for MultiArch configuration files and checks for a
+    suitable version of dpkg.
+  * Allow multiple keyring packages to be imported. (Closes: #635584)
+  * Add support for shortcuts to use configuration files in known
+    locations like /usr/share/multistrap and /etc/multistrap.d/
+  * Package an example of multiarch support.
+  * Simplify the test for a multiarch-aware dpkg, thanks to Steve
+    Langasek.
+  * Override APT::Default-Release (Closes: #637434)
+  * [INTL:da] Danish translation of multistrap (Closes: #637776)
+  * Update French translation, patch from  Julien Patriarca.
+  * [INTL:de] Initial German translation of multistrap (runtime)
+    (Closes: #639308)
+  * [INTL:pt] Updated Portuguese translation (Closes: #639444)
+
+ -- Neil Williams <codehelp@debian.org>  Tue, 06 Sep 2011 19:54:56 +0100
+
+multistrap (2.1.15) unstable; urgency=low
+
+  * Clean up the retainsources behaviour (Closes: #627179)
+  * Implement some code for omitpreinst support.
+  * typo fix in manpage (Closes: #630314)
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 18 Jun 2011 16:17:13 +0100
+
+multistrap (2.1.14) unstable; urgency=low
+
+  * Improve device-table incrementing
+  * Disable multi-arch field handling for same and wrap foreign and
+    allowed. dpkg does not currently support changes in /var/lib/dpkg/info
+  * Read the dpkg status file to look for source packages even when no
+    packages needed to be downloaded or unpacked. (Closes: #623563)
+
+ -- Neil Williams <codehelp@debian.org>  Wed, 11 May 2011 20:30:03 +0100
+
+multistrap (2.1.13) unstable; urgency=low
+
+  * [INTL:da] Danish translation of multistrap (Closes: #614306)
+  * [INTL:pt] Updated European Portuguese translation for
+    manpage/documentation"  (Closes: #614381)
+  * Fix device-table.pl to use correct minor device number in
+    iterative mode (Closes: #615819)
+  * Disable SecureApt if fakeroot is detected.
+  * Protect device-table.pl realpath usage to allow relative
+    directories.
+  * [INTL:de] Updated german translation (Closes: #616527)
+  * Use perl realpath support and drop dependency.
+  * [INTL:da] Add Danish translation of multistrap documentation
+    (Closes: #619069)
+  * Improve source download method to get packages individually - avoids
+    breakage if the repository is incomplete.
+  * Complete the support for 'flat' repositories (Closes: #619959)
+  * Update config files for build and cross chroot (Closes: #610631)
+  * Initial support for Multi-Arch paths. (Closes: #616111)
+
+ -- Neil Williams <codehelp@debian.org>  Fri, 01 Apr 2011 22:44:10 +0100
+
+multistrap (2.1.12) unstable; urgency=low
+
+  * Fix hook implementation if no hooks in use
+  * Accumulate warnings from system calls and hooks and report to user
+    at the end of the operation.
+  * Ensure that realpath does really exist (local test debugging) and
+    guard against an undefined keyring pkg variable.
+
+ -- Neil Williams <codehelp@debian.org>  Wed, 09 Feb 2011 17:19:37 +0000
+
+multistrap (2.1.11) unstable; urgency=low
+
+  * Fix examples in comments within device_table.txt to
+    use consistent tabs. (Closes: #611808)
+  * Add example for wheezy and use permanent codenames.
+  * Remove workaround for apt from lenny.
+  * Improve the fix for #553599 and generalise it. Handle making a real
+    directory for amd64 to cope with libc6-amd64 [i386].
+  * Add hook directory support, per configuration file, similar to
+    pbuilder support.
+
+ -- Neil Williams <codehelp@debian.org>  Mon, 07 Feb 2011 12:21:33 +0000
+
+multistrap (2.1.10) experimental; urgency=low
+
+  * Fix typo in sysvinit chroot.sh script.
+  * run preinst scripts install command instead of upgrade
+    (Closes: #611744)
+  * Run the preinst scripts ahead of calling configure -a in native
+    mode. Thanks to Daniel Baumann for spotting it.
+
+ -- Neil Williams <codehelp@debian.org>  Tue, 01 Feb 2011 22:25:59 +0000
+
+multistrap (2.1.9) experimental; urgency=low
+
+  * Allow missing packages lines and add note about using omitdebsrc
+    with debian-ports.
+  * Allow multiple packages lines per section to support very long
+    lists.
+  * Update the trustdb.gpg with keyrings, to fix gpgv errors on
+    missing file.
+  * Document changes in packages key support and advise on reporting
+    bugs via the BTS
+  * Add support for addimportant in the general section only.
+    (Closes: #610634)
+  * Fix unpack option to look only for 'true' values.
+  * Experimental support for debconf preseed files (Closes: #610614)
+  * Add sysvinit method to existing upstart support in script for native
+    chroots to disable starting daemons. (Closes: #611188)
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 29 Jan 2011 15:43:39 +0000
+
+multistrap (2.1.8) experimental; urgency=low
+
+  [ Wookey ]
+  * Add support for 'flat' apt-ftparchive-style URLs
+  * Include chroot.sh preventing services being started during 
+    chroot creation (Closes: #599056)
+
+  [ Neil Williams ]
+  * Improve the omitdebsrc handling for detection of 'true'.
+  * Add more synopsis information to manual page. (Closes: #592621)
+  * Aim 2.1.8 at experimental as squeeze is frozen and this version
+    includes possibly disruptive changes.
+  * Remove aptsources lists in bootstrap phase (Closes: #593561)
+  * Improve check-deps to find missing packages
+  * Drop all use of forceyes - no longer necessary.
+  * Handle missing 'include' files cleanly and early. (Closes: #595006)
+  * Expand the --simulate option output further.
+  * Document the reinstall and additional fields. Add advice in manpage
+    on what to check before filing bugs.
+  * Add a note about redirecting output in manpage. (Closes: #593326)
+  * Bump to debhelper 7 compat for dh_prep usage.
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 16 Oct 2010 15:36:06 +0100
+
+multistrap (2.1.7) unstable; urgency=low
+
+  * Add all packages to the source dir, including calculated
+    dependencies.
+  * [INTL:pt] Updated Portuguese translation for manpages
+    (Closes: #595308)
+  * [INTL:da] Danish translation of multistrap (Closes: #595391)
+  * [INTL:pt] Updated Portuguese translation for program messages
+    (Closes: #597144)
+  * [INTL:fr] French manpage translation (Closes: #597385)
+  * [INTL:de] german manpage translation (Closes: #597505)
+  * [INTL:vi] Vietnamese program translation update (Closes: #598476)
+  * Pre-handle keyring packages using GPG for use with apt >= 0.8
+    (Closes: #595017)
+  * [INTL:fr] French program translation update (Closes: #598873)
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 02 Oct 2010 19:26:02 +0100
+
+multistrap (2.1.6) unstable; urgency=low
+
+  * [INTL:fr] French manpage translation update (Closes: #584679)
+  * Allow check-deps.sh to proceed when detecting errors.
+  * Avoid unitialised Priority value.
+  * Call dpkg --print-architecture for determination of host
+    architecture. (Closes: #589713)
+  * Add aptitude to crosschroot configs as pbuilder now requires it.
+  * Allow check-deps.sh to detect | dependencies.
+
+ -- Neil Williams <codehelp@debian.org>  Wed, 28 Jul 2010 19:30:25 +0100
+
+multistrap (2.1.5) unstable; urgency=low
+
+  * [INTL:pt] Updated Portuguese program output translation
+    (Closes: #581251)
+  * [INTL:da] Danish translation of multistrap program
+    (Closes: #581496)
+  * [INTL:pt] Updated Portuguese translation for manpage messages
+    (Closes: #581673)
+  * [INTL:fr] French program output translation (Closes: #582059)
+  * Add support for omitdebsrc and change suite behaviour to be non-
+    default, usable by selecting explicitsuite to true.
+  * When moving downloaded packages to a sourcedir, also download the
+    source packages for GPL compliance.
+  * Handle fakeroot with native architectures.
+  * Extend device table format to support creating symlinks and
+    hardlinks.
+
+ -- Neil Williams <codehelp@debian.org>  Mon, 31 May 2010 20:15:56 +0100
+
+multistrap (2.1.4) unstable; urgency=low
+
+  * Add support for configurable single cross-toolchains in
+    the chroot - using the dpkg-cross default_arch, if any.
+  * Clarify documentation of bootstrap and aptsources sections
+    (Closes: #579626)
+  * Clarify error reporting in the --simulate option, warn if
+    sections are not defined. (Closes: #579627)
+  * [INTL:vi] Vietnamese program translation update (Closes: #580623)
+  * Report parsing errors in config files (Closes: #580687)
+  * Move from experimental into unstable. 
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 08 May 2010 11:38:58 +0100
+
+multistrap (2.1.3) experimental; urgency=low
+
+  * Fix armel.conf to specify the right sources.
+
+ -- Neil Williams <codehelp@debian.org>  Sun, 25 Apr 2010 09:35:28 +0100
+
+multistrap (2.1.2) experimental; urgency=low
+
+  * Add support to avoid running preinst scripts and
+     always ignore the bash preinst which does not respect
+     DEBIAN_FRONTEND=noninteractive 
+  * fix handling of omitrequired and configsh when empty
+  * add force-yes when using noauth
+  * split the package list even if using only spaces, not commas
+  * Add support for compressing the filesystem into a tarball.
+  * Add support for reinstalling packages known to fail due to preinst
+    problems.
+  * Add a simple C file to test the compiler inside the chroot
+  * sort duplicate sources list entries and use dedicated sources list
+    files
+
+ -- Neil Williams <codehelp@debian.org>  Wed, 21 Apr 2010 15:23:23 +0100
+
+multistrap (2.1.1) experimental; urgency=low
+
+  * Add --simulate mode for cascading configuration testing.
+  * Split out the POD - not needed in the runtime script.
+  * Add cascading configuration to support standard Emdebian cross
+    architectures.
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 17 Apr 2010 22:25:45 +0100
+
+multistrap (2.1.0) experimental; urgency=low
+
+  * Experimental branch to replace pbuilder support in Crush. 
+  * Drop emsandbox and use experimental multistrap.
+  * Add initial crosschroot.conf for multistrap support.
+  * Add device-table.pl helper - internal support to follow.
+  * Add explicit support for running preinst scripts in native mode.
+
+ -- Neil Williams <codehelp@debian.org>  Wed, 14 Apr 2010 20:54:44 +0100
+
+emdebian-rootfs (2.0.9) unstable; urgency=low
+
+  * Fix typos in translated strings.
+  * Allow empty keyring values.
+  * Fix separation of debootstrap vs aptsources and remove reliance on
+    the section label matching the lists name.
+  * Add check-deps.sh and device-table.pl helper scripts.
+  * Leave device_table.txt uncompressed for use with device-table.pl
+  * Actually need to specify apt once Recommends: are switched off.
+
+ -- Neil Williams <codehelp@debian.org>  Wed, 14 Apr 2010 20:35:20 +0100
+
+emdebian-rootfs (2.0.8) unstable; urgency=low
+
+  * Add missing realpath dependency
+
+ -- Wookey <wookey@debian.org>  Tue, 30 Mar 2010 15:16:53 +0100
+
+emdebian-rootfs (2.0.7) unstable; urgency=low
+
+  * [INTL:pt] Updated Portuguese program output translation 
+    (Closes: #572929)
+  * Handle relative directories from the command line.
+  * Add subroutines to replace functionality from Emdebian::Tools
+    in shell scripts. Drop Emdebian::Tools dependency. (LP: #531143) 
+  * [INTL:fr] French program output translation (Closes: #575314)
+  * Add a check-deps script to parse the Depends of an individual .deb
+
+ -- Neil Williams <codehelp@debian.org>  Sun, 28 Mar 2010 07:45:00 +0100
+
+emdebian-rootfs (2.0.6) unstable; urgency=low
+
+  * Clean up component support and ensure a sane default exists.
+
+ -- Neil Williams <codehelp@debian.org>  Thu, 04 Mar 2010 09:26:21 +0000
+
+emdebian-rootfs (2.0.5) unstable; urgency=low
+
+  * Add shortcut conf files
+  * Add component support to multistrap.
+  * Add intltool to build-depends for program message translation
+    support.
+
+ -- Neil Williams <codehelp@debian.org>  Tue, 02 Mar 2010 21:20:49 +0000
+
+emdebian-rootfs (2.0.4) unstable; urgency=low
+
+  * [INTL:fr] French manpage translation update (Closes: #552198)
+  * Check for symlinks from lib64 to /lib and warn if not unset.
+    (Closes: #553599)
+  * Use genmanpages code from svn-buildpackage for translated content.
+  * Apply useNativeDist to package POT file
+  * Add support for translated program output in multistrap
+  * [INTL:pt] Initial Portuguese program translation (Closes: #555485)
+  * improve flexibility of genmanpages with changes from po4a.
+  * [INTL:pt] Portuguese translation for manpage (Closes: #556293)
+  * Add support for adding extra packages at the end of the run. Work
+    around dash and dpkg-divert issue. Use dpkg -X to avoid problems
+    with data.tar.bz2 and check that the /bin/sh symlink exists.
+  * Switch to po4a-build for manpage generation and translation.
+  * Use default config filename for po4a-build.
+
+ -- Neil Williams <codehelp@debian.org>  Tue, 24 Nov 2009 08:37:09 +0000
+
+emdebian-rootfs (2.0.3) unstable; urgency=low
+
+  * [INTL:pt] Portuguese manpage translation. (Closes: #544953)
+  * Include example config and provide sensible default
+    configuration values. (Closes: #545488)
+  * [l10n:fr] French manpage translation (Closes: #547325)
+
+ -- Neil Williams <codehelp@debian.org>  Fri, 18 Sep 2009 19:16:47 +0100
+
+emdebian-rootfs (2.0.2) unstable; urgency=low
+
+  * emrootfslib : Add provide_empty_dpkg_divert function for Crush.
+  * Update default values for MIRROR (Closes: #532764)
+  * emrootfslib : Add for empty scripts to replace adduser
+  * Examples moved into /usr/share/doc/emdebian-rootfs/examples
+    (Closes: #533236)
+
+ -- Neil Williams <codehelp@debian.org>  Mon, 22 Jun 2009 17:10:11 +0100
+
+emdebian-rootfs (2.0.1) unstable; urgency=low
+
+  * Expand long description for multistrap (Closes: #527364)
+  * Tweak the update-rc.d replacement to avoid using a backslash.
+    (Closes: #530076)
+
+ -- Neil Williams <codehelp@debian.org>  Mon, 25 May 2009 17:39:21 +0100
+
+emdebian-rootfs (2.0.0) unstable; urgency=low
+
+  * Debian release.
+  * Add Recommends: on gcc so that dpkg-architecture works properly.
+  * Add complaint when workingdir is not set in /etc/emsource.conf
+    (Closes: #521474)
+  * em_multistrap does not need Emdebian::Tools - new package removes
+    this dependency. (Closes: #520087)
+  * Update download location in debian/copyright
+
+ -- Neil Williams <codehelp@debian.org>  Sat, 25 Apr 2009 23:29:42 +0100
+
+emdebian-rootfs (1.9.0) unstable; urgency=low
+
+  * Emdebian release
+  * Add docbook-xml to Build-Depends-Indep
+
+ -- Neil Williams <codehelp@debian.org>  Sun, 29 Mar 2009 19:52:41 +0100
+
+emdebian-rootfs (1.8.0) unstable; urgency=low
+
+  * Initial split from emdebian-tools source package.
+  * pbuilder/em_multistrap : Allow retention of source packages outside
+    the rootfs for source distribution and allow separate configuration
+    of the apt sources inside the rootfs.
+
+ -- Neil Williams <codehelp@debian.org>  Sun, 29 Mar 2009 19:30:43 +0100

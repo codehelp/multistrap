@@ -1,0 +1,4075 @@
+# Translation of emdebian-rootfs to French
+# Copyright (C) 2010 Debian French l10n team <debian-l10n-french@lists.debian.org>
+# This file is distributed under the same license as the emdebian-rootfs package.
+#
+# Translators:
+# Julien Patriarca <patriarcaj@gmail.com>, 2010
+msgid ""
+msgstr ""
+"Project-Id-Version: multistrap 2.1.4\n"
+"POT-Creation-Date: 2013-07-27 15:47+0200\n"
+"PO-Revision-Date: 2012-04-24 13:32+0100\n"
+"Last-Translator: Julien Patriarca <patriarcaj@gmail.com>\n"
+"Language-Team: French <debian-l10n-french@lists.debian.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Bookmarks: 138,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
+
+#. type: =head1
+#: pod/multistrap:3 device-table.pl:165
+msgid "Name"
+msgstr "Nom"
+
+#. type: textblock
+#: pod/multistrap:5
+msgid "multistrap - multiple repository bootstraps"
+msgstr "multistrap - bootstrap avec plusieurs dépôts"
+
+#. type: =head1
+#: pod/multistrap:7 device-table.pl:169
+msgid "Synopsis"
+msgstr "Synopsis"
+
+#. type: verbatim
+#: pod/multistrap:9
+#, no-wrap
+msgid ""
+" multistrap [-a ARCH] [-d DIR] -f CONFIG_FILE\n"
+" multistrap [--simulate] -f CONFIG_FILE\n"
+" multistrap -?|-h|--help|--version\n"
+"\n"
+msgstr ""
+"multistrap [-a ARCH] [-d RÉPERTOIRE] -f FICHIER_CONFIG\n"
+"multistrap [--simulate] -f FICHIER_CONFIG\n"
+"multistrap -?|-h|--help|--version\n"
+"\n"
+
+#. type: =head1
+#: pod/multistrap:13 device-table.pl:174
+msgid "Options"
+msgstr "Options"
+
+#. type: textblock
+#: pod/multistrap:15
+msgid "-?|-h|--help|--version - output the help text and exit successfully."
+msgstr ""
+"-?|-h|--help|--version - afficher le texte d'aide et quitter correctement."
+
+#. type: textblock
+#: pod/multistrap:17
+msgid ""
+"--dry-run - collate all the configuration settings and output a bare summary."
+msgstr ""
+"--dry-run - examiner tous les paramètres de configuration et afficher un "
+"bref sommaire."
+
+#. type: textblock
+#: pod/multistrap:20
+msgid "--simulate - same as --dry-run"
+msgstr "--simulate - identique à --dry-run"
+
+#. type: textblock
+#: pod/multistrap:22
+msgid "(The following options can also be set in the configuration file.)"
+msgstr ""
+"(Les options suivantes peuvent également être définies dans le fichier de "
+"configuration.)"
+
+#. type: textblock
+#: pod/multistrap:24
+msgid "-a|--arch - architecture of the packages to put into the multistrap."
+msgstr "-a|--arch - architecture des paquets à insérer dans le multistrap."
+
+#. type: textblock
+#: pod/multistrap:26
+msgid "-d|--dir - directory into which the bootstrap will be installed."
+msgstr "-d|--dir - répertoire dans lequel le bootstrap sera installé."
+
+#. type: textblock
+#: pod/multistrap:28
+msgid "-f|--file - configuration file for multistrap [required]"
+msgstr "-f|--file - fichier de configuration pour multistrap [requis]"
+
+#. type: textblock
+#: pod/multistrap:30
+msgid "-s|--shortcut - shortened version of -f for files in known locations."
+msgstr ""
+"-s|--shortcut - version raccourcie de -f pour les fichiers dans des endroits "
+"connus."
+
+#. type: textblock
+#: pod/multistrap:32
+msgid ""
+"--tidy-up - remove apt cache data, downloaded Packages files and the apt "
+"package cache. Same as cleanup=true."
+msgstr ""
+"--tidy-up - supprimer les données du cache d'apt, les fichiers Packages "
+"téléchargés et le cache des paquets apt. Identique à cleanup=true."
+
+#. type: textblock
+#: pod/multistrap:35
+msgid ""
+"--no-auth - allow the use of unauthenticated repositories. Same as "
+"noauth=true"
+msgstr ""
+"--no-auth - autoriser l'utilisation de dépôts non authentifiés. Identique à "
+"noauth=true"
+
+#. type: textblock
+#: pod/multistrap:38
+msgid ""
+"--source-dir DIR - move the contents of var/cache/apt/archives/ from inside "
+"the chroot to the specified external directory, then add the Debian source "
+"packages for each used binary. Same as retainsources=DIR If the specified "
+"directory does not exist, nothing is done. Requires --tidy-up in order to "
+"calculate the full list of source packages, including dependencies."
+msgstr ""
+"--source-dir RÉP - déplacer le contenu de var/cache/apt/archives/ de "
+"l'intérieur du chroot vers le répertoire extérieur spécifié, puis ajouter "
+"les sources des paquets Debian pour chaque binaire utilisé. Identique à "
+"retainsources=RÉP. Si le répertoire indiqué n'existe pas, rien ne sera fait. "
+"--tidy-up est requis pour calculer la liste complète des paquets source en "
+"incluant les dépendances."
+
+#. type: =head1
+#: pod/multistrap:45
+msgid "Description"
+msgstr "Description"
+
+#. type: textblock
+#: pod/multistrap:47
+msgid ""
+"multistrap provides a debootstrap-like method based on apt and extended to "
+"provide support for multiple repositories, using a configuration file to "
+"specify the relevant suites, architecture, extra packages and the mirror to "
+"use for each bootstrap."
+msgstr ""
+"multistrap fournit une méthode semblable à debootstrap, basée sur apt et "
+"permettant la gestion de dépôts multiples, en utilisant un fichier de "
+"configuration pour indiquer les versions de distribution, l'architecture, "
+"les paquets supplémentaires et le miroir à utiliser pour chaque bootstrap."
+
+#. type: textblock
+#: pod/multistrap:52
+msgid ""
+"The aim is to create a complete bootstrap / root filesystem with all "
+"packages installed and configured, instead of just the base system."
+msgstr ""
+"Le but est de créer un système de fichiers racine / bootstrap complet avec "
+"tous les paquets installés et configurés, plutôt que de créer uniquement le "
+"système de base."
+
+#. type: textblock
+#: pod/multistrap:56
+msgid ""
+"In most cases, users will need to create a configuration file for each "
+"different multistrap usage."
+msgstr ""
+"Dans la plupart des cas, les utilisateurs devront créer un fichier de "
+"configuration pour chaque utilisation différente de multistrap."
+
+#. type: textblock
+#: pod/multistrap:59
+msgid "Example configuration:"
+msgstr "Exemple de configuration :"
+
+#. type: verbatim
+#: pod/multistrap:61
+#, no-wrap
+msgid ""
+" [General]\n"
+" arch=armel\n"
+" directory=/opt/multistrap/\n"
+" # same as --tidy-up option if set to true\n"
+" cleanup=true\n"
+" # same as --no-auth option if set to true\n"
+" # keyring packages listed in each bootstrap will\n"
+" # still be installed.\n"
+" noauth=false\n"
+" # extract all downloaded archives (default is true)\n"
+" unpack=true\n"
+" # whether to add the /suite to be explicit about where apt\n"
+" # needs to look for packages. Default is false.\n"
+" explicitsuite=false\n"
+" # enable MultiArch for the specified architectures\n"
+" # default is empty\n"
+" multiarch=\n"
+" # aptsources is a list of sections to be used\n"
+" # the /etc/apt/sources.list.d/multistrap.sources.list\n"
+" # of the target. Order is not important\n"
+" aptsources=Debian\n"
+" # the bootstrap option determines which repository\n"
+" # is used to calculate the list of Priority: required packages\n"
+" # and which packages go into the rootfs.\n"
+" # The order of sections is not important.\n"
+" bootstrap=Debian\n"
+" \n"
+msgstr ""
+"[General]\n"
+" arch=armel\n"
+" directory=/opt/multistrap/\n"
+" # identique à l'option --tidy-up si définie à vrai\n"
+" cleanup=true\n"
+" # identique à l'option --no-auth si définie à vrai\n"
+" # les paquets « keyring » indiqués dans chaque bootstrap seront\n"
+" # toujours installés.\n"
+" noauth=false\n"
+" # extraire toutes les archives téléchargées (vrai par défaut)\n"
+" unpack=true\n"
+" # ajouter ou non la /suite pour rendre explicite l'endroit où apt\n"
+" # doit chercher les paquets. (faux par défaut)\n"
+" explicitsuite=false\n"
+" # activer MultiArch pour les architectures indiquées\n"
+" # vide par défaut\n"
+" # aptsources est une liste de sections à utiliser\n"
+" # le fichier /etc/apt/sources.list.d/multistrap.sources.list\n"
+" # de la cible. L'ordre n'est pas important\n"
+" aptsources=Debian\n"
+" # l'option bootstrap détermine quel dépôt\n"
+" # est utilisé pour calculer la liste des priorités : paquets nécessaires\n"
+" # et quels paquets vont dans le système de fichiers racine (rootfs).\n"
+" # L'ordre des sections n'est pas important\n"
+" bootstrap=Debian\n"
+" \n"
+
+#. type: verbatim
+#: pod/multistrap:88 pod/multistrap:219
+#, no-wrap
+msgid ""
+" [Debian]\n"
+" packages=\n"
+" source=http://ftp.uk.debian.org/debian\n"
+" keyring=debian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+msgstr ""
+"[Debian]\n"
+" packages=\n"
+" source=http://ftp.uk.debian.org/debian\n"
+" keyring=debian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:94
+msgid ""
+"This will result in a completely normal bootstrap of Debian lenny from the "
+"specified mirror, for armel in '/opt/multistrap/'. (This configuration is "
+"retained in the package as F</usr/share/multistrap/lenny.conf>)"
+msgstr ""
+"Cela se traduira par un bootstrap tout à fait ordinaire de Debian Lenny à "
+"partir du miroir indiqué, pour armel dans « /opt/multistrap/ ». (Cette "
+"configuration est conservée dans le paquet en tant que F</usr/share/"
+"multistrap/lenny.conf>)"
+
+#. type: textblock
+#: pod/multistrap:98
+msgid ""
+"Specify a package to extend the multistrap to include that package and all "
+"dependencies of that package."
+msgstr ""
+"Indiquez un paquet pour étendre le multistrap afin d'inclure ce paquet et "
+"toutes les dépendances de ce paquet."
+
+#. type: textblock
+#: pod/multistrap:101
+msgid ""
+"Specify more repositories for the bootstrap by adding new sections.  Section "
+"names need to be listed in the bootstrap general option for the packages to "
+"be included in the bootstrap."
+msgstr ""
+"Indiquez des dépôts supplémentaires pour le bootstrap en ajoutant de "
+"nouvelles sections. Les noms de sections doivent figurer dans les options "
+"générales de boostrap pour les paquets à inclure dans le bootstrap."
+
+#. type: textblock
+#: pod/multistrap:105
+msgid ""
+"Specify which repositories will be available to the final system at boot by "
+"listing the section names in the aptsources general option, e.g. to exclude "
+"some internal sources or when using a local mirror when building the rootfs."
+msgstr ""
+"Veuillez indiquer quels dépôts seront disponibles pour le système final lors "
+"du boot, en indiquant les noms de section dans les options générales de "
+"aptsource, par exemple pour exclure des sources internes ou quand vous "
+"utilisez un mirroir local pour compiler le système de fichiers racine."
+
+#. type: textblock
+#: pod/multistrap:110
+msgid "Section names are case-insensitive."
+msgstr "La casse des lettres n'est pas importante dans les noms de section."
+
+#. type: textblock
+#: pod/multistrap:112
+msgid ""
+"All dependencies are resolved only by apt, using all bootstrap repositories, "
+"to use only the most recent and most suitable dependencies. Note that "
+"multistrap turns off Install-Recommends so if the multistrap needs a package "
+"that is only a Recommended dependency, the recommended package needs to be "
+"specified in the packages line explicitly. See C<Explicit suite "
+"specification> for more information on getting specific packages from "
+"specific suites."
+msgstr ""
+"Toutes les dépendances sont résolues uniquement par apt, en utilisant tous "
+"les dépôts bootstrap, pour utiliser uniquement les dépendances les plus "
+"récentes et les plus appropriées. Notez que multistrap désactive Install-"
+"Recommands. Si le multistrap a besoin d'un paquet qui est seulement "
+"recommandé, ce paquet devra donc être indiqué explicitement à la ligne des "
+"paquets. Voir C<Spécifications explicites des versions de distributions> "
+"pour obtenir plus d'informations sur la façon d'obtenir des paquets "
+"spécifiques depuis des versions de distribution spécifiques."
+
+#. type: textblock
+#: pod/multistrap:120
+msgid ""
+"'Architecture' and 'directory' can be overridden on the command line.  Some "
+"other general options also have command line options."
+msgstr ""
+"« arch » et « directory » peuvent être outrepassés en ligne de commande. "
+"D'autres options générales peuvent aussi être indiquées en ligne de commande."
+
+#. type: =head1
+#: pod/multistrap:123
+msgid "Online examples and documentation"
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:125
+msgid ""
+"C<multistrap> supports a range of permutations, see the wiki and the "
+"emdebian website for more information and example configurations:"
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:128
+#, fuzzy
+#| msgid "See also: http://wiki.debian.org/Multistrap"
+msgid "http://wiki.debian.org/Multistrap"
+msgstr "Voir aussi : http://wiki.debian.org/Multistrap"
+
+#. type: textblock
+#: pod/multistrap:130
+#, fuzzy
+#| msgid "See also: http://wiki.debian.org/Multistrap"
+msgid "http://www.emdebian.org/multistrap/"
+msgstr "Voir aussi : http://wiki.debian.org/Multistrap"
+
+#. type: textblock
+#: pod/multistrap:132
+msgid ""
+"C<multistrap> includes an example configuration file with a full list of all "
+"supported config file options: F</usr/share/doc/multistrap/examples/full."
+"conf>"
+msgstr ""
+
+#. type: =head1
+#: pod/multistrap:135
+msgid "Shortcuts"
+msgstr "Raccourcis"
+
+#. type: textblock
+#: pod/multistrap:137
+msgid ""
+"In a similar manner to C<debootstrap>, C<multistrap> supports referring to "
+"configuration files in known locations by shortcuts. When using the C<--"
+"shortcut> option, C<multistrap> will look for files in F</usr/share/"
+"multistrap> and then F</etc/multistrap.d/>, appending a '.conf' suffix to "
+"the specified shortcut."
+msgstr ""
+"De la même manière que C<debootstrap>, C<multistrap> gère la référence à des "
+"fichiers de configuration à des endroits connus par des raccourcis. Quand "
+"l'option C<--shortcut> est utilisée, C<multistrap> cherchera des fichiers "
+"dans F</usr/share/multistrap> puis dans F</etc/multistrap.d/>, ajoutant un "
+"suffixe « .conf » au raccourci indiqué."
+
+#. type: textblock
+#: pod/multistrap:143
+msgid "These two commands are equivalent:"
+msgstr "Ces deux commandes sont équivalentes :"
+
+#. type: verbatim
+#: pod/multistrap:145
+#, no-wrap
+msgid ""
+" $ sudo multistrap -s sid\n"
+" $ sudo multistrap -f /usr/share/multistrap/sid.conf\n"
+" \n"
+msgstr ""
+" $ sudo multistrap -s sid\n"
+" $ sudo multistrap -f /usr/share/multistrap/sid.conf\n"
+" \n"
+
+#. type: textblock
+#: pod/multistrap:148
+msgid ""
+"Note that C<multistrap> will still fail if the configuration file itself "
+"does not set the directory or the architecture."
+msgstr ""
+"Veuillez noter que C<multistrap> échouera à chaque fois si le fichier de "
+"configuration lui même n'indique pas le répertoire ou l'architecture."
+
+#. type: =head1
+#: pod/multistrap:151
+msgid "Repositories"
+msgstr "Dépôts"
+
+#. type: textblock
+#: pod/multistrap:153
+msgid ""
+"C<aptsources> lists the sections which should be used to create the F</etc/"
+"apt/sources.list.d/multistrap.list> apt sources in the final system. Not all "
+"C<aptsources> have to appear in the C<bootstrap> section if you have some "
+"internal or local sources which are not accessible to the installed root "
+"filesystem."
+msgstr ""
+"C<aptsources> liste les sections qui devraient être utilisées pour créer les "
+"F</etc/apt/sources.list.d/multistrap.list> sources apt du système final. "
+"Tous les C<aptsources> ne doivent pas obligatoirement apparaître dans la "
+"section C<bootstrap> s'il y a des sources internes ou locales inaccessibles "
+"par le système de fichiers racine installé."
+
+#. type: textblock
+#: pod/multistrap:159
+msgid ""
+"C<bootstrap> lists the sections which will be used to create the multistrap "
+"itself. Only packages listed in C<bootstrap> will be downloaded and unpacked "
+"by multistrap."
+msgstr ""
+"C<bootstrap> liste les sections qui seront utilisées pour créer le "
+"multistrap lui-même. Seuls les paquets indiqués dans C<bootstrap> seront "
+"téléchargés et dépaquetés par multistrap."
+
+#. type: textblock
+#: pod/multistrap:163
+msgid ""
+"Make sure C<bootstrap> lists all sections you need for apt to be able to "
+"find all the packages to be unpacked for the multistrap."
+msgstr ""
+"Il faut s'assurer que C<bootstrap> liste toutes les sections nécessaires "
+"afin que apt puisse trouver tous les paquets devant être dépaquetés pour le "
+"multistrap."
+
+#. type: textblock
+#: pod/multistrap:166
+msgid ""
+"(Older versions of multistrap supported the same option under the "
+"C<debootstrap> name - this spelling is still supported but new configuration "
+"files should be C<bootstrap> instead."
+msgstr ""
+"(Les anciennes versions de multistrap utilisaient la même option sous le nom "
+"C<debootstrap> - cette écriture est toujours possible mais les nouveaux "
+"fichiers de configuration devraient plutôt être C<bootstrap>."
+
+#. type: =head1
+#: pod/multistrap:170
+msgid "General settings:"
+msgstr "Paramètres généraux :"
+
+#. type: textblock
+#: pod/multistrap:172
+msgid ""
+"'arch' can be overridden on the command line using the C<--arch> option."
+msgstr ""
+"« arch » peut être outrepassé en ligne de commande en utilisant l'option C<--"
+"arch>."
+
+#. type: textblock
+#: pod/multistrap:174
+msgid ""
+"'directory' specifies the top level directory where the bootstrap will be "
+"created - it is not packed into a .tgz once complete."
+msgstr ""
+"« directory » indique le répertoire au sommet de l'arborescence dans lequel "
+"le debootstrap sera créé - il n'est pas empaqueté en un .tgz une fois "
+"terminé."
+
+#. type: textblock
+#: pod/multistrap:177
+msgid ""
+"'bootstrap' lists the Sections which will be used to specify the packages "
+"which will be downloaded (and optionally unpacked) into the bootstrap."
+msgstr ""
+"« bootstrap » liste les sections qui seront utilisées pour indiquer les "
+"paquets qui seront téléchargés (et éventuellement dépaquetés) dans le "
+"bootstrap."
+
+#. type: textblock
+#: pod/multistrap:180
+msgid ""
+"'aptsources' lists the Sections which will be used to specify the apt "
+"sources in the final system, e.g. if you need to use a local repository to "
+"generate the rootfs which will not be available to the device at runtime, "
+"list that section in C<bootstrap> but not in C<aptsources>."
+msgstr ""
+"« aptsources » liste les Sections qui seront utilisées pour indiquer les "
+"sources d'apt dans le système final. Par exemple, si vous avez besoin d'un "
+"miroir local pour générer le système de fichiers racine qui ne sera pas "
+"disponible au démarrage, indiquez cette section dans C<bootstrap> et pas "
+"dans C<aptsources>."
+
+#. type: textblock
+#: pod/multistrap:185
+msgid ""
+"If you want a package to be in the rootfs, it B<must> be specified in the "
+"C<bootstrap> list under General."
+msgstr ""
+"Si vous souhaitez qu'un paquet soit dans le système de fichiers racine, il "
+"B<doit> être indiqué dans la liste de C<bootstrap> sous Général."
+
+#. type: textblock
+#: pod/multistrap:188
+msgid "The order of section names in either list is not important."
+msgstr ""
+"L'ordre des noms de section n'est pas important quelle que soit la liste."
+
+#. type: textblock
+#: pod/multistrap:190
+msgid ""
+"If C<markauto> is set to true, C<multistrap> will request apt to mark all "
+"packages specified in the combined C<packages> list as manually installed "
+"and all dependencies not explicitly listed as automatically installed in the "
+"APT extended state database. C<markauto> can be used independently of "
+"C<unpack>."
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:196
+msgid ""
+"As with debootstrap, multistrap will continue after errors, as long as the "
+"configuration file can be correctly parsed."
+msgstr ""
+"Comme pour debootstrap, multistrap continuera après des erreurs aussi "
+"longtemps que le fichier de configuration peut être correctement interprété."
+
+#. type: textblock
+#: pod/multistrap:199
+msgid ""
+"multistrap also implements the machine:variant support originally used in "
+"Emdebian Crush, although in a different implementation. Using the cascading "
+"configuration support, particular machine:variant combinations can be "
+"supported by simple changes on the command line."
+msgstr ""
+"multistrap implémente également la gestion des variantes machines utilisée "
+"initialement dans Emdebian Crush, bien que l'implémentation soit différente. "
+"Utiliser la gestion de configuration en cascade (« cascading "
+"configuration ») permet des combinaisons de variantes machines spécifiques "
+"gérées par de simples changements sur la ligne de commande."
+
+#. type: textblock
+#: pod/multistrap:204
+msgid ""
+"Setting C<tarballname> to true also packs up the final filesystem into a "
+"tarball."
+msgstr ""
+"Définir C<tarballname> à vraie empaquette également le système de fichiers "
+"final dans un tarball."
+
+#. type: textblock
+#: pod/multistrap:207
+msgid ""
+"Note that multistrap ignores any unrecognised options in the config file - "
+"this allows for backwards-compatible behaviour as well as overloading the "
+"multistrap config files to support other tools (like pbuilder). Use the C<--"
+"simulate> option to see the combined configuration settings."
+msgstr ""
+"Veuillez noter que multistrap ne tient pas compte des options non reconnues "
+"dans le fichier de configuration - cela permet de garder une "
+"rétrocompatibilité ainsi que de surcharger les fichiers de configuration de "
+"multistrap pour gérer d'autres outils (comme pbuilder). Utilisez l'option "
+"C<--simulate> pour voir les différentes combinaisons de paramètres."
+
+#. type: textblock
+#: pod/multistrap:213
+msgid ""
+"However, if the config file itself cannot be parsed, multistrap will abort. "
+"Check that the config file has a key and a value for each line, other than "
+"comments. Values must all on the same line as the key."
+msgstr ""
+"Néanmoins, si le fichier de configuration ne peut être lu, multistrap "
+"abandonnera. Vérifiez que le fichier de configuration possède une clé et une "
+"valeur pour chaque ligne, en dehors des commentaires. Les valeurs doivent "
+"toutes se trouver sur la même ligne que la clé."
+
+#. type: =head1
+#: pod/multistrap:217
+msgid "Section settings"
+msgstr "Paramètres de la section"
+
+#. type: textblock
+#: pod/multistrap:225
+msgid ""
+"The section name (in [] brackets) needs to be unique for this configuration "
+"file and any configuration files which this file includes. Section names are "
+"case insensitive (all comparisons happen after conversion to lower case)."
+msgstr ""
+"Le nom de section (entre [] crochets) doit être unique pour ce fichier de "
+"configuration et tous les fichiers de configuration que ce fichier comporte. "
+"Les noms de section ne sont pas sensibles à la casse (toutes les "
+"comparaisons sont faites après la conversion en minuscules)."
+
+#. type: textblock
+#: pod/multistrap:230
+msgid ""
+"'packages' is the list of packages to be added when this Section is listed "
+"in C<bootstrap> - all package names must be listed on a single line or the "
+"file will fail to parse. One alternative is to define your list of packages "
+"as multiple groups with packages separated on a functional / dependency "
+"basis, e.g. base, Xorg, networking etc. and list each group under "
+"'bootstrap'."
+msgstr ""
+"« packages » est la liste des paquets devant être ajoutés quand la Section "
+"est indiquée dans C<bootstrap> — tous les noms de paquets doivent être "
+"indiqués sur une seule ligne ou le fichier ne pourra être lu. Une "
+"alternative consiste à définir votre liste de paquets en groupes multiples "
+"avec les paquets séparés selon une base de dépendances fonctionnelles, comme "
+"Xorg, networking, etc. et indiqué chaque groupe sous « bootstrap »."
+
+#. type: verbatim
+#: pod/multistrap:237
+#, no-wrap
+msgid ""
+" bootstrap=base networking\n"
+"\n"
+msgstr ""
+" bootstrap=base networking\n"
+"\n"
+
+#. type: verbatim
+#: pod/multistrap:239
+#, no-wrap
+msgid ""
+" [base]\n"
+" packages=udev mtd-utils\n"
+" source=http://www.emdebian.org/grip\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+msgstr ""
+"[base]\n"
+" packages=udev mtd-utils\n"
+" source=http://www.emdebian.org/grip\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+
+#. type: verbatim
+#: pod/multistrap:245
+#, no-wrap
+msgid ""
+" [networking]\n"
+" packages=netbase ifupdown iproute net-tools samba\n"
+" source=http://www.emdebian.org/grip\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+msgstr ""
+"[réseau]\n"
+" packages=netbase ifupdown iproute net-tools samba\n"
+" source=http://www.emdebian.org/grip\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:251
+msgid ""
+"As a special case, C<multistrap> also supports multiple packages keys per "
+"section, one line for each. Other keys cannot be repeated in this manner."
+msgstr ""
+"Exceptionnellement, C<multistrap> prend aussi en charge plusieurs clés pour "
+"les paquets, chacune sur une ligne. Les autres clés ne peuvent être définies "
+"de la même manière."
+
+#. type: verbatim
+#: pod/multistrap:255
+#, no-wrap
+msgid ""
+" [Emdebian]\n"
+" packages=udev mtd-utils netbase ifupdown iproute\n"
+" packages=busybox net-tools samba\n"
+" source=http://www.emdebian.org/grip\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+msgstr ""
+"[Emdebian]\n"
+" packages=udev mtd-utils netbase ifupdown iproute\n"
+" packages=busybox net-tools samba\n"
+" source=http://www.emdebian.org/grip\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=lenny\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:262
+msgid ""
+"'source' is the apt source to use for this Section. To use a local source on "
+"the same machine, ensure you use C<copy://> not C<file://>, so that apt is "
+"told to copy the packages into the rootfs instead of assuming it can try to "
+"download them later - because that \"later\" will never actually happen."
+msgstr ""
+"« source » est la source apt à utiliser pour cette Section. Pour utiliser "
+"une source locale sur la même machine, assurez-vous d'utiliser C<copy://> et "
+"pas C<file://>, de manière à dire à apt de copier les paquets dans le "
+"système de fichiers racine plutôt que d'essayer de les télécharger plus tard "
+"- parce que ce « plus tard » n'arrivera certainement jamais."
+
+#. type: textblock
+#: pod/multistrap:268
+msgid ""
+"'keyring' lists the package which contains the key used by the source listed "
+"in this Section. If no keyring is specified, the C<noauth> option must be "
+"set to B<true>. See Secure Apt."
+msgstr ""
+"« keyring » liste les paquets qui contiennent la clé utilisée par la source "
+"indiquée dans la Section. Si aucune clé n'est indiquée, l'option C<noauth> "
+"doit être mise à B<actif>. Voir Securiser Apt."
+
+#. type: textblock
+#: pod/multistrap:272
+msgid ""
+"'suite' is the suite to use from this source. Note that this should be the "
+"suite, not the codename."
+msgstr ""
+"« suite » est la suite à utiliser depuis cette source. Veuillez noter qu'il "
+"s'agit de la suite et non du nom de code."
+
+#. type: textblock
+#: pod/multistrap:275
+msgid ""
+"Suites change from time to time: (oldstable, stable, testing, sid)  The "
+"codename (etch, lenny, squeeze, sid) does not change."
+msgstr ""
+"Les versions de distribution changent au fil du temps : (ancienne stable, "
+"stable, testing, sid). Le nom de code (etch, lenny, squeeze, sid) ne change "
+"pas."
+
+#. type: =head1
+#: pod/multistrap:278
+msgid "Secure Apt"
+msgstr "Apt sécurisé"
+
+#. type: textblock
+#: pod/multistrap:280
+msgid ""
+"To use authenticated apt repositories, multistrap needs to be able to "
+"install an appropriate keyring package from the existing apt sources "
+"B<outside the multistrap environment> into the destination system. "
+"Unfortunately, keyring packages cannot be downloaded from the repositories "
+"specified in the multistrap configuration - this is because C<apt> needs the "
+"keyring to be updated before being able to use repositories not previously "
+"known."
+msgstr ""
+"Pour utiliser des dépôts apt signés, multistrap doit pouvoir installer un "
+"paquet trousseau adéquat à partir des sources apt existantes B<en dehors de "
+"l'environnement multistrap>, dans le système de destination. "
+"Malheureusement, les paquets de trousseau ne peuvent pas être téléchargés "
+"depuis les dépôts indiqués dans la configuration multistrap — ceci parce que "
+"C<apt> nécessite que le trousseau soit mis à jour avant de pouvoir utiliser "
+"des dépôts non connus précédemment."
+
+#. type: textblock
+#: pod/multistrap:288
+msgid ""
+"If relevant packages exist, specify them in the 'keyring' option for each "
+"repository. multistrap will then check that apt has already installed this "
+"package so that the repository can be authenticated before any packages are "
+"downloaded from it."
+msgstr ""
+"Si ces paquets existent, indiquez-les dans l'option « keyring » pour chaque "
+"dépôt. multistrap vérifiera alors que apt a déjà installé ce paquet : ainsi "
+"le dépôt pourra être authentifié avant de télécharger des paquets."
+
+#. type: textblock
+#: pod/multistrap:293
+msgid ""
+"Note that B<all> repositories to be used with multistrap must be "
+"authenticated or apt will fail. Similarly, secure apt can only be disabled "
+"for all repositories (by using the --no-auth command line option or setting "
+"the general noauth option in the configuration file), even if only one "
+"repository does not have a suitable keyring available."
+msgstr ""
+"Notez que B<tous> les dépôts devant être utilisés avec multistrap doivent "
+"être authentifiés sinon apt échouera. De même, la sécurisation d'apt ne peut "
+"être désactivée que pour tous les dépôts (en utilisant l'option --no-auth en "
+"ligne de commande ou en définissant l'option générale noauth dans le fichier "
+"de configuration), même s'il n'existe qu'un seul dépôt sans trousseau de "
+"clés convenable."
+
+#. type: textblock
+#: pod/multistrap:300
+msgid ""
+"The keyring package(s) will also be installed inside the multistrap "
+"environment to match the installed apt sources for the multistrap."
+msgstr ""
+"Les paquets de trousseau de clés seront également installés à l'intérieur de "
+"l'environnement du multistrap pour correspondre avec les sources apt "
+"installées pour le multistrap."
+
+#. type: =head1
+#: pod/multistrap:303
+msgid "State"
+msgstr "État"
+
+#. type: textblock
+#: pod/multistrap:305
+msgid ""
+"multistrap is stateless - if the directory exists, it will simply proceed as "
+"normal and apt will try to pick up where it left off."
+msgstr ""
+"multistrap est sans-état - si le répertoire existe, il procédera tout "
+"simplement de manière ordinaire et apt essaiera de reprendre là où il "
+"s'était arrêté."
+
+#. type: =head1
+#: pod/multistrap:308
+msgid "Root Filesystem Configuration"
+msgstr "Configuration du système de fichiers racine"
+
+#. type: textblock
+#: pod/multistrap:310
+msgid ""
+"multistrap unpacks the downloaded packages but other stages of system "
+"configuration are not attempted. Examples include:"
+msgstr ""
+"multistrap décompresse les paquets téléchargés, mais d'autres étapes de la "
+"configuration du système ne sont pas tentées. Par exemple : "
+
+#. type: verbatim
+#: pod/multistrap:313
+#, no-wrap
+msgid ""
+" /etc/inittab\n"
+" /etc/fstab\n"
+" /etc/hosts\n"
+" /etc/securetty\n"
+" /etc/modules\n"
+" /etc/hostname\n"
+" /etc/network/interfaces\n"
+" /etc/init.d\n"
+" /etc/dhcp3 \n"
+"\n"
+msgstr ""
+" /etc/inittab\n"
+" /etc/fstab\n"
+" /etc/hosts\n"
+" /etc/securetty\n"
+" /etc/modules\n"
+" /etc/hostname\n"
+" /etc/network/interfaces\n"
+" /etc/init.d\n"
+" /etc/dhcp3 \n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:323
+msgid ""
+"Any device-specific device nodes will also need to be created using MAKEDEV "
+"or C<device-table.pl> - a helper script that can work around some of the "
+"issues with MAKEDEV. F<device-table.pl> requires a device table file along "
+"the lines of the one in the mtd-utils source package.  See F</usr/share/doc/"
+"multistrap/examples/device_table.txt>"
+msgstr ""
+"Tous les noeuds de périphériques doivent également être créés avec MAKEDEV "
+"ou C<device-table.pl> - un script d'aide pouvant résoudre certains problèmes "
+"de MAKEDEV. F<device-table.pl> nécessite un fichier contenant une table de "
+"périphériques suivant les lignes de celui contenu dans les sources du paquet "
+"mtd-utils. Voir F</usr/share/doc/multistrap/examples/device_table.txt>"
+
+#. type: textblock
+#: pod/multistrap:329
+msgid ""
+"Once multistrap has successfully created the basic file and directory "
+"layout, other device-specific scripts are needed before the filesystem can "
+"be packaged up and installed onto the target device."
+msgstr ""
+"Une fois que multistrap a réussi à créer la structure de base pour les "
+"fichiers et les répertoires, d'autres scripts spécifiques aux périphériques "
+"sont nécessaires avant que le système de fichiers puisse être installé sur "
+"le périphérique cible."
+
+#. type: textblock
+#: pod/multistrap:334
+msgid ""
+"Once installed, the packages themselves need to be configured using the "
+"package maintainer scripts and C<dpkg --configure -a>, unless this is a "
+"native multistrap."
+msgstr ""
+"Une fois installés, les paquets doivent eux-mêmes être configurés en "
+"utilisant les scripts du responsable du paquet et C<dpkg --configure -a>, à "
+"moins qu'il ne s'agisse d'un multistrap natif."
+
+#. type: textblock
+#: pod/multistrap:338
+msgid ""
+"For C<dpkg> to work, F</proc> and F</sysfs> must be mounted (or mountable), "
+"F</dev/pts> is also recommended."
+msgstr ""
+"Pour que C<dpkg> puisse fonctionner, F</proc> et F</sysfs> doivent être "
+"montés (ou être montables), F</dev/pts> est également recommandé."
+
+#. type: textblock
+#: pod/multistrap:341
+msgid "See also: http://wiki.debian.org/Multistrap"
+msgstr "Voir aussi : http://wiki.debian.org/Multistrap"
+
+#. type: =head1
+#: pod/multistrap:343
+msgid "Environment"
+msgstr "Environnement"
+
+#. type: textblock
+#: pod/multistrap:345
+msgid ""
+"To configure the unpacked packages (whether in native or cross mode), "
+"certain environment variables are needed:"
+msgstr ""
+"Pour configurer les paquets dépaquetés (que ce soit en mode croisé ou "
+"natif), certaines variables d'environnement sont nécessaires :"
+
+#. type: textblock
+#: pod/multistrap:348
+msgid ""
+"Debconf needs to be told to accept that user interaction is not desired:"
+msgstr ""
+"Il est nécessaire de signaler à Debconf que l'interaction utilisateur n'est "
+"pas souhaitée : "
+
+#. type: verbatim
+#: pod/multistrap:351
+#, no-wrap
+msgid ""
+" DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+"\n"
+msgstr ""
+" DEBIAN_FRONTEND=noninteractif DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" \n"
+
+#. type: textblock
+#: pod/multistrap:353
+msgid ""
+"Perl needs to be told to accept that no locales are available inside the "
+"chroot and not to complain:"
+msgstr ""
+"Il est nécessaire de signaler à Perl qu'aucune locale n'est disponible "
+"l'intérieur du chroot et de ne pas se plaindre :"
+
+#. type: verbatim
+#: pod/multistrap:356
+#, no-wrap
+msgid ""
+" LC_ALL=C LANGUAGE=C LANG=C\n"
+"\n"
+msgstr ""
+" LC_ALL=C LANGUAGE=C LANG=C\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:358
+msgid "Then, dpkg can configure the packages:"
+msgstr "Puis, dpkg peut configurer les paquets :"
+
+#. type: textblock
+#: pod/multistrap:360
+msgid "chroot method (PATH = top directory of chroot):"
+msgstr "méthode chroot (PATH = le répertoire de base du chroot) :"
+
+#. type: verbatim
+#: pod/multistrap:362
+#, no-wrap
+msgid ""
+" DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \\\n"
+" LC_ALL=C LANGUAGE=C LANG=C chroot /PATH/ dpkg --configure -a\n"
+"\n"
+msgstr ""
+" DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \\\n"
+" LC_ALL=C LANGUAGE=C LANG=C chroot /PATH/ dpkg --configure -a\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:365
+msgid "at a login shell:"
+msgstr "dans un interpréteur de commandes de connexion : "
+
+#. type: verbatim
+#: pod/multistrap:367
+#, no-wrap
+msgid ""
+" # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" # export LC_ALL=C LANGUAGE=C LANG=C \n"
+" # dpkg --configure -a\n"
+"\n"
+msgstr ""
+" # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" # export LC_ALL=C LANGUAGE=C LANG=C \n"
+" # dpkg --configure -a\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:371
+msgid "(As above, dpkg needs F</proc> and F</sysfs> mounted first.)"
+msgstr ""
+"(Comme ci-dessus, dpkg a besoin que F</proc> et F</sysfs> soient montés en "
+"premier.)"
+
+#. type: =head1
+#: pod/multistrap:373
+msgid "Native mode - multistrap"
+msgstr "mode natif - multistrap"
+
+#. type: textblock
+#: pod/multistrap:375
+msgid ""
+"multistrap was not intended for native support, it was developed for cross "
+"architecture support. In order for multiple repositories to be used, "
+"multistrap only unpacks the packages selected by apt."
+msgstr ""
+"multistrap n'était pas prévu pour le mode natif, il fut développé pour la "
+"gestion de plusieurs architectures. Pour que de multiples dépôts puissent "
+"être utilisés, multistrap dépaquette uniquement les paquets sélectionnés par "
+"apt."
+
+#. type: textblock
+#: pod/multistrap:379
+msgid ""
+"In native mode, various post-multistrap operations are likely to be needed "
+"that debootstrap would do for you:"
+msgstr ""
+"En mode natif, diverses opérations post-multistrap que debootstrap ferait "
+"pour vous sont probablement nécessaires :"
+
+#. type: verbatim
+#: pod/multistrap:382
+#, no-wrap
+msgid ""
+" 1. copy /etc/hosts into the chroot\n"
+" 2. clean the environment to unset LANGUAGE, LC_ALL and LANG\n"
+"    to silence nuisance perl warnings that obscure other errors\n"
+"\n"
+msgstr ""
+" 1. copiez /etc/hosts dans le chroot\n"
+" 2. nettoyez l'environnement pour détruire LANGUAGE, LC_ALL and LANG\n"
+"    pour passer sous silence les nuisances des avertissements cachant d'autres erreurs\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:386
+msgid ""
+"(An alternative to unset the localisation variables is to add locales to "
+"your multistrap configuration file in the 'packages' option."
+msgstr ""
+"(Une alternative pour détruire les variables de localisation est d'ajouter "
+"locales à votre fichier de configuration multistrap dans l'option "
+"« paquets »."
+
+#. type: textblock
+#: pod/multistrap:390
+msgid ""
+"A native multistrap can be used directly with chroot, so C<multistrap> runs "
+"C<dpkg --configure -a> at the end of the multistrap process, unless the "
+"B<ignorenativearch> option is set to true in the B<General> section of the "
+"configuration file."
+msgstr ""
+"Un multistrap natif peut être directement utilisé avec chroot, ainsi "
+"C<multistrap> exécute C<dpkg --configure -a> à la fin du processus du "
+"multistrap à moins que l'option B<ignorenativearch> soit réglée sur true "
+"dans la section B<General> du fichier de configuration."
+
+#. type: =head1
+#: pod/multistrap:395
+msgid "Daemons in chroots"
+msgstr "Démons dans les chroots"
+
+#. type: textblock
+#: pod/multistrap:397
+msgid ""
+"Depending on which system you using to provide the packages for "
+"C<multistrap>, native chroots should generally not allow daemons to start "
+"inside the chroot. Use the F</usr/share/multistrap/chroot.sh> as your "
+"C<setupscript> or include that script in your own setup script."
+msgstr ""
+"En fonction du système que vous utilisez pour fournir les paquets pour "
+"C<multistrap>, les chroots natifs n'autorisent généralement pas les démons à "
+"démarrer au sein du chroot. Utilisez le F</usr/share/multistrap/chroot.sh> "
+"comme votre C<setupscript> ou incluez ce script dans votre propre script "
+"d'installation."
+
+#. type: verbatim
+#: pod/multistrap:402
+#, no-wrap
+msgid ""
+" setupscript=/usr/share/multistrap/chroot.sh\n"
+"\n"
+msgstr ""
+" setupscript=/usr/share/multistrap/chroot.sh\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:404
+msgid "F<chroot.sh> copes with systems using F<sysvinit> and F<upstart>."
+msgstr ""
+"F<chroot.sh> sait fonctionner avec les systèmes utilisant F<sysvinit> et "
+"F<upstart>."
+
+#. type: textblock
+#: pod/multistrap:406
+msgid "See also"
+msgstr "Voir également"
+
+#. type: verbatim
+#: pod/multistrap:408
+#, no-wrap
+msgid ""
+" http://people.debian.org/~hmh/invokerc.d-policyrc.d-specification.txt\n"
+"\n"
+msgstr ""
+" http://people.debian.org/~hmh/invokerc.d-policyrc.d-specification.txt\n"
+"\n"
+
+#. type: =head1
+#: pod/multistrap:410
+msgid "Cascading configuration"
+msgstr "Configuration en cascade"
+
+#. type: textblock
+#: pod/multistrap:412
+msgid ""
+"To support multiple variants of a basic (common) configuration, "
+"C<multistrap> allows configuration files to include other (more general)  "
+"configuration files. i.e. the most detailed / specific configuration file is "
+"specified on the command line and that file includes another file which is "
+"shared by other configurations."
+msgstr ""
+"Pour assurer les multiples variantes d'une configuration de base, "
+"C<multistrap> permet d'inclure des fichiers de configuration (plus généraux) "
+"dans des fichiers de configuration : le fichier de configuration le plus "
+"spécifique ou détaillé doit être indiqué à la ligne de commande et ce "
+"fichier inclut un fichier qui est partagé avec d'autres configurations."
+
+#. type: textblock
+#: pod/multistrap:418
+msgid "Base file:"
+msgstr "Fichier de base :"
+
+#. type: verbatim
+#: pod/multistrap:420
+#, no-wrap
+msgid ""
+" /usr/share/multistrap/crosschroot.conf\n"
+"\n"
+msgstr ""
+" /usr/share/multistrap/crosschroot.conf\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:422
+msgid "Variations:"
+msgstr "Variations :"
+
+#. type: verbatim
+#: pod/multistrap:424
+#, no-wrap
+msgid ""
+" /usr/share/multistrap/armel.conf\n"
+"\n"
+msgstr ""
+" /usr/share/multistrap/armel.conf\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:426
+msgid ""
+"Specifying just the armel.conf file will get the rest of the settings from "
+"crosschroot.conf so that common changes only need to be made in a single "
+"file."
+msgstr ""
+"En indiquant uniquement le fichier armel.conf, le reste des paramètres sera "
+"obtenu à partir du fichier crosschroot.conf afin que les modifications "
+"communes ne doivent être réalisées que dans un seul fichier."
+
+#. type: textblock
+#: pod/multistrap:430
+msgid ""
+"It is B<strongly> recommended that any changes to the configuration files "
+"involved in any particular cascade are tested using the C<--simulate> option "
+"to multistrap which will output a summary of the options that have been set "
+"once the cascade is complete. Note that multistrap does B<not warn you> if a "
+"configuration file contains an unrecognised option (for future compatibility "
+"with backported configurations), so a simple typo can result in an option "
+"not being set."
+msgstr ""
+"Il est B<fortement> recommandé pour toutes modifications dans les fichiers "
+"de configuration impliqués dans n'importe quelle cascade de les tester avec "
+"l'option C<--simulate> de multistrap qui produira en sortie un résumé des "
+"options définies une fois la cascade effectuée. Il faut noter que multistrap "
+"B<n'avertit pas> si un fichier de configuration contient une option non "
+"reconnue (afin d'assurer la compatibilité future avec les configurations "
+"rétroportées). Ainsi une simple faute de frappe peut être à l'origine d'une "
+"option non définie."
+
+#. type: =head1
+#: pod/multistrap:438
+msgid "Machine:variant support"
+msgstr "Gestion des variantes de Machines"
+
+#. type: textblock
+#: pod/multistrap:440
+msgid ""
+"The old packages.conf variables from emsandbox can all be converted into "
+"C<multistrap> configuration variables. The machine:variant support in "
+"C<multistrap> concentrates on the scripts, F<config.sh> and F<setup.sh>"
+msgstr ""
+"Toutes les anciennes variables de packages.conf de emsandbox peuvent être "
+"converties en variables de configuration C<mulistrap>. L'assistance des "
+"variantes machines dans C<multistrap> se concentre sur les scripts, F<config."
+"sh> et F<setup.sh>"
+
+#. type: textblock
+#: pod/multistrap:445
+msgid ""
+"Note: B<machine:variant support is likely to be replaced by the hook "
+"functionality described below.>"
+msgstr ""
+"Remarque : B<la prise nen charge de machine:variant sera vraisemblablement "
+"remplacée par le déclencheur décrit ci-dessous>"
+
+#. type: textblock
+#: pod/multistrap:448
+msgid ""
+"Once C<multistrap> has unpacked the downloaded packages, the C<setup.sh> can "
+"be called, passing the location and architecture of the root filesystem, so "
+"that other fine tuning can take place. At this stage, any operations inside "
+"a foreign architecture rootfs must not try to execute any binaries within "
+"the rootfs. As the final stage of the multistrap process, C<config.sh> is "
+"copied into the root directory of the rootfs."
+msgstr ""
+"Une fois que C<multistrap> a dépaqueté les paquets téléchargés, C<setup.sh> "
+"peut être appelé, en passant l'emplacement et l'architecture du système de "
+"fichiers racine, pour que d'autre réglages fins puissent être effectués. À "
+"cette étape, aucune opération à l'intérieur d'un système de fichiers racine "
+"étranger (rootfs) ne doit tenter d'exécuter de binaires dans le rootfs. À la "
+"dernière étape du processus multistrap, C<config.sh> est copié vers le "
+"répertoire root du système de fichiers racine."
+
+#. type: textblock
+#: pod/multistrap:456
+msgid ""
+"One advantage of using machine:variant support is that the entire "
+"rootfilesystem can be managed by a single call to multistrap - this is "
+"useful when building root filesystems in userspace."
+msgstr ""
+"Un des avantages d'utiliser la gestion des variantes machines est que la "
+"totalité du système de fichiers racine peut être gérée par un seul appel à "
+"multistrap - ceci est utile lors de la création de systèmes de fichiers "
+"racines dans l'espace utilisateur."
+
+#. type: textblock
+#: pod/multistrap:460
+msgid ""
+"To enable machine:variant support, specify the path to the scripts to be "
+"called in the variant configuration file (General section):"
+msgstr ""
+"Pour activer les variantes machines, il faut indiquer le chemin vers les "
+"scripts devant être appelés dans le fichier de configuration variant "
+"(Section Générale) : "
+
+#. type: verbatim
+#: pod/multistrap:463
+#, no-wrap
+msgid ""
+" [General]\n"
+" include=/path/to/general.conf\n"
+" setupscript=/path/to/setup.sh\n"
+" configscript=/path/to/config.sh\n"
+"\n"
+msgstr ""
+" [General]\n"
+" include=/chemin/vers/general.conf\n"
+" setupscript=/chemin/vers/setup.sh\n"
+" configscript=/chemin/vers/config.sh\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:468
+msgid ""
+"Ensure that both the setupscript and the configscript are executable or "
+"C<multistrap> will ignore the script."
+msgstr ""
+
+#. type: =item
+#: pod/multistrap:473
+#, fuzzy
+#| msgid "Example configuration:"
+msgid "Example configscript.sh"
+msgstr "Exemple de configuration :"
+
+#. type: verbatim
+#: pod/multistrap:475 pod/multistrap:733
+#, no-wrap
+msgid ""
+" #!/bin/sh\n"
+" \n"
+msgstr ""
+
+#. type: verbatim
+#: pod/multistrap:477 pod/multistrap:735
+#, no-wrap
+msgid ""
+" set -e\n"
+" \n"
+msgstr ""
+
+#. type: verbatim
+#: pod/multistrap:479
+#, fuzzy, no-wrap
+#| msgid ""
+#| " # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+#| " # export LC_ALL=C LANGUAGE=C LANG=C \n"
+#| " # dpkg --configure -a\n"
+#| "\n"
+msgid ""
+" export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" export LC_ALL=C LANGUAGE=C LANG=C\n"
+" /var/lib/dpkg/info/dash.preinst install\n"
+" dpkg --configure -a\n"
+" mount proc -t proc /proc\n"
+" dpkg --configure -a\n"
+" umount /proc\n"
+"\n"
+msgstr ""
+" # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" # export LC_ALL=C LANGUAGE=C LANG=C \n"
+" # dpkg --configure -a\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:487
+#, fuzzy
+#| msgid "See also: http://wiki.debian.org/Multistrap"
+msgid "For more information, see the Wiki: http://wiki.debian.org/Multistrap"
+msgstr "Voir aussi : http://wiki.debian.org/Multistrap"
+
+#. type: =item
+#: pod/multistrap:490
+msgid "Mounting /dev and /proc for chroot configuration"
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:492
+msgid "/proc can be mounted inside the chroot, as above:"
+msgstr ""
+
+#. type: verbatim
+#: pod/multistrap:494
+#, no-wrap
+msgid ""
+" mount proc -t proc /proc\n"
+"\n"
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:496
+msgid ""
+"However, /dev should be mounted from outside the chroot, before running any "
+"C<configscript.sh> in the chroot:"
+msgstr ""
+
+#. type: verbatim
+#: pod/multistrap:499
+#, no-wrap
+msgid ""
+" cd /path/chroot/\n"
+" sudo tar -xzf /path/multistrap.tgz\n"
+" sudo mount /dev -o bind ./dev/\n"
+" sudo chroot . ./configscript.sh || true\n"
+"\n"
+msgstr ""
+
+#. type: =head1
+#: pod/multistrap:506
+msgid "Restricting package selection"
+msgstr "Restriction de la sélection des paquets"
+
+#. type: textblock
+#: pod/multistrap:508
+msgid ""
+"C<multistrap> includes Required packages by default, the current list of "
+"packages on your own machine can be seen using:"
+msgstr ""
+"C<multistrap> inclut les paquets requis par défaut, la liste actuelle des "
+"paquets sur votre machine personnelle peut être visualisée en utilisant : "
+
+#. type: verbatim
+#: pod/multistrap:511
+#, no-wrap
+msgid ""
+" grep-available  -FPriority 'required' -sPackage\n"
+"\n"
+msgstr ""
+" grep-available  -FPriority 'required' -sPackage\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:513
+msgid ""
+"(The actual list is calculated from the downloaded Packages files and may "
+"differ from the output of C<grep-available>.)"
+msgstr ""
+"(La véritable liste est calculée à partir des paquets téléchargés et peut "
+"différer de la sortie de C<grep-available>.)"
+
+#. type: textblock
+#: pod/multistrap:516
+msgid ""
+"If the OmitRequired option is set to true, these packages will not be added "
+"- whilst useful, this option can easily lead to a useless rootfs. Only the "
+"packages specified manually in the configuration files will be used in the "
+"calculations - dependencies of those packages will be added but no others."
+msgstr ""
+"Si l'option OmitRequired est définie à vrai, ces paquets ne seront pas "
+"ajoutés - bien qu'utile, cette option peut facilement conduire à un rootfs "
+"inutilisable. Seuls les paquets indiqués manuellement dans les fichiers de "
+"configuration seront utilisés dans les calculs - les dépendances de ces "
+"paquets seront également ajoutées mais aucun autre."
+
+#. type: =head1
+#: pod/multistrap:522
+msgid "Adding Priority: important packages"
+msgstr "Ajout des paquet de priorité « important »"
+
+#. type: textblock
+#: pod/multistrap:524
+msgid ""
+"C<multistrap> can imitate C<debootstrap> by automatically adding all "
+"packages from all sections where the downloaded Packages file lists the "
+"package as Priority: important. The default is not to add such packages "
+"unless individually included in a C<packages=> option in a section specified "
+"in the C<bootstrap> general option. To add all such packages, set the "
+"addimportant option to true in the general section."
+msgstr ""
+"C<multistrap> peut imiter C<debootstrap> en ajoutant automatiquement tous "
+"les paquets depuis toutes les sections où le fichier des paquets téléchargés "
+"indique les paquets de priorité « important ». Le comportement par défaut "
+"est de ne pas ajouter de tels paquets tant qu'ils ne sont pas "
+"individuellement inclus dans une option C<packages=>, dans une section "
+"indiquée dans les options générales de C<bootstrap>. Pour ajouter tous ces "
+"paquets, réglez l'option addimportant sur vrai dans la section générale."
+
+#. type: verbatim
+#: pod/multistrap:532
+#, no-wrap
+msgid ""
+" addimportant=true\n"
+"\n"
+msgstr ""
+" addimportant=true\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:534
+msgid ""
+"Priority: important can only operate for all sections listed in the "
+"C<bootstrap> option. This may cause some confusion when mixing suites."
+msgstr ""
+"La priorité « important  ne peut être appliquée qu'aux sections indiquées "
+"dans l'option de C<bootstrap>. Cela pourrait entraîner de la confusion lors "
+"de mélanges de suites."
+
+#. type: textblock
+#: pod/multistrap:537
+msgid ""
+"It is not possible to enable addimportant and omitrequired in the same "
+"configuration. C<multistrap> will exit with error code 7 if any "
+"configuration results in addimportant and omitrequired both being set to "
+"true. (This includes the effects of including other configuration files.)"
+msgstr ""
+"Il n'est pas possible d'activer addimportant et omitrequired dans la même "
+"configuration. C<multistrap> s'arrêtera avec le code d'erreur 7 s'il est "
+"trouvé dans n'importe quelle configuration les options addimportant et "
+"omitrequired réglées sur vrai. (Ceci inclut les effets dûs à l'inclusion "
+"d'autres fichiers de configuration.)"
+
+#. type: =head1
+#: pod/multistrap:543
+msgid "Recommends behaviour"
+msgstr "Comportements recommandés"
+
+#. type: textblock
+#: pod/multistrap:545
+msgid ""
+"The Debian default behaviour after the Lenny release was to consider "
+"recommended packages as extra packages to be installed when any one package "
+"is selected. Recommended packages are those which the maintainer considers "
+"that would be present on C<most> installations of that package and allowing "
+"Recommends means allowing Recommends of recommended packages and so on."
+msgstr ""
+"Après la version Lenny, le comportement par défaut de Debian était de "
+"prendre en compte les paquets recommandés comme des paquets supplémentaires "
+"quant au moins un paquet était sélectionné. Les paquets recommandés sont "
+"ceux que le mainteneur considère comme devant être présents dans la "
+"C<plupart> des installations de ce paquet et autoriser les paquets "
+"recommandés signifie autoriser les recommandés des paquets eux-mêmes "
+"recommandés et ainsi de suite. "
+
+#. type: textblock
+#: pod/multistrap:552
+msgid "The multistrap default is to turn recommends OFF."
+msgstr ""
+"Le comportement par défaut de multistrap est de désactiver les paquets "
+"recommandés."
+
+#. type: textblock
+#: pod/multistrap:554
+msgid ""
+"Set the allowrecommends option to true in the General section to use typical "
+"Debian behaviour."
+msgstr ""
+"Placez l'option allowrecommands (autoriser les paquets suggérés) à true "
+"(oui) dans la section générale pour utiliser ce comportement usuel de Debian."
+
+#. type: =head1
+#: pod/multistrap:557
+msgid "Default release"
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:559
+msgid ""
+"C<multistrap> supports an option to explicitly set the default release to "
+"use with apt: C<aptdefaultrelease>. This determines which release apt will "
+"use for the base system packages and is not the same as pinning (which "
+"relates to the use of apt after installation). Multistrap sets the default-"
+"release to the wildcard * unless a release is named in the "
+"C<aptdefaultrelease> field. Any release specified here must also be defined "
+"in a stanza referenced in the bootstrap list or apt will fail."
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:567
+msgid ""
+"To install a specific version of a package from a newer release than the one "
+"specified as default, C<explicitsuite> must also be set to true if the "
+"package exists at any version in the default release. Also, any packages "
+"upon which that package has a strict dependency (i.e. = rather than >=) must "
+"also be explicitly added to the packages line in the stanza for the desired "
+"version, even though that package does not need to be listed to get it from "
+"the default release. This is typical apt behaviour and is not a bug in "
+"multistrap."
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:576
+msgid ""
+"The combination of default release, explicit suite and apt preferences can "
+"quickly become complex and bugs can be very hard to identify.  C<multistrap> "
+"always outputs the complete apt command line, so test this command yourself "
+"(using the files written out by C<multistrap>) to see what is going on. "
+"Remember that all dependency resolution and all the logic to determine which "
+"version of a specific package gets installed in your C<multistrap> chroot is "
+"entirely down to apt and all C<multistrap> can do is pass files and command "
+"line options to apt."
+msgstr ""
+
+#. type: textblock
+#: pod/multistrap:585
+#, fuzzy
+#| msgid "Apt preferences"
+msgid "See also: apt preferences."
+msgstr "Préférences apt"
+
+#. type: =head1
+#: pod/multistrap:587
+msgid "Explicit suite specification"
+msgstr "Spécification claire de la version de la distribution"
+
+#. type: textblock
+#: pod/multistrap:589
+msgid ""
+"Sometimes, apt needs to be told to get a particular package from a "
+"particular suite, ignoring a more recent version in another suite in the "
+"same set of sources."
+msgstr ""
+"Quelque fois, il faut dire explicitement à apt d'aller prendre un paquet en "
+"particulier depuis une version spécifique, en ignorant une version plus "
+"récente d'une autre version de la distribution dans la même liste de sources."
+
+#. type: textblock
+#: pod/multistrap:593
+msgid ""
+"C<multistrap> can operate with and without the explicit suite option, the "
+"default is to let apt use the most recent version from the collection of "
+"specified F<bootstrap> sources."
+msgstr ""
+"C<multistrap> peut fonctionner avec et sans la spécification explicite de la "
+"version de la distribution, le paramètre par défaut est de laisser apt "
+"utiliser la version la plus récente du catalogue des sources F<bootstrap> "
+"indiquées."
+
+#. type: textblock
+#: pod/multistrap:597
+msgid ""
+"Explicit suite specification has no effect on the final installed system - "
+"if your aptsources includes a repository which in turn includes a newer "
+"version of the package(s) specified explicitly, the next C<apt-get upgrade> "
+"on the device will bring in the newer version."
+msgstr ""
+"La spécification d'une version de distribution n'a pas d'effet sur le "
+"système final installé - si vos sources apt incluent un dépôt disposant "
+"d'une nouvelle version du paquet explicitement indiqué, le prochain C<apt-"
+"get upgrade> sur la machine installera la nouvelle version."
+
+#. type: textblock
+#: pod/multistrap:602
+msgid ""
+"Also, when specifying packages to get from a specific suite, apt will also "
+"try and ensure that the dependencies for that package are also from the same "
+"suite and this can cause apt to be unable to resolve the complete set of "
+"dependencies. In this situation, being explicit about one package selection "
+"may require being explicit about some (not necessarily all) of the "
+"dependencies of that package as well."
+msgstr ""
+"De même, quand vous indiquez des paquets à prendre depuis une version "
+"spécifique de la distribution, apt essaie de s'assurer que les dépendances "
+"pour ce paquet viennent également de cette même version, ce qui peut "
+"occasionner des problèmes à apt pour résoudre l'ensemble de ces dépendances. "
+"Dans ce cas, indiquer explicitement un paquet peut entrainer le fait "
+"d'indiquer quelques (pas nécessairement toutes) dépendances de ce paquet "
+"également."
+
+#. type: textblock
+#: pod/multistrap:609
+msgid ""
+"When using this support in Lenny, ensure that each section uses the suite "
+"(oldstable, stable, testing, sid) and B<not> the codename (etch, lenny, "
+"squeeze, sid) in the C<suite> configuration item as the version of apt in "
+"Lenny and previous cannot use the codename."
+msgstr ""
+"Lors de l'utilisation de cette assistance dans Lenny, assurez-vous que "
+"chaque section utilise la version de distribution (oldstable, stable, "
+"testing, sid) et B<non> le nom de code (etch, lenny, squeeze, sid) dans la "
+"configuration de la C<version> puisque la version de apt dans Lenny et les "
+"précédentes distributions ne peuvent utiliser le nom de code."
+
+#. type: textblock
+#: pod/multistrap:614
+msgid "To test, on Lenny, try:"
+msgstr "Pour tester sur Lenny, essayez :"
+
+#. type: verbatim
+#: pod/multistrap:616
+#, no-wrap
+msgid ""
+" $ sudo apt-get install apt/stable\n"
+"\n"
+msgstr ""
+"$ sudo apt-get install apt/stable\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:618
+msgid "Compare with"
+msgstr "Comparer avec"
+
+#. type: verbatim
+#: pod/multistrap:620
+#, no-wrap
+msgid ""
+" $ sudo apt-get install apt/lenny\n"
+"\n"
+msgstr ""
+"$ sudo apt-get install apt/lenny\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:622
+msgid ""
+"When using explicitsuite, take care in using stable-proposed-updates or "
+"other temporary locations - if the package migrates into another suite and "
+"is removed from the temporary suite (as with *-proposed-updates), multistrap "
+"will not be able to find the package."
+msgstr ""
+"Lors de l'utilisation de suite explicite, assurez-vous d'utiliser stable-"
+"proposed-updates ou d'autres emplacements temporaires - si le paquet migre "
+"dans une autre suite et est supprimé de la suite temporaire (comme avec *-"
+"proposed-updates), multistrap ne pourra pas trouver le paquet."
+
+#. type: textblock
+#: pod/multistrap:628
+msgid ""
+"Explicit suite handling can be very hard to get right. In general, it is "
+"best to create a small bootstrap chroot of your native arch, then chroot "
+"into it, add the relevant apt sources and work out exactly what commands are "
+"necessary to get the correct mix of packages. Avoid specifying explicit "
+"versions to sort out problems, work with suites only. Apt preferences / "
+"pinning may be useful here, see Apt preferences."
+msgstr ""
+"La manipulation de suite explicite peut être difficile à faire fonctionner. "
+"En général, il vaut mieux créer un petit chroot bootstrap de l'architecture "
+"native, puis faire un chroot dedans, ajouter les bonnes sources apt pour "
+"trouver les commandes nécessaires et suffisantes pour obtenir le mélange de "
+"paquets adéquat. Évitez d'indiquer des versions explicites pour contourner "
+"les problèmes, travaillez avec les suites uniquement. L'épinglage avec "
+"l'utilisation d'un fichier de préférences apt peut être utile ici, consultez "
+"B<préférences apt>."
+
+#. type: =head1
+#: pod/multistrap:635
+msgid "Apt preferences"
+msgstr "Préférences apt"
+
+#. type: textblock
+#: pod/multistrap:637
+msgid ""
+"If a suitable file is listed in the B<aptpreferences> option of the "
+"B<General> section of the configuration file, this file will be copied into "
+"the apt preferences directory of the bootstrap before apt is first used."
+msgstr ""
+"Si un fichier adéquat est indiqué dans l'option B<aptpreferences> de la "
+"section B<General> du fichier de configuration, il sera copié dans le "
+"répertoire des préférences de apt du bootstrap avant d'utiliser apt."
+
+#. type: textblock
+#: pod/multistrap:642
+msgid ""
+"When an apt preferences file B<is> provided, the C<Default-Release> "
+"behaviour of C<multistrap> is disabled."
+msgstr ""
+"Quand un fichier de préférences apt B<est> fourni, le comportement C<Default-"
+"Release> de C<multistrap> est désactivé."
+
+#. type: textblock
+#: pod/multistrap:645
+msgid ""
+"As with other external scripts and files, the content of the apt preferences "
+"file is beyond the scope of this manpage. C<multistrap> does not try to "
+"verify the supplied file other than ensuring that it can be read."
+msgstr ""
+"Comme avec d'autres scripts et fichiers extérieurs, le contenu du fichier de "
+"préférences apt sort du cadre de ce manuel. C<multistrap> ne tente pas de "
+"vérifier le fichier fourni mais s'assure juste qu'il peut être lu."
+
+#. type: =head1
+#: pod/multistrap:650
+msgid "Omitting deb-src listings"
+msgstr "Omission de la lecture de deb-src"
+
+#. type: textblock
+#: pod/multistrap:652
+msgid ""
+"Some multistrap environments do not need access to the Debian sources of "
+"packages being installed, typically this is required when preparing a build "
+"(or cross-build) chroot using multistrap."
+msgstr ""
+"Certains environnements multistrap ne nécessitent pas l'accès aux sources "
+"des paquets Debian durant l'installation, cela est typiquement nécessaire "
+"lors de la préparation d'une compilation (ou compilation croisée) chroot "
+"utilisant multistrap."
+
+#. type: textblock
+#: pod/multistrap:656
+msgid ""
+"To turn off this additional source (and save both download time and apt-"
+"cache size), use the omitdebsrc field in each Section."
+msgstr ""
+"Pour désactiver la source additionnelle (et raccourcir le temps de "
+"téléchargement et la taille du cache de apt), utilisez le champ omitdebsrc "
+"dans chaque Section."
+
+#. type: verbatim
+#: pod/multistrap:659
+#, no-wrap
+msgid ""
+" [Baked]\n"
+" packages=\n"
+" source=http://www.emdebian.org/baked\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=testing\n"
+" omitdebsrc=true\n"
+"\n"
+msgstr ""
+" [Baked]\n"
+" packages=\n"
+" source=http://www.emdebian.org/baked\n"
+" keyring=emdebian-archive-keyring\n"
+" suite=testing\n"
+" omitdebsrc=true\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:666
+msgid ""
+"omitdebsrc is necessary when using packages from debian-ports where packages "
+"do not have sources, except \"unreleased\"."
+msgstr ""
+"omitdebsrc est nécessaire en cas d'utilisation de paquets en provenance de "
+"debian-ports où les paquets n'ont pas de sources, à l'exception de « non-"
+"délivrée »."
+
+#. type: =head1
+#: pod/multistrap:669
+msgid "fakeroot"
+msgstr "fakeroot"
+
+#. type: textblock
+#: pod/multistrap:671
+msgid ""
+"Foreign architecture bootstraps can operate under C<fakeroot> (C<multistrap> "
+"is designed to do as much as it can within a single call to make this "
+"easier) but the configuration stage which normally happens with a native "
+"architecture bootstrap requires C<chroot> and C<chroot> itself will not "
+"operate under C<fakeroot>."
+msgstr ""
+"Les architectures bootstrap différentes peuvent fonctionner sous C<fakeroot> "
+"(C<multistrap> est conçu pour en faire le maximum qu'il peut au sein d'un "
+"même appel pour faciliter cette tâche) mais le niveau de configuration qui "
+"est normalement appliqué avec une architecture bootstrap native requiert "
+"C<chroot> et C<chroot> en lui-même ne fonctionnera pas sous C<fakeroot>."
+
+#. type: textblock
+#: pod/multistrap:677
+msgid ""
+"Therefore, if C<multistrap> detects that C<fakeroot> is in use, native mode "
+"configuration is skipped with a reminder warning."
+msgstr ""
+"Donc, si C<multistrap> détecte que C<fakeroot> est en cours d'utilisation, "
+"le mode de configuration natif est sauté avec un message de rappel."
+
+#. type: textblock
+#: pod/multistrap:680
+msgid ""
+"The same problem applies to C<apt-get install> and therefore the "
+"installation of the keyring package on the host system is also skipped if "
+"fakeroot is detected."
+msgstr ""
+"Le même problème apparaît avec C<apt-get install> et donc l'installation du "
+"paquet trousseau sur le système hôte est également sauté si fakeroot est "
+"détecté."
+
+#. type: =head1
+#: pod/multistrap:684
+msgid "Handling problematic packages"
+msgstr "Gestion des paquets problématiques"
+
+#. type: textblock
+#: pod/multistrap:686
+msgid ""
+"Sometimes, a particular package will fail to even unpack properly if other "
+"packages have not already been unpacked. This can happen if dpkg diversions "
+"are not setup correctly or if the package Pre-Depends on an executable in "
+"another package."
+msgstr ""
+"Quelquefois, un paquet en particulier échouera même à se dépaqueter "
+"proprement si les autres paquets n'ont pas encore été dépaquetés. Cela peut "
+"arriver si les contournements de dpkg ne sont pas correctement configurés ou "
+"si les Pre-Depends du paquet dépendent d'un exécutable se trouvant dans un "
+"autre paquet."
+
+#. type: textblock
+#: pod/multistrap:691
+msgid ""
+"Multistrap offers two ways to handle these problems. A package can be listed "
+"as C<reinstall> or as C<additional>. Each section in the C<multistrap> "
+"configuration file can have a single C<reinstall> or C<additional> listing "
+"or both."
+msgstr ""
+"Multistrap offre deux façons de gérer ces problèmes. Un paquet peut être "
+"indiqué comme C<reinstall> ou comme C<additional>. Chaque section dans le "
+"fichier de configuration de C<multistrap> peut être indiqué seulement en "
+"tant que C<reinstall> ou C<additional> ou bien les deux."
+
+#. type: textblock
+#: pod/multistrap:696
+msgid ""
+"Reinstall means that the package will be downloaded and unpacked as normal - "
+"alongside all the other packages, but will then be reinstalled at the end by "
+"running the C<preinst> maintainer script with the C<upgrade> argument. "
+"C<dpkg> will then continue the rest of the configuration of that package."
+msgstr ""
+"Reinstall signifie que le paquet sera téléchargé et dépaqueté normalement - "
+"aux côtés de tous les autres paquets, mais sera alors réinstallé à la fin en "
+"lançant le script du mainteneur C<preinst> avec l'argument C<upgrade>. "
+"C<dpkg>  continuera alors le reste de la configuration de ce paquet."
+
+#. type: textblock
+#: pod/multistrap:702
+msgid ""
+"Additional adds a second round of C<apt-get install> to the multistrap "
+"process - after the initial unpacking. The additional package will then be "
+"downloaded and unpacked. If running natively, the additional package is "
+"downloaded, unpacked and configured after all the rest of the packages have "
+"been downloaded, unpacked and configured."
+msgstr ""
+"Additional ajoute un second tour de C<apt-get install> au processus "
+"multistrap - après le dépaquetage initial. Le paquet additionnel sera alors "
+"téléchargé et dépaqueté. Lancé nativement, le paquet additionnel est "
+"téléchargé, dépaqueté et configuré après que tout le reste des paquets aient "
+"été téléchargés, dépaquetés et configurés."
+
+#. type: textblock
+#: pod/multistrap:708
+msgid ""
+"Neither C<reinstall> nor C<additional> should be seen as more than just "
+"workarounds and wishlist bugs should be filed in Debian against packages "
+"which require the use of these mechanisms (or the packages which would "
+"prevent the particular package from operating normally)."
+msgstr ""
+"Ni C<reinstall> ni C<additional> ne devraient être considérés mieux que de "
+"simples astuces et les bogues devant figurer sur la liste des souhaits "
+"devraient être remplis dans Debian pour des paquets qui nécessiteraient de "
+"tels mécanismes (ou les paquets qui empêcheraient le paquet en particulier "
+"de se comporter normalement)."
+
+#. type: =head1
+#: pod/multistrap:713
+msgid "Debconf preseeding"
+msgstr "Préconfiguration Debconf"
+
+#. type: textblock
+#: pod/multistrap:715
+msgid ""
+"Adding a debconf seed can help in configuring packages to a particular "
+"setting instead of the package default when running the configuration non-"
+"interactively. See http://www.debian-administration.org/articles/394 for "
+"information on how to create seed files."
+msgstr ""
+"Ajouter une préconfiguration Debconf peut aider à configurer des paquets sur "
+"un comportement en particulier au lieu de celui par défaut, lors de "
+"configuration en mode non-interactif. Voir http://www.debian-administration."
+"org/articles/394 pour des informations sur comment créer des fichiers de "
+"préconfiguration."
+
+#. type: textblock
+#: pod/multistrap:720
+msgid ""
+"Multiple seed files can be specified using the debconfseed field in the "
+"[General] section, separated by spaces:"
+msgstr ""
+"Il est possible d'indiquer des fichiers de préconfiguration multiples en "
+"utilisant le champ debconfseed dans la section [General], séparés par des "
+"espaces :"
+
+#. type: verbatim
+#: pod/multistrap:723
+#, no-wrap
+msgid ""
+" debconfseed=seed1 seed2\n"
+"\n"
+msgstr ""
+" debconfseed=seed1 seed2\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:725
+#, fuzzy
+#| msgid ""
+#| "Files which do not exist or which cannot be opened will be silently "
+#| "ignored. Check the results of the parsing using the C<--simulate> option "
+#| "to C<multistrap>."
+msgid ""
+"Files which do not exist or which cannot be opened will be silently ignored. "
+"Check the results of the parsing using the C<--simulate> option to "
+"C<multistrap>. The preseeding files will be copied to a preseed directory "
+"in /tmp inside the rootfs."
+msgstr ""
+"Les fichiers qui n'existent pas ou qui ne peuvent être ouverts, seront "
+"ignorés silencieusement. Vérifiez les résultats de leur lecture en passant "
+"l'option C<--simulate> à C<multistrap>."
+
+#. type: textblock
+#: pod/multistrap:730
+msgid ""
+"To use the preseeding, add a section to the configscript.sh, prior to any "
+"calls to B<dpkg --configure -a>. e.g. :"
+msgstr ""
+
+#. type: verbatim
+#: pod/multistrap:737
+#, fuzzy, no-wrap
+#| msgid ""
+#| " # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+#| " # export LC_ALL=C LANGUAGE=C LANG=C \n"
+#| " # dpkg --configure -a\n"
+#| "\n"
+msgid ""
+" export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" export LC_ALL=C LANGUAGE=C LANG=C\n"
+" if [ -d /tmp/preseeds/ ]; then\n"
+"    for file in `ls -1 /tmp/preseeds/*`; do\n"
+"    debconf-set-selections $file\n"
+"    done\n"
+" fi\n"
+" dpkg --configure -a\n"
+"\n"
+msgstr ""
+" # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" # export LC_ALL=C LANGUAGE=C LANG=C \n"
+" # dpkg --configure -a\n"
+"\n"
+
+#. type: =head1
+#: pod/multistrap:746
+msgid "Hooks"
+msgstr "Détournements"
+
+#. type: textblock
+#: pod/multistrap:748
+#, fuzzy
+#| msgid ""
+#| "If a hook directory is specified in the General section of the "
+#| "C<multistrap> configuration file, the hook scripts which are executable "
+#| "will be run from outside the multistrap directory at the following stages:"
+msgid ""
+"If a hook directory (hookdir=) is specified in the General section of the "
+"C<multistrap> configuration file, the hook scripts which are executable will "
+"be run from outside the multistrap directory at the following stages:"
+msgstr ""
+"Si un répertoire contenant des déclencheurs est indiqué dans la section "
+"Général du fichier de configuration de C<multistrap>, les scripts de "
+"déclencheurs qui sont exécutables seront exécutés depuis l'extérieur du "
+"répertoire multistrap aux étapes suivantes :"
+
+#. type: =item
+#: pod/multistrap:754
+msgid "download hooks"
+msgstr "Déclencheurs téléchargés"
+
+#. type: textblock
+#: pod/multistrap:756
+msgid ""
+"Executed before unpacking is started, immediately after the packages have "
+"been downloaded. Download hooks are executable scripts in the specified hook "
+"directory with a filename beginning with B<download>."
+msgstr ""
+"Exécutés avant le démarrage du dépaquetage, immédiatement après que les "
+"paquets aient été téléchargés. Les déclencheurs téléchargés sont des scripts "
+"exécutables dans le répertoire de déclencheurs indiqué, avec un nom de "
+"fichier commençant par B<download>."
+
+#. type: =item
+#: pod/multistrap:760
+msgid "native hooks"
+msgstr "Déclencheurs natifs."
+
+#. type: textblock
+#: pod/multistrap:762
+msgid ""
+"Native hook scripts are executed only in native mode, immediately before "
+"starting the configuration of the downloaded packages and again upon "
+"completion of the package configuration. Native hooks will be called the "
+"absolute path and the current progress state, start or end."
+msgstr ""
+"Les scripts de déclencheurs natifs sont exécutés uniquement dans le mode "
+"natif, juste avant de démarrer la configuration des paquets téléchargés et "
+"encore une fois après la fin de la configuration du paquet. Les déclencheurs "
+"natifs seront appelés avec le chemin absolu et l'état de progression actuel, "
+"démarré ou arrêté."
+
+#. type: textblock
+#: pod/multistrap:767
+msgid ""
+"Native scripts are executable scripts in the specified hook directory with a "
+"filename beginning with B<native>."
+msgstr ""
+"Les scripts natifs sont exécutables dans le répertoire de déclencheurs "
+"indiqué avec un nom de fichier commençant par B<native>."
+
+#. type: =item
+#: pod/multistrap:770
+msgid "completion hooks"
+msgstr "Déclencheurs de complétion"
+
+#. type: textblock
+#: pod/multistrap:772
+msgid ""
+"Executed immediately before the tarball is created or C<multistrap> exits if "
+"not configured to create a tarball."
+msgstr ""
+"Exécutés juste avant que l'archive (« tarball ») soit créée ou que "
+"C<multistrap> quitte s'il n'est pas configuré pour la créer."
+
+#. type: textblock
+#: pod/multistrap:775
+#, fuzzy
+#| msgid ""
+#| "Completion scripts are executable scripts in the specified hook directory "
+#| "with a filename beginning with C<completion>."
+msgid ""
+"Completion scripts are executable scripts in the specified hook directory "
+"with a filename beginning with B<completion>."
+msgstr ""
+"Les scripts de complétion sont des scripts exécutés dans le répertoire "
+"indiqué avec un nom commençant par C<completion>."
+
+#. type: textblock
+#: pod/multistrap:780
+msgid ""
+"Hooks are passed the absolute path to the directory which will be the top "
+"level directory of the chroot or multistrap system. Hooks which cannot be "
+"resolved using realpath or which are not executable will be ignored."
+msgstr ""
+"Les déclencheurs sont passés avec le chemin absolu dans le répertoire qui "
+"sera le niveau parent du chroot ou du système multistrap. Les déclencheurs "
+"ne pouvant être résolus en utilisant realpath ou qui ne sont pas exécutables "
+"seront ignorés."
+
+#. type: textblock
+#: pod/multistrap:785
+msgid ""
+"All hooks of one type are sorted into alphabetical order before being run."
+msgstr ""
+"Tous les déclencheurs d'une même sorte sont triés par ordre alphabétique "
+"avant d'être lancés."
+
+#. type: textblock
+#: pod/multistrap:788
+msgid ""
+"Note that C<multistrap> does not rollback the effects of hooks in the case "
+"of errors. However, C<multistrap> will report the accumulated errors as "
+"warnings. If a hook exits non-zero, the exit value is converted to a "
+"positive number and added to the total warning count, reported at the end of "
+"the operation."
+msgstr ""
+"Veuillez noter que C<multistrap> ne fait pas de retour arrière des effets "
+"des déclencheurs en cas d'erreur. Cependant, C<multistrap> signalera les "
+"erreurs accumulées sous forme d'avertissement. Si un déclencheur quitte sur "
+"autre chose que zéro, la valeur de sortie est convertie vers un nombre "
+"positif et ajoutée à la somme totale des avertissements, affichée à la fin "
+"de l'opération."
+
+#. type: =head1
+#: pod/multistrap:794
+msgid "Output"
+msgstr "Sortie"
+
+#. type: textblock
+#: pod/multistrap:796
+msgid ""
+"C<multistrap> can produce a lot of output - informational messages appear on "
+"STDOUT, errors and warnings on STDERR. Calls to C<apt> and C<dpkg> respect "
+"the same pattern, so it is simple to trim the combined C<multistrap> output "
+"to just the errors, if desired."
+msgstr ""
+"C<multistrap> peut produire beaucoup de sorties - les messages d'information "
+"apparaissent sur STDOUT, les erreurs et les avertissement sur STDERR. Les "
+"appels vers C<apt> et C<dpkg> respectent le même modèle, pour qu'il soit "
+"simple d'ajuster la sortie combinée de C<multistrap> sur les erreurs "
+"seulement, si désiré."
+
+#. type: textblock
+#: pod/multistrap:801
+msgid ""
+"C<multistrap> accumulates error states from non-fatal processes within the "
+"operation and reports these as warnings on STDERR as well as exiting with "
+"the accumulated error count. This includes hooks which report non-zero exit "
+"values."
+msgstr ""
+"C<multistrap> accumule les états d'erreur des processus non fatals au sein "
+"de l'opération et les rapporte comme des avertissements sur STDERR en même "
+"temps que quitter avec le décompte des erreurs accumulées. Cela comprend les "
+"déclencheurs qui signalent des valeurs de retour différentes de zéro."
+
+#. type: =head1
+#: pod/multistrap:806
+msgid "Bugs"
+msgstr "Bogues"
+
+#. type: textblock
+#: pod/multistrap:808
+msgid ""
+"As C<multistrap> gets more complex, bugs will creep into the package.  "
+"Please report all bugs to the Debian BTS using the C<reportbug> tool and "
+"B<please> attach all configuration files. If your configuration needs to "
+"access local or private apt repositories, please check your configuration "
+"with the latest version of C<multistrap> in Debian using the C<--simulate> "
+"option and include that report in your bug report."
+msgstr ""
+"Comme C<multistrap> devient plus complexe, des bogues s'insinuent dans le "
+"paquet. Veuillez signaler ces bogues sur le BTS Debian en utilisant l'outil "
+"C<reportbug> en incluant B<s'il vous plait> les fichiers de configuration. "
+"Si votre configuration nécessite d'accéder à des dépôts apt locaux ou "
+"privés, veuillez vérifier votre configuration avec les dernières versions de "
+"C<multistrap> dans Debian en utilisant l'option C<--simulate> et inclure ce "
+"rapport dans votre rapport de bogue."
+
+#. type: textblock
+#: pod/multistrap:815
+msgid ""
+"The C<--simulate> option output is regularly expanded to help users debug "
+"problems in the configuration files."
+msgstr ""
+"La sortie de l'option C<--simulate> est régulièrement enrichie pour aider "
+"les utilisateurs à pister les problèmes dans les fichiers de configuration."
+
+#. type: textblock
+#: pod/multistrap:818
+msgid ""
+"Please also check (and update) the Multistrap wiki at http://wiki.debian.org/"
+"Multistrap and the Multistrap webpage content at http://www.emdebian.org/"
+"multistrap/ before filing bugs. Various people on the debian-embedded@lists."
+"debian.org mailing list and #emdebian IRC channel on irc.oftc.net can also "
+"help if your config file does not parse correctly. You would need to put the "
+"C<--simulate> output on a pastebin website and put the URL in your message."
+msgstr ""
+"Veuillez également vérifier (et mettre à jour) le wiki de Multistrap à "
+"http://wiki.debian.org/Multistrap et le contenu de la page Internet de "
+"Multistrap à http://www.emdebian.org/multistrap/ avant de remplir des "
+"bogues. Plusieurs personnes sur la liste de diffusion debian-embedded@lists."
+"debian.org et sur le canal IRC #emdebian sur irc.oftc.net peuvent également "
+"aider si votre fichier de configuration ne peut être parcouru correctement. "
+"Vous devrez alors poster la sortie de C<--simulate> sur un site Internet de "
+"copier-coller (« pastebin ») et indiquer l'adresse dans votre message."
+
+#. type: =head1
+#: pod/multistrap:826
+msgid "MultiArch support"
+msgstr "Prise en charge multiarchitecture"
+
+#. type: textblock
+#: pod/multistrap:828
+msgid ""
+"Multiarch support is experimental - please report issues and file bugs with "
+"full details of your setup, the full multistrap config file and the errors "
+"reported."
+msgstr ""
+"La prise en charge multiarchitecture est expérimentale — veuillez signaler "
+"les problèmes et soumettre des rapports de bogues avec tous les détails de "
+"votre installation, le fichier de configuration complet de multistrap et les "
+"erreurs signalées."
+
+#. type: textblock
+#: pod/multistrap:832
+msgid ""
+"C<multistrap> overrides the existing multiarch support of the external "
+"system so that a MultiArch aware system can still create a non-MultiArch "
+"chroot from repositories which do not support all of the architectures "
+"supported by the external dpkg."
+msgstr ""
+"C<multistrap> outrepasse la prise en charge multiarchitecture du système "
+"externe pour qu'un système prêt pour le multiarchitecture puisse toujours "
+"créer un chroot non multiarchitecture depuis des dépôts qui ne permettent "
+"pas d'utiliser toutes les architectures compatibles avec le dpkg externe."
+
+#. type: textblock
+#: pod/multistrap:837
+msgid ""
+"If multiarch is enabled within the multistrap chroot, C<multistrap> writes "
+"out the list into F</var/lib/dpkg/arch> inside the chroot."
+msgstr ""
+"Si multiarch est activé au sein du chroot multistrap, C<multistrap> écrit la "
+"liste dans F</var/lib/dpkg/arch> à l'intérieur du chroot."
+
+#. type: textblock
+#: pod/multistrap:840
+msgid ""
+"For multiple architectures, specify the option once and use a space "
+"separated list for the architecture list. Ensure you include what will be "
+"the host architecture of the chroot."
+msgstr ""
+"Pour les architectures multiples, veuillez indiquer l'option une fois et "
+"utilisez une liste séparée par des espaces pour la liste des architectures. "
+"Assurez-vous d'avoir inclus ce qui constituera l'architecture hôte du chroot."
+
+#. type: textblock
+#: pod/multistrap:844
+msgid "See also http://wiki.debian.org/Multiarch/"
+msgstr "Consultez aussi : http://wiki.debian.org/Multiarch"
+
+#. type: verbatim
+#: pod/multistrap:846
+#, no-wrap
+msgid ""
+" [General]\n"
+" ...\n"
+" multiarch=i386 armel armhf\n"
+"\n"
+msgstr ""
+" [General]\n"
+" ...\n"
+" multiarch=i386 armel armhf\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:850
+msgid ""
+"Each Section will install packages from the base architecture unless the "
+"C<Architecture> option is specified for particular sections."
+msgstr ""
+"Chaque section installera les paquets depuis l'architecture de base tant que "
+"l'option C<Architecture> n'est pas indiquée dans des sections particulières."
+
+#. type: verbatim
+#: pod/multistrap:853
+#, no-wrap
+msgid ""
+" [Foreign]\n"
+" packages=libgcc1 libc6\n"
+" architecture=armel\n"
+" source=http://ftp.uk.debian.org/debian\n"
+" keyring=debian-archive-keyring\n"
+" suite=sid\n"
+"\n"
+msgstr ""
+" [Foreign]\n"
+" packages=libgcc1 libc6\n"
+" architecture=armel\n"
+" source=http://ftp.uk.debian.org/debian\n"
+" keyring=debian-archive-keyring\n"
+" suite=sid\n"
+"\n"
+
+#. type: textblock
+#: pod/multistrap:860
+#, fuzzy
+#| msgid ""
+#| "In the C<--simulate> output, the architecture(s) specified in the "
+#| "MultiArch option will be listed under the \"Foreign architectures\" "
+#| "listing."
+msgid ""
+"In the C<--simulate> output, the architecture(s) specified in the MultiArch "
+"option will be listed under the \"Foreign architectures\" listing. Packages "
+"for a specific architecture will be listed as the package name followed by a "
+"colon followed by the architecture."
+msgstr ""
+"Dans la sortie de C<--simulate>, les architectures indiquées dans l'option "
+"MultiArch seront indiquées dans la liste « Foreign architectures ». Les "
+"paquets destinés à une architecture spécifique seront indiqués avec le nom "
+"du paquet suivi d'une virgule, suivie de l'architecture."
+
+#. type: verbatim
+#: pod/multistrap:865
+#, no-wrap
+msgid ""
+" libgcc1:armel libc6:armel\n"
+"\n"
+msgstr ""
+" libgcc1:armel libc6:armel\n"
+"\n"
+
+#. type: textblock
+#: device-table.pl:167
+msgid "device-table.pl - parses simple device tables and passes to mknod"
+msgstr ""
+"device-table.pl - analyse des tables de périphériques simples et passe la "
+"sortie à mknod"
+
+#. type: verbatim
+#: device-table.pl:171
+#, no-wrap
+msgid ""
+" device-table.pl [-n|--dry-run] [-d DIR] [-f FILE]\n"
+" device-table.pl -?|-h|--help|--version\n"
+"\n"
+msgstr ""
+"device-table.pl [-n|--dry-run] [-d REPERTOIRE] [-f FICHIER]\n"
+" device-table.pl -?|-h|--help|--version\n"
+"\n"
+
+#. type: textblock
+#: device-table.pl:176
+msgid ""
+"By default, F<device-table.pl> writes out the device nodes in the current "
+"working directory. Use the directory option to write out elsewhere."
+msgstr ""
+"Par défaut, F<device-table.pl> écrit les nœuds de périphérique dans le "
+"répertoire de travail courant.  Utilisez l'option répertoire pour écrire "
+"ailleurs."
+
+#. type: textblock
+#: device-table.pl:179
+#, fuzzy
+#| msgid ""
+#| "multistrap contains a default device-table file, use the file option to "
+#| "override the default F</usr/share/multistrap/device-table.txt>"
+msgid ""
+"multistrap contains a default device-table file, use the file option to "
+"override the default F</usr/share/doc/multistrap/examples/device_table.txt>"
+msgstr ""
+"multistrap contient par défaut un fichier listant les périphériques, "
+"utilisez l'option fichier pour outrepasser le fichier par défaut F</usr/"
+"share/multistrap/device-table.txt>"
+
+#. type: textblock
+#: device-table.pl:182
+msgid "Use the dry-run option to see the commands that would be run."
+msgstr ""
+"Il faut utiliser l'option dry-run pour voir les commandes qui seraient "
+"exécutées."
+
+#. type: textblock
+#: device-table.pl:184
+msgid ""
+"Device nodes need fakeroot or another way to use root access. If F<device-"
+"table.pl> is already being run under fakeroot or equivalent, the existing "
+"fakeroot session will be used, alternatively, use the no-fakeroot option to "
+"drop the internal fakeroot usage."
+msgstr ""
+"Les nœuds de périphérique nécessitent fakeroot ou un autre moyen pour "
+"utiliser l'accès superutilisateur. Si F<device-table.pl> est déjà en cours "
+"d'exécution sous fakeroot ou un équivalent, l'instance de fakeroot existante "
+"sera utilisée. Utilisez l'option no-fakeroot pour empêcher l'utilisation "
+"interne de fakeroot."
+
+#. type: textblock
+#: device-table.pl:189
+msgid ""
+"Note that fakeroot does not support changing the actual ownerships, for "
+"that, run the final packing into a tarball under fakeroot as well, or use "
+"C<sudo> when running F<device-table.pl>"
+msgstr ""
+"Veuillez noter que fakeroot ne permet pas le changement du propriétaire "
+"réel, pour cela effectuez l'empaquettement final dans une archive tar sous "
+"fakeroot également, ou utilisez C<sudo> quand F<device-table.pl> s'exécute."
+
+#. type: =head1
+#: device-table.pl:193
+msgid "Device table format"
+msgstr "Format de tableau de la machine"
+
+#. type: textblock
+#: device-table.pl:195
+msgid ""
+"Device table files are tab separated value files (TSV). All lines in the "
+"device table must have exactly 10 entries, each separated by a single tab, "
+"except comments - which must start with #"
+msgstr ""
+"Les fichiers de tableau des périphériques sont des fichiers séparés par des "
+"tabulations (TSV). Toutes les lignes du fichier de tableau du périphérique "
+"doivent contenir exactement 10 caractères, chacun séparé par une tabulation "
+"simple à l'exception des commentaires - qui doivent commencer par #"
+
+#. type: textblock
+#: device-table.pl:199
+msgid "Device table entries take the form of:"
+msgstr "Les entrées du tableau du périphérique prennent la forme de :"
+
+#. type: verbatim
+#: device-table.pl:201
+#, no-wrap
+msgid ""
+" <name> <type> <mode> <uid> <gid> <major> <minor> <start> <inc> <count>\n"
+"\n"
+msgstr ""
+"<nom> <type> <mode> <uid> <gid> <majeure> <mineure> <début> <inc> <compte>\n"
+"\n"
+
+#. type: textblock
+#: device-table.pl:203
+msgid "where name is the file name, type can be one of:"
+msgstr "où le nom est le nom du fichier, le type peut être l'un de :"
+
+#. type: verbatim
+#: device-table.pl:205
+#, no-wrap
+msgid ""
+" f A regular file\n"
+" d Directory\n"
+" s symlink\n"
+" h hardlink\n"
+" c Character special device file\n"
+" b Block special device file\n"
+" p Fifo (named pipe)\n"
+"\n"
+msgstr ""
+" f Un fichier normal\n"
+" d Répertoire\n"
+" s Lien symbolique\n"
+" h Lien en dur\n"
+" c Fichier de périphérique caractère\n"
+" b Fichier de périphérique bloc\n"
+" p Tuyau nommé (« fifo »)\n"
+
+#. type: textblock
+#: device-table.pl:213
+msgid ""
+"symlinks and hardlinks are extensions to the device table, just for F<device-"
+"table.pl>, other device table parsers might not handle these types. The "
+"first field of the symlink command is the existing target of the symlink, "
+"the third field is the full path of the symlink itself.  e.g."
+msgstr ""
+"Les liens symboliques et les liens en dur sont des extensions du tableau du "
+"périphérique, juste pour F<device-table.pl>, les autres interpréteurs de "
+"tableau de périphérique ne devraient pas gérer ces types. Le premier champ "
+"de la commande de lien symbolique est la cible existante du lien, le "
+"troisième champ et le chemin complet du lien symbolique en lui-même. Par "
+"exemple :"
+
+#. type: verbatim
+#: device-table.pl:219
+#, no-wrap
+msgid ""
+" /proc/self/fd/0 s /dev/stdin - - - - - - -\n"
+"\n"
+msgstr ""
+" /proc/self/fd/0 s /dev/stdin - - - - - - -\n"
+"\n"
+
+#. type: textblock
+#: device-table.pl:221
+msgid "See http://wiki.debian.org/DeviceTableScripting"
+msgstr "Voir http://wiki.debian.org/DeviceTableScripting"
+
+#~ msgid ""
+#~ "If your system specifies a default-release for apt, this can cause "
+#~ "problems when trying to create a bootstrap which does not include the "
+#~ "default suite. To counter this, C<multistrap> sets a wildcard for the "
+#~ "Default Release within the bootstrap. See also: apt preferences."
+#~ msgstr ""
+#~ "Si le système indique une version par défaut pour apt, cela peut "
+#~ "entraîner des problèmes lors de la création d'un bootstrap qui n'inclut "
+#~ "pas la suite par défaut. Pour contrer cela, C<multistrap> met un joker "
+#~ "pour la version par défaut au sein du bootstrap. Consultez également : "
+#~ "B<Préférences apt>."
+
+#~ msgid ""
+#~ "To enable multiarch inside a chroot, there is no need to set the second "
+#~ "architecture in C<apt>, C<apt> will ask C<dpkg> which will look in F</etc/"
+#~ "dpkg/dpkg.cfg> or F</etc/dpkg/dpkg.cfg.d/> and then retrieve the Packages "
+#~ "data for each architecture specified using the option:"
+#~ msgstr ""
+#~ "Pour activer multiarch au sein d'un chroot, il n'y a pas besoin de "
+#~ "paramétrer une seconde architecture dans C<apt>, C<apt> demandera à "
+#~ "C<dpkg> qui regardera dans F</etc/dpkg/dpkg.cfg> ou F</etc/dpkg/dpkg.cfg."
+#~ "d/> et rapatriera alors les données de Packages pour chaque architecture "
+#~ "indiquée utilisant cette option :"
+
+#~ msgid ""
+#~ " foreign-architecture armel\n"
+#~ "\n"
+#~ msgstr ""
+#~ " foreign-architecture armel\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "For multiple architectures, specify the option once for each architecture."
+#~ msgstr ""
+#~ "Pour les architectures multiples, veuillez indiquer l'option une seule "
+#~ "fois pour chaque architecture."
+
+#~ msgid ""
+#~ "Using the MultiArch option in the C<General> section of your "
+#~ "C<multistrap> configuration file will create a file F</etc/dpkg/dpkg.cfg."
+#~ "d/multiarch> which will implement this support. This option can be "
+#~ "repeated (for compatibility with how dpkg works) or as a space-delimited "
+#~ "list of architectures on a single line."
+#~ msgstr ""
+#~ "Utiliser l'option MultiArch dans la section C<General> de votre fichier "
+#~ "de configuration C<multistrap> créera un fichier F</etc/dpkg/dpkg.cfg.d/"
+#~ "multiarch> qui implémentera ce support. Cette option peut être répétée "
+#~ "(pour la compatibilité avec le mode de fonctionnement de dpkg) ou comme "
+#~ "une liste délimitée par des espaces des architectures sur une seule ligne."
+
+#~ msgid ""
+#~ "Packages with Priority: important or standard are never included by "
+#~ "C<multistrap> unless specifically included in a C<packages=> option in a "
+#~ "section specified in the C<bootstrap> general option."
+#~ msgstr ""
+#~ "Les paquets marqué avec les niveaux de priorité « important » ou "
+#~ "« standard » ne sont jamais inclus par C<multistrap> à moins d'être "
+#~ "explicitement fournis par une option C<packages=> dans une section des "
+#~ "options générales de C<debootstrap>."
+
+#~ msgid ""
+#~ "'packages' is the list of packages to be added when this Section is "
+#~ "listed in C<bootstrap>."
+#~ msgstr ""
+#~ "« paquets » est la liste des paquets à ajouter quand la Section figure "
+#~ "dans C<bootstrap>."
+
+#~ msgid ""
+#~ "All configuration of apt-key needs to be done for the machine running "
+#~ "multistrap itself."
+#~ msgstr ""
+#~ "Toute configuration de apt-key doit être faite pour la machine exécutant "
+#~ "multistrap."
+
+#~ msgid ""
+#~ "Any device-specific device nodes will also need to be created using "
+#~ "MAKEDEV."
+#~ msgstr ""
+#~ "Tout noeud spécifique à un périphérique doit également être créé en "
+#~ "utilisant MAKEDEV."
+
+#~ msgid "Collecting packages from specific codenames/suites."
+#~ msgstr "Collecte des paquets à partir des noms de codes/suites spécifiques."
+
+#~ msgid ""
+#~ "Packages specified explicitly in the configuration sections will be "
+#~ "passed to apt as package/codename so that the configuration controls "
+#~ "which version of a package is installed should the package exist in two "
+#~ "sources with different suites."
+#~ msgstr ""
+#~ "Les paquets explicitement spécifiés dans les sections de configuration "
+#~ "seront passés à apt en tant que paquet/nom de code afin que la "
+#~ "configuration puisse contrôler quelle version du paquet doit être "
+#~ "installée, pourvu que le paquet existe dans deux sources avec des suites "
+#~ "différentes"
+
+#~ msgid "Recommends TOIMPLEMENT:"
+#~ msgstr "Recommande TOIMPLEMENT :"
+
+#~ msgid "Default recommends OFF option to set it as on."
+#~ msgstr "Par défaut, recommande l'option OFF pour la définir à ON."
+
+#~ msgid "e.g. change"
+#~ msgstr "par exemple, changer"
+
+#~ msgid "to"
+#~ msgstr "en"
+
+#~ msgid ""
+#~ " debootstrap=Grip\n"
+#~ " \n"
+#~ msgstr ""
+#~ " debootstrap=Grip\n"
+#~ " \n"
+
+#~ msgid ""
+#~ "then add the new section for Grip:\n"
+#~ " \n"
+#~ msgstr ""
+#~ "Puis ajoutez la nouvelle section de Grip :\n"
+#~ " \n"
+
+#~ msgid ""
+#~ " [Grip]\n"
+#~ " packages=locales\n"
+#~ " keyring=emdebian-archive-keyring\n"
+#~ " source=http://www.emdebian.org/grip\n"
+#~ " suite=lenny\n"
+#~ "\n"
+#~ msgstr ""
+#~ " [Grip]\n"
+#~ " packages=locales\n"
+#~ " keyring=emdebian-archive-keyring\n"
+#~ " source=http://www.emdebian.org/grip\n"
+#~ " suite=lenny\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Setting Grip instead of Debian in the debootstrap option, as above, will "
+#~ "provide a base system from Emdebian Grip 1.0 and locate any missing "
+#~ "dependencies in Debian 5.0 Lenny, allowing you to add any package(s) you "
+#~ "need from Debian that are not yet in Emdebian Grip."
+#~ msgstr ""
+#~ "Paramètrer Grip au lieu de Debian dans l'option de debootstrap, comme ci-"
+#~ "dessus, fournira un système de base Emdebian Grip 1.0 et localisera "
+#~ "toutes les dépendances manquantes dans Debian 5.0 Lenny. Cela permet "
+#~ "d'ajouter tous les paquets issus de Debian dont vous avez besoin et qui "
+#~ "ne sont pas encore dans Emdebian Grip."
+
+#~| msgid ""
+#~| "em_multistrap does not currently implement the machine:variant support "
+#~| "used in Emdebian but the build directory is not packed up at the end of "
+#~| "the run so other scripts can be used to implement customisations."
+#~ msgid ""
+#~ "multistrap does not currently implement the machine:variant support used "
+#~ "in Emdebian but the build directory is not packed up at the end of the "
+#~ "run so other scripts can be used to implement customisations."
+#~ msgstr ""
+#~ "Actuellement, em_multistrap n'implémente pas la gestion machine : variant "
+#~ "utilisée dans Emdebian mais le répertoire de construction n'est pas "
+#~ "empaqueté à la fin de l'exécution afin que d'autres scripts puissent être "
+#~ "utilisés pour implémenter des personnalisations."
+
+#~ msgid "emdebian-rootfs"
+#~ msgstr "emdebian-rootfs"
+
+#~ msgid "<date>Sun 11 Jan 2009 19:55:45 GMT</date>"
+#~ msgstr "<date>Dimanche 11 Janvier 2009 19:55:45 GMT</date>"
+
+#~ msgid "Release: 1.8.0"
+#~ msgstr "Version: 1.8.0"
+
+#~ msgid "Debian and Emdebian developer."
+#~ msgstr "Développeur Debian et Emdebian."
+
+#~ msgid ""
+#~ "<orgname>Emdebian</orgname> <author> <firstname>Neil</firstname> "
+#~ "<surname>Williams</surname> <placeholder type=\"personblurb\" id=\"0\"/> "
+#~ "</author>"
+#~ msgstr ""
+#~ "<orgname>Emdebian</orgname> <author> <firstname>Neil</firstname> "
+#~ "<surname>Williams</surname> <placeholder type=\"personblurb\" id=\"0\"/> "
+#~ "</author>"
+
+#~ msgid "The GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007"
+#~ msgstr "La GNU GENERAL PUBLIC LICENSE Version 3, 29 Juin 2007"
+
+#~ msgid "This documentation is part of emdebian-tools."
+#~ msgstr "Cette documentation fait partie de emdebian-tools."
+
+#~ msgid ""
+#~ "emdebian-tools is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 3 of the License, or (at your "
+#~ "option) any later version."
+#~ msgstr ""
+#~ "emdebian-tools est un logiciel libre ; vous pouvez le redistribuer et/ou "
+#~ "le modifier selon les termes de la GNU General Public License telle "
+#~ "qu'elle est publiée par la Free Software Foundation ; soit sous la "
+#~ "version 3, ou (selon votre convenance) toute version ultérieure."
+
+#~ msgid ""
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details."
+#~ msgstr ""
+#~ "Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS "
+#~ "AUCUNE GARANTIE ; même sans la garantie de COMMERCIALITÉ ou d'ADÉQUATION "
+#~ "A UN BUT PARTICULIER. Voir la GNU General Public License pour plus de "
+#~ "détails."
+
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program.  If not, see <ulink url=\"http://www.gnu.org/licenses/"
+#~ "\">http://www.gnu.org/licenses/</ulink>."
+#~ msgstr ""
+#~ "Vous devriez avoir reçu une copie  de la GNU General Public License avec "
+#~ "ce programme. Si ce n'est pas la cas, veuillez consulter  <ulink url="
+#~ "\"http://www.gnu.org/licenses/\">http://www.gnu.org/licenses/</ulink>."
+
+#~ msgid "<note>"
+#~ msgstr "<note>"
+
+#~ msgid ""
+#~ "In Debian you can find a copy of the GNU General Public Licence in "
+#~ "<filename>/usr/share/common-licenses/GPL-3</filename>"
+#~ msgstr ""
+#~ "Dans Debian, une copie de la GNU General Public Licence est disponible "
+#~ "dans le fichier <filename>/usr/share/common-licenses/GPL-3</filename>"
+
+#~ msgid "</note>"
+#~ msgstr "</note>"
+
+#~ msgid "Emdebian Tools Reference"
+#~ msgstr "Référence des Outils Emdebian"
+
+#~ msgid "Purpose"
+#~ msgstr "But"
+
+#~ msgid ""
+#~ "This documentation consists primarily of the manpages for "
+#~ "<emphasis>emdebian-tools</emphasis> but also contains useful references "
+#~ "and links to further reading on a variety of topics related to Emdebian "
+#~ "and cross building. It is intended to be read alongside the <ulink url="
+#~ "\"http://www.emdebian.org/\">Emdebian website</ulink> and <ulink url="
+#~ "\"http://wiki.debian.org/Embedded_Debian\">Emdebian Wiki</ulink>."
+#~ msgstr ""
+#~ "Cette documentation est principalement constituée des pages de manuel "
+#~ "pour <emphasis>emdebian-tools</emphasis>. Elle contient également des "
+#~ "références et des liens utiles pour approfondir les notions liées à "
+#~ "Emdebian et à la construction croisée. Elle est prévue pour être lu en "
+#~ "même tant que le <ulink url=\"http://www.emdebian.org/\">site Emdebian</"
+#~ "ulink> et le <ulink url=\"http://wiki.debian.org/Embedded_Debian\">Wiki "
+#~ "Emdebian</ulink>."
+
+#~ msgid ""
+#~ "Some scripts embed the manpage content in the perl script as pod content. "
+#~ "These manpages are listed separately in the HTML versions."
+#~ msgstr ""
+#~ "Certains scripts embarquent le contenu de la page de manuel dans le "
+#~ "script perl au format pod. Ces pages de manuel sont listées séparément "
+#~ "dans les versions HTML."
+
+#~ msgid "Emdebian Tools manpages"
+#~ msgstr "Pages de manuel des outils Emdebian"
+
+#~ msgid "Other manpages and external links"
+#~ msgstr "Autres pages de manuel et liens externes"
+
+#~ msgid ""
+#~ "These manpages are generated from perl instead of XML and are not "
+#~ "currently listed in the main table of contents. The HTML version is "
+#~ "hosted separately:"
+#~ msgstr ""
+#~ "Ces pages de manuels sont crées à partir de perl au lieu de XML et ne "
+#~ "sont actuellement pas listées dans la table des matières principale. La "
+#~ "version HTML est hébergée séparément :"
+
+#~ msgid "Debian::Packages::Compare"
+#~ msgstr "Debian::Packages::Compare"
+
+#~ msgid ""
+#~ "<ulink url=\"DebianPackagesCompare.html\">Debian::Packages::Compare</"
+#~ "ulink> manpage."
+#~ msgstr ""
+#~ "page de manuel <ulink url=\"DebianPackagesCompare.html\">Debian::"
+#~ "Packages::Compare</ulink>."
+
+#~ msgid "dh_gentdeb"
+#~ msgstr "dh_gentdeb"
+
+#~ msgid "<ulink url=\"dh_gentdeb.html\">dh_gentdeb</ulink> manpage."
+#~ msgstr "page de manuel <ulink url=\"dh_gentdeb.html\">dh_gentdeb</ulink>."
+
+#~ msgid "dpkg-gentdeb"
+#~ msgstr "dpkg-gentdeb"
+
+#~ msgid "<ulink url=\"dpkg-gentdeb.html\">dpkg-gentdeb</ulink> manpage."
+#~ msgstr ""
+#~ "page de manuel <ulink url=\"dpkg-gentdeb.html\">dpkg-gentdeb</ulink>."
+
+#~ msgid "emtargetcmp"
+#~ msgstr "emtargetcmp"
+
+#~ msgid "<ulink url=\"emtargetcmp.html\">emtargetcmp</ulink> manpage"
+#~ msgstr "page de manuel <ulink url=\"emtargetcmp.html\">emtargetcmp</ulink>"
+
+#~ msgid "emprunecross"
+#~ msgstr "emprunecross"
+
+#~ msgid "<ulink url=\"emprunecross.html\">emprunecross</ulink> manpage"
+#~ msgstr ""
+#~ "page de manuel <ulink url=\"emprunecross.html\">emprunecross</ulink>"
+
+#~ msgid "Emdebian::Tools"
+#~ msgstr "Emdebian::Tools"
+
+#~ msgid ""
+#~ "<ulink url=\"EmdebianTools.html\">Emdebian::Tools</ulink> function "
+#~ "reference."
+#~ msgstr ""
+#~ "Référence des fonctions <ulink url=\"EmdebianTools.html\">Emdebian::"
+#~ "Tools</ulink>."
+
+#~ msgid "em_installtdeb"
+#~ msgstr "em_installtdeb"
+
+#~ msgid "<ulink url=\"em_installtdeb.html\">em_installtdeb</ulink> manpage"
+#~ msgstr ""
+#~ "page de manuel <ulink url=\"em_installtdeb.html\">em_installtdeb</ulink>"
+
+#~ msgid "emrecent"
+#~ msgstr "emrecent"
+
+#~ msgid "<ulink url=\"emrecent.html\">emrecent</ulink> manpage"
+#~ msgstr "page de manuel <ulink url=\"emrecent.html\">emrecent</ulink>"
+
+#~ msgid "emgrip"
+#~ msgstr "emgrip"
+
+#~ msgid "<ulink url=\"emgrip.html\">emgrip</ulink> manpage"
+#~ msgstr "page de manuel <ulink url=\"emgrip.html\">emgrip</ulink>"
+
+#~ msgid "em_autogrip"
+#~ msgstr "em_autogrip"
+
+#~ msgid "<ulink url=\"em_autogrip.html\">em_autogrip</ulink> manpage"
+#~ msgstr "page de manuel <ulink url=\"em_autogrip.html\">em_autogrip</ulink>"
+
+#~ msgid "emdebcheck"
+#~ msgstr "emdebcheck"
+
+#~ msgid "<ulink url=\"emdebcheck.html\">emdebcheck</ulink> manpage"
+#~ msgstr "page de manuel <ulink url=\"emdebcheck.html\">emdebcheck</ulink>"
+
+#~ msgid "emcache"
+#~ msgstr "emcache"
+
+#~ msgid "<ulink url=\"emcache.html\">emcache</ulink> manpage"
+#~ msgstr "page de manuel <ulink url=\"emcache.html\">emcache</ulink>"
+
+#~ msgid "emdepends"
+#~ msgstr "emdepends"
+
+#~ msgid "<ulink url=\"emdepends.html\">emdepends</ulink> manpage"
+#~ msgstr "page de manuel <ulink url=\"emdepends.html\">emdepends</ulink>"
+
+#~ msgid "splitout_tdeb"
+#~ msgstr "splitout_tdeb"
+
+#~ msgid "<ulink url=\"splitout_tdeb.html\">dplitout_tdeb</ulink> manpage."
+#~ msgstr ""
+#~ "page de manuel <ulink url=\"splitout_tdeb.html\">dplitout_tdeb</ulink>."
+
+#~ msgid "<ulink url=\"http://www.emdebian.org/\">Emdebian.org website</ulink>"
+#~ msgstr "<ulink url=\"http://www.emdebian.org/\">site Emdebian.org</ulink>"
+
+#~ msgid ""
+#~ "<ulink url=\"http://www.linux.codehelp.co.uk/emdebian/depends.html"
+#~ "\">Emdebian dependency maps</ulink>"
+#~ msgstr ""
+#~ "<ulink url=\"http://www.linux.codehelp.co.uk/emdebian/depends.html"
+#~ "\">Graphe de dépendance d'Emdebian</ulink>"
+
+#~ msgid ""
+#~ "<ulink url=\"http://www.linux.codehelp.co.uk/emdebian/\">Emdebian "
+#~ "presentation</ulink>"
+#~ msgstr ""
+#~ "<ulink url=\"http://www.linux.codehelp.co.uk/emdebian/\">Présentation "
+#~ "d'Emdebian</ulink>"
+
+#~ msgid "<productname>empbuilderlib</productname> <productnumber/>"
+#~ msgstr "<productname>empbuilderlib</productname> <productnumber/>"
+
+#~ msgid "empbuilderlib"
+#~ msgstr "empbuilderlib"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "EMDEBIAN-ROOTFS"
+#~ msgstr "EMDEBIAN-ROOTFS"
+
+#~ msgid "Common functions for Emdebian chroots"
+#~ msgstr "Fonctions courantes pour les chroots Emdebian"
+
+#~ msgid "DESCRIPTION"
+#~ msgstr "DESCRIPTION"
+
+#~ msgid ""
+#~ "<emphasis>empbuilderlib</emphasis> is intended solely for use on the "
+#~ "build machine. Do not use these functions in second_stage_install ! "
+#~ "<emphasis>empbuilderlib</emphasis> requires <emphasis role=\"bold\">perl</"
+#~ "emphasis>!"
+#~ msgstr ""
+#~ "<emphasis>empbuilderlib</emphasis> est destiné uniquement à être utilisé "
+#~ "sur la machine de construction. N'utilisez pas ces fonctions dans la "
+#~ "seconde étape de l'installation (second_stage_install) ! "
+#~ "<emphasis>empbuilderlib</emphasis> nécessite <emphasis role=\"bold"
+#~ "\">perl</emphasis> !"
+
+#~ msgid ""
+#~ "<emphasis>empbuilderlib</emphasis> is a shell library which requires perl "
+#~ "and pbuilder (which means bash!).  <emphasis>empbuilderlib</emphasis> "
+#~ "draws in POSIX shell functions from emrootfslib to be able to call in "
+#~ "functions from first_stage_install within debootstrap. The only reasons "
+#~ "to continue putting new functions in here are if:"
+#~ msgstr ""
+#~ "<emphasis>empbuilderlib</emphasis> est une bibliothèque shell nécessitant "
+#~ "perl et pbuilder (ce qui implique bash). <emphasis>empbuilderlib</"
+#~ "emphasis> attire des fonctions de shell POSIX de emrootfslib pour être en "
+#~ "mesure de faire appel à des fonctions du first_stage_install au sein de "
+#~ "debootstrap. Les seules raisons de continuer à mettre des nouvelles "
+#~ "fonctions sont si :"
+
+#~ msgid "The functions are only useful to create cross-building chroots OR"
+#~ msgstr ""
+#~ "Les fonctions sont seulement utiles pour créer des chroots pour la "
+#~ "construction croisée OU"
+
+#~ msgid ""
+#~ "the functions need to call pbuilder code directly and are not necessary "
+#~ "within first_stage_install."
+#~ msgstr ""
+#~ "Les fonctions doivent directement appeler du code pbuilder et ne sont pas "
+#~ "nécessaires au sein du first_stage_install."
+
+#~ msgid ""
+#~ "There should be no need to call pbuilder code within scripts that "
+#~ "generate a root filesystem."
+#~ msgstr ""
+#~ "L'appel à du code pbuilder ne devrait pas être nécessaire dans des "
+#~ "scripts générant un système de fichiers racine."
+
+#~ msgid "autoclean_aptcache"
+#~ msgstr "autoclean_aptcache"
+
+#~ msgid ""
+#~ "Same as the pbuilder option but run by default in <command>empdebuild</"
+#~ "command> to remove obsolete .deb archives from the apt cache directories "
+#~ "used by <command>empdebuild</command>."
+#~ msgstr ""
+#~ "Identique à l'option pbuilder mais exécuté par défaut avec "
+#~ "<command>empdebuild</command> pour supprimer les archives .deb obsolètes "
+#~ "des répertoires cache d'apt utilisés par <command>empdebuild</command>."
+
+#~ msgid "copy_host_configuration"
+#~ msgstr "copy_host_configuration"
+
+#~ msgid ""
+#~ "Copy hosts, hostname and resolv.conf from the system /etc/ directory and "
+#~ "adapts /etc/hostname to use a different name (emdebian-$ARCH)."
+#~ msgstr ""
+#~ "Copie les fichiers hosts, hostname et resolv.conf du répertoire système /"
+#~ "etc/ et adapte /etc/hostname pour utiliser un nom différent (emdebian-"
+#~ "$ARCH)."
+
+#~ msgid "extractembuildplace"
+#~ msgstr "extractembuildplace"
+
+#~ msgid ""
+#~ "Modified version of the equivalent function in pbuilder-modules to "
+#~ "extract the compressed chroot (used by empdebuild)."
+#~ msgstr ""
+#~ "Version modifiée de la fonction équivalente dans pbuilder-modules pour "
+#~ "extraire le chroot compressé (utilisé par empdebuild)."
+
+#~ msgid "Author"
+#~ msgstr "Auteur"
+
+#~ msgid ""
+#~ "<emphasis>empbuilderlib</emphasis> was written by Neil Williams "
+#~ "<email>codehelp@debian.org</email>."
+#~ msgstr ""
+#~ "<emphasis>empbuilderlib</emphasis> a été écrit par Neil Williams "
+#~ "<email>codehelp@debian.org</email>."
+
+#~ msgid ""
+#~ "This manual page was written by Neil Williams <email>codehelp@debian.org</"
+#~ "email>"
+#~ msgstr ""
+#~ "Cette page de manuel a été écrite par Neil Williams "
+#~ "<email>codehelp@debian.org</email>"
+
+#~ msgid "SEE ALSO"
+#~ msgstr "VOIR AUSSI"
+
+#~ msgid ""
+#~ "See also <filename>apt-cross</filename> (1), <filename>dpkg-cross</"
+#~ "filename> (1), <emphasis>emdebian-tools</emphasis> (1), "
+#~ "<filename>emrootfslib</filename> (3)."
+#~ msgstr ""
+#~ "Voir aussi <filename>apt-cross</filename> (1), <filename>dpkg-cross</"
+#~ "filename> (1), <emphasis>emdebian-tools</emphasis> (1), "
+#~ "<filename>emrootfslib</filename> (3)."
+
+#~ msgid "<productname>emrootfslib</productname> <productnumber/>"
+#~ msgstr "<productname>emrootfslib</productname> <productnumber/>"
+
+#~ msgid "emrootfslib"
+#~ msgstr "emrootfslib"
+
+#~ msgid "Common functions for Emdebian root filesystems"
+#~ msgstr "Fonctions courantes pour le système de fichiers racine de Emdebian"
+
+#~ msgid ""
+#~ "<emphasis>emrootfslib</emphasis> is intended solely for use on the build "
+#~ "machine. Do not use these functions in second_stage_install ! "
+#~ "<emphasis>emrootfslib</emphasis> requires <emphasis role=\"bold\">perl</"
+#~ "emphasis>!"
+#~ msgstr ""
+#~ "<emphasis>emrootfslib</emphasis> n'est destiné qu'à la machine de "
+#~ "construction. N'utilisez pas ces fonctions dans la seconde étape de "
+#~ "l'installation (second_stage_install) ! <emphasis>emrootfslib</emphasis> "
+#~ "nécessite <emphasis role=\"bold\">perl</emphasis> !"
+
+#~ msgid ""
+#~ "There should be no need to call pbuilder code within scripts that "
+#~ "generate a root filesystem and bash code must not be used in "
+#~ "<emphasis>emrootfslib</emphasis>."
+#~ msgstr ""
+#~ "L'appel à du code de pbuilder ne devrait pas être nécessaire dans des "
+#~ "scripts générant un système de fichiers racine, et le code bash ne doit "
+#~ "pas être utilisé dans <emphasis>emrootfslib</emphasis>."
+
+#~ msgid "basic_etc_fstab"
+#~ msgstr "basic_etc_fstab"
+
+#~ msgid ""
+#~ "Removing packages from the normal Debian debootstrap set can mean that "
+#~ "certain critical files can be omitted. basic_etc_fstab creates a basic "
+#~ "version of $TARGET/etc/fstab where it does not already exist."
+#~ msgstr ""
+#~ "Supprimer des paquets de l'ensemble du debootstrap ordinaire de Debian "
+#~ "peut signifier que certains fichiers critiques peuvent être omis. "
+#~ "basic_etc_fstab crée une version de base de $TARGET/etc/fstab là où il "
+#~ "n'existe pas déjà."
+
+#~ msgid "basic_group_setup"
+#~ msgstr "basic_group_setup"
+
+#~ msgid ""
+#~ "Removing packages from the normal Debian debootstrap set can mean that "
+#~ "certain critical files can be omitted. basic_group_setup creates a basic "
+#~ "version of $TARGET/etc/group where it does not already exist."
+#~ msgstr ""
+#~ "Supprimer des paquets de l'ensemble du debootstrap ordinaire de Debian "
+#~ "peut signifier que certains fichiers critiques peuvent être omis. "
+#~ "basic_group_setup crée une version de base de $TARGET/etc/group là où il "
+#~ "n'existe pas déjà."
+
+#~ msgid "basic_passwd_setup"
+#~ msgstr "basic_passwd_setup"
+
+#~ msgid ""
+#~ "Removing packages from the normal Debian debootstrap set can mean that "
+#~ "certain critical files can be omitted. basic_passwd_setup creates a basic "
+#~ "version of $TARGET/etc/passwd where it does not already exist."
+#~ msgstr ""
+#~ "Supprimer des paquets de l'ensemble du debootstrap ordinaire de Debian "
+#~ "peut signifier que certains fichiers critiques peuvent être omis. "
+#~ "basic_passwd_setup crée une version de base de $TARGET/etc/passwd là où "
+#~ "il n'existe pas déjà."
+
+#~ msgid "busybox_inittab"
+#~ msgstr "busybox_inittab"
+
+#~ msgid "Note: this function overwrites an existing $TARGET/etc/inittab"
+#~ msgstr ""
+#~ "Note : Cette fonction remplace un fichier $TARGET/etc/inittab déjà "
+#~ "existant"
+
+#~ msgid ""
+#~ "busybox does not support runlevels and so the /etc/inittab file needs to "
+#~ "be modified to support busybox. Currently, this function overwrites an "
+#~ "existing $TARGET/etc/inittab - this is likely to change in future "
+#~ "versions."
+#~ msgstr ""
+#~ "busybox ne reconnaît pas les niveaux d'exécution. Ainsi le fichier /etc/"
+#~ "inittab doit d'être modifié pour accepter busybox. Actuellement, cette "
+#~ "fonction remplace un fichier $TARGET/etc/inittab déjà existant - cela est "
+#~ "susceptible de changer dans les prochaines versions."
+
+#~ msgid "busybox_rcS"
+#~ msgstr "busybox_rcS"
+
+#~ msgid "Note: this function overwrites an existing $TARGET/etc/init.d/rcS"
+#~ msgstr ""
+#~ "Note : Cette fonction remplace le fichier $TARGET/etc/init.d/rcS déjà "
+#~ "existant"
+
+#~ msgid ""
+#~ "busybox does not support runlevels and so the /etc/init.d/rcS script "
+#~ "needs to be modified to support busybox. Currently, this function "
+#~ "overwrites an existing $TARGET/etc/init.d/rcS - this is likely to change "
+#~ "in future versions."
+#~ msgstr ""
+#~ "busybox ne supporte pas les niveaux d'exécution. C'est pourquoi le "
+#~ "script /etc/init.d/rcS doit être modifié pour pouvoir utiliser busybox. "
+#~ "Actuellement cette fonction remplace le fichier $TARGET/etc/init.d/rcS "
+#~ "existant - cela est susceptible de changer dans les prochaines versions."
+
+#~ msgid "check_dirs"
+#~ msgstr "check_dirs"
+
+#~ msgid ""
+#~ "Check that the $BUILDPLACE, $BUILDRESULT and $APTCACHE directories exist "
+#~ "(used by empdebuild)."
+#~ msgstr ""
+#~ "Vérifie que les répertoires $BUILDPLACE, $BUILDRESULT et $APTCACHE "
+#~ "existent (utilisé par empdebuild)."
+
+#~ msgid "checkarch"
+#~ msgstr "checkarch"
+
+#~ msgid ""
+#~ "Calls check_arch from Debian::DpkgCross using perl.  The perl call dies "
+#~ "if the specified string does not match a supported architecture."
+#~ msgstr ""
+#~ "Appelle check_arch à partir de Debian::DpkgCross à l'aide de perl. "
+#~ "L'appel de perl meurt si les chaines spécifiées ne correspondent pas à "
+#~ "l'architecture."
+
+#~ msgid "create_emdebiantgz"
+#~ msgstr "create_emdebiantgz"
+
+#~ msgid "disable_apt_recommends"
+#~ msgstr "disable_apt_recommends"
+
+#~ msgid ""
+#~ "Enforces a default of not installing recommended packages inside the "
+#~ "chroot."
+#~ msgstr "N'installe pas les paquets recommandés à l'intérieur du chroot."
+
+#~ msgid "extra_etc_rcd"
+#~ msgstr "extra_etc_rcd"
+
+#~ msgid ""
+#~ "Removing packages from the normal Debian debootstrap set can mean that "
+#~ "certain critical files can be omitted. extra_etc_rcd creates a basic "
+#~ "version of $TARGET/etc/rcS.d where it does not already exist."
+#~ msgstr ""
+#~ "Supprimer des paquets de l'ensemble du debootstrap ordinaire de Debian "
+#~ "peut signifier que certains fichiers critiques peuvent être omis. "
+#~ "extra_etc_rcd crée une version de base de $TARGET/etc/rcS.d là où il "
+#~ "n'existe pas déjà."
+
+#~ msgid "make_dpkg_dirs"
+#~ msgstr "make_dpkg_dirs"
+
+#~ msgid ""
+#~ "Prepare for unpacking and general dpkg work by setting up $TARGET/var/lib/"
+#~ "dpkg/status and $TARGET/var/lib/dpkg/available."
+#~ msgstr ""
+#~ "Préparation du dépaquetage et du travail général effectué par dpkg en "
+#~ "mettant en place les fichiers $TARGET/var/lib/dpkg/status et $TARGET/var/"
+#~ "lib/dpkg/available."
+
+#~ msgid "prepare_proc"
+#~ msgstr "prepare_proc"
+
+#~ msgid ""
+#~ "Ensure that $TARGET/proc and $TARGET/sys exist so that proc and sys can "
+#~ "be mounted automatically."
+#~ msgstr ""
+#~ "Assure que $TARGET/proc et $TARGET/sys existent pour que proc et sys "
+#~ "puissent être montés automatiquement."
+
+#~ msgid "prepare_var"
+#~ msgstr "prepare_var"
+
+#~ msgid ""
+#~ "Ensure that $TARGET/var/log/ and $TARGET/var/spool exist so that various "
+#~ "installation routines can proceed."
+#~ msgstr ""
+#~ "Assure que $TARGET/var/log/ et $TARGET/var/spool existent pour que "
+#~ "différentes routines d'installation puissent avoir lieu."
+
+#~ msgid "set_approx_time"
+#~ msgstr "set_approx_time"
+
+#~ msgid ""
+#~ "Normal Debian installations have a network connection and typical Debian "
+#~ "desktop boxes also have a backup battery. Some embedded machines do not "
+#~ "have either of these systems, making it impossible to store or retrieve "
+#~ "even a vaguely close indication of the current time."
+#~ msgstr ""
+#~ "Les installations ordinaires de Debian ont une connexion réseau et les "
+#~ "Debian de bureau ont également une batterie de sauvegarde. Certaines "
+#~ "machines embarquées n'ont aucun de ces systèmes, rendant impossible le "
+#~ "stockage et la récupération même approximative de l'heure actuelle."
+
+#~ msgid ""
+#~ "set_approx_time uses the systems available on the build machine to store "
+#~ "an approximate indication of the time that the root filesystem was "
+#~ "created and write that time to a file in the root filesystem itself. For "
+#~ "most purposes, this is sufficient for the purposes of setting up the root "
+#~ "filesystem to the point where a network connection can be created and a "
+#~ "call can be made to an internet clock using <command>ntpdate-debian</"
+#~ "command>."
+#~ msgstr ""
+#~ "set_approx_time utilise les systèmes disponibles sur la machine de "
+#~ "construction pour stocker une indication approximative de l'heure à "
+#~ "laquelle le système de fichiers racine a été créé. Ce programme écrit "
+#~ "ensuite cette heure dans un fichier du système de fichiers racine. Dans "
+#~ "la plupart des cas, c'est suffisant pour la  création d'une connexion "
+#~ "réseau et pour un appel à une horloge internet avec <command>ntpdate-"
+#~ "debian</command>."
+
+#~ msgid "set_cdebconf_default"
+#~ msgstr "set_cdebconf_default"
+
+#~ msgid ""
+#~ "Adds \"export DEBCONF_USE_CDEBCONF=true\" to $TARGET/etc/profile for "
+#~ "cdebconf support."
+#~ msgstr ""
+#~ "Ajoute « export DEBCONF_USE_CDEBCONF=true » au fichier $TARGET/etc/"
+#~ "profile pour activer l'assistance de cdebconf."
+
+#~ msgid "symlink_rcS"
+#~ msgstr "symlink_rcS"
+
+#~ msgid ""
+#~ "Call repeatedly to create init symlinks, using the template $TARGET/etc/"
+#~ "rcS.d/S$number$file"
+#~ msgstr ""
+#~ "Appeler à plusieurs reprise pour créer des liens symboliques init, en "
+#~ "utilisant le modèle $TARGET/etc/rcS.d/S$number$file"
+
+#~ msgid "<option>file</option>"
+#~ msgstr "<option>file</option>"
+
+#~ msgid "file is the filename in $TARGET/etc/init.d/"
+#~ msgstr "file est le nom de fichier dans $TARGET/etc/init.d/"
+
+#~ msgid "<option>number</option>"
+#~ msgstr "<option>number</option>"
+
+#~ msgid "number is the number for the link in the init sequence."
+#~ msgstr "number est le nombre pour le lien dans la séquence d'init."
+
+#~ msgid "unpack_debootstrap"
+#~ msgstr "unpack_debootstrap"
+
+#~ msgid ""
+#~ "Specialized routine that replaces the normal second stage of debootstrap "
+#~ "(you may consider it a series of hacks if you prefer).  unpack uses dpkg "
+#~ "to extract the files from the .deb package and process the control "
+#~ "information. Unlike <command>dpkg</command> <option>--unpack</option>, "
+#~ "the unpack routine does <emphasis role=\"bold\">NOT</emphasis> run any "
+#~ "maintainer scripts which would inevitably fail in a cross built "
+#~ "environment.  Instead, it updates the relevant dpkg status and database "
+#~ "files in the root filesystem and leaves the package in the unpacked state."
+#~ msgstr ""
+#~ "Routine spécialisée qui remplace la seconde étape ordinaire du "
+#~ "debootstrap (on peut la considérer comme une série de hacks). unpack "
+#~ "utilise dpkg pour extraire les fichiers des paquets .deb et calcule les "
+#~ "informations de contrôle. Contrairement à <command>dpkg</command> "
+#~ "<option>--unpack</option>, la routine unpack n'exécute <emphasis role="
+#~ "\"bold\">AUCUN</emphasis> scripts de responsable, ce qui échouerait "
+#~ "inévitablement dans un environnement de construction croisée. Au lieu de "
+#~ "cela, elle met à jour les états dpkg et les fichiers de base de données "
+#~ "pertinents du système de fichiers racines et laisse les paquets dans "
+#~ "l'état dépaqueté."
+
+#~ msgid ""
+#~ "unpack_debootstrap also sets up the busybox applets - future versions may "
+#~ "split this functionality into a separate function."
+#~ msgstr ""
+#~ "unpack_debootstrap met également en place les applets busybox - les "
+#~ "futures versions pourraient diviser cette fonctionnalité dans une "
+#~ "fonction distincte."
+
+#~ msgid ""
+#~ "unpack_debootstrap also performs checks on /usr/sbin/invoke-rc.d and /usr/"
+#~ "sbin/update-rc.d - future versions may split this functionality into a "
+#~ "separate function."
+#~ msgstr ""
+#~ "unpack_debootstrap réalise également des vérifications sur /usr/sbin/"
+#~ "invoke-rc.d et /usr/sbin/update-rc.d - les futures versions pourraient "
+#~ "diviser cette fonctionnalité dans une fonction distincte."
+
+#~ msgid ""
+#~ "Finally, unpack_debootstrap removes all .deb package files from /var/"
+#~ "cache/apt/archives. The remaining task (dpkg --configure -a)  is "
+#~ "performed via emsecondstage."
+#~ msgstr ""
+#~ "Enfin, unpack_debootstrap supprime tous les fichiers de paquets .deb de /"
+#~ "var/cache/apt/archives. La tâche restante (dpkg --configure -a) est "
+#~ "effectuée via emsecondstage."
+
+#~ msgid "x_feign_install"
+#~ msgstr "x_feign_install"
+
+#~ msgid ""
+#~ "Copied from debootstrap suite scripts to make a basic installation of a ."
+#~ "deb package - although this is the basis of unpack_debootstrap, it is "
+#~ "only really used for dpkg itself."
+#~ msgstr ""
+#~ "Copié à partir des scripts debootstrap pour réaliser une installation de "
+#~ "base d'un paquet .deb - bien que ceci soit la base de unpack_debootstrap, "
+#~ "ce n'est vraiment utilisé que pour dpkg."
+
+#~ msgid ""
+#~ "See also <filename>apt-cross</filename> (1), <filename>dpkg-cross</"
+#~ "filename> (1), <emphasis>emdebian-tools</emphasis> (1), "
+#~ "<filename>empdebuilderlib</filename> (3)."
+#~ msgstr ""
+#~ "Voir aussi <filename>apt-cross</filename> (1), <filename>dpkg-cross</"
+#~ "filename> (1), <emphasis>emdebian-tools</emphasis> (1), "
+#~ "<filename>empdebuilderlib</filename> (3)."
+
+#~ msgid "<productname>emsandbox</productname> <productnumber/>"
+#~ msgstr "<productname>emsandbox</productname> <productnumber/>"
+
+#~ msgid "emsandbox"
+#~ msgstr "emsandbox"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "EMDEBIAN-TOOLS"
+#~ msgstr "EMDEBIAN-TOOLS"
+
+#~ msgid "create Emdebian root filesystems"
+#~ msgstr "créez des systèmes de fichiers racine Emdebian"
+
+#~ msgid ""
+#~ "<command>emsandbox</command> <group> <arg>-a</arg> <arg>--arch </arg> "
+#~ "<replaceable> ARCHITECTURE</replaceable> </group> <group> <arg>--create</"
+#~ "arg> <arg>create</arg> </group> <group> <group> <arg>-s</arg> <arg>--"
+#~ "script</arg> </group> <replaceable> FILENAME</replaceable> </group> "
+#~ "<group> <arg>-S</arg> <arg>--suite</arg> <replaceable> NAME</replaceable> "
+#~ "</group> <group> <arg>--machine-path</arg> <replaceable>PATH</"
+#~ "replaceable> </group> <group> <arg>-m</arg> <arg>--machine</arg> "
+#~ "<replaceable> NAME</replaceable> <group> <arg>-v</arg> <arg>--variant</"
+#~ "arg> <replaceable> NAME</replaceable> </group> </group>"
+#~ msgstr ""
+#~ "<command>emsandbox</command> <group> <arg>-a</arg> <arg>--arch </arg> "
+#~ "<replaceable> ARCHITECTURE</replaceable> </group> <group> <arg>--create</"
+#~ "arg> <arg>create</arg> </group> <group> <group> <arg>-s</arg> <arg>--"
+#~ "script</arg> </group> <replaceable> NOMDEFICHIER</replaceable> </group> "
+#~ "<group> <arg>-S</arg> <arg>--suite</arg> <replaceable> NOM</replaceable> "
+#~ "</group> <group> <arg>--machine-path</arg> <replaceable>CHEMIN</"
+#~ "replaceable> </group> <group> <arg>-m</arg> <arg>--machine</arg> "
+#~ "<replaceable> NOM</replaceable> <group> <arg>-v</arg> <arg>--variant</"
+#~ "arg> <replaceable> NOM</replaceable> </group> </group>"
+
+#~ msgid "SHELL INTERPRETERS"
+#~ msgstr "INTERPRÉTEURS SHELL"
+
+#~ msgid ""
+#~ "<command>emsandbox</command> is bash code and uses <command>embootstrap</"
+#~ "command> which is bash code and also sources pbuilder code which is also "
+#~ "bash code. <command>debootstrap</command> re-executes itself with the "
+#~ "default shell and then tries to source the suite script which fails "
+#~ "because the re-executed copy of debootstrap is now running under the "
+#~ "default shell, not bash."
+#~ msgstr ""
+#~ "<command>emsandbox</command> est du code bash et utilise "
+#~ "<command>embootstrap</command> qui est également du code bash et qui "
+#~ "réutilise aussi du code pbuilder qui est lui aussi du code bash. "
+#~ "<command>debootstrap</command> se re-exécute avec le shell par défaut et "
+#~ "essaye de sourcer le script de distribution qui échoue car la copie re-"
+#~ "exécutée de debootstrap fonctionne maintenant avec le shell par défaut "
+#~ "(autre que bash)."
+
+#~ msgid ""
+#~ "This problem can show up as a failure within <command>debootstrap</"
+#~ "command>"
+#~ msgstr ""
+#~ "Ce problème peut s'afficher en tant qu'échec dans la commande "
+#~ "<command>debootstrap</command>"
+
+#~ msgid ""
+#~ "I: Retrieving zlib1g\n"
+#~ "I: Validating zlib1g\n"
+#~ "    "
+#~ msgstr ""
+#~ "I: Récupération de zlib1g\n"
+#~ "I: Validation de zlib1g\n"
+#~ "    "
+
+#~ msgid "The next line should be:"
+#~ msgstr "La ligne suivante devrait être:"
+
+#~ msgid ""
+#~ "I: Extracting base-passwd...\n"
+#~ "    "
+#~ msgstr ""
+#~ "I: Extraction de base-passwd...\n"
+#~ "    "
+
+#~ msgid ""
+#~ "Unfortunately, this is a result of the default shell interpreter in "
+#~ "Debian being changed after the scripts were written and it is a non-"
+#~ "trivial problem. It is not possible for <command>embootstrap</command> "
+#~ "could migrate to cdebootstrap currently."
+#~ msgstr ""
+#~ "Malheureusement, il s'agit d'une conséquence du changement de shell par "
+#~ "défaut dans Debian après que les scripts furents écrits, entaînant un "
+#~ "problème non-trivial. Cela n'est pas possible car <command>embootstrap</"
+#~ "command> pourrait migrer vers cdebootstrap."
+
+#~ msgid ""
+#~ "The only current solution is to change your default shell to /bin/bash "
+#~ "inside the environment running <command>emsandbox</command>."
+#~ msgstr ""
+#~ "À l'heure actuelle, l'unique solution est de changer le shell par défaut "
+#~ "pour /bin/bash au sein de l'environnement exécutant <command>emsandbox</"
+#~ "command>."
+
+#~ msgid ""
+#~ "<command>emsandbox</command> supports customised generation of basic root "
+#~ "filesystems from cross-built Emdebian packages, ready for unpacking and "
+#~ "configuring on an embedded device."
+#~ msgstr ""
+#~ "<command>emsandbox</command> accepte la création de systèmes de fichiers "
+#~ "racines à partir de paquets Emdebian créés grâce à la construction "
+#~ "croisée, prêts à être dépaquetés et configurés sur un appareil embarqué."
+
+#~ msgid ""
+#~ "Note that <filename>emsandbox</filename> does not support all the options "
+#~ "available to <filename>debootstrap</filename>. Some of the debootstrap "
+#~ "options that are supported are implemented as machine specific "
+#~ "configuration files in your Emdebian work directory.  (See <option>--"
+#~ "machine</option> and <option>--variant</option>.)"
+#~ msgstr ""
+#~ "Notez que <filename>emsandbox</filename> ne supporte pas toutes les "
+#~ "options disponibles dans <filename>debootstrap</filename>. Certaines des "
+#~ "options prises en charge par debootstrap sont implémentées en tant que "
+#~ "fichiers de configuration spécifiques à une machine dans votre répertoire "
+#~ "de travail Emdebian. (Voir <option>--machine</option> et <option>--"
+#~ "variant</option>.)"
+
+#~ msgid ""
+#~ "<filename>emsandbox</filename> is a wrapper for debootstrap to prepare an "
+#~ "Emdebian root filesystem, using Emdebian packages and a native chroot via "
+#~ "'debootstrap --foreign' and code from pbuilder."
+#~ msgstr ""
+#~ "<filename>emsandbox</filename> est un encapsulateur pour debootstrap afin "
+#~ "de préparer un système de fichiers racine Emdebian, utilisant des paquets "
+#~ "Emdebian et un chroot natif via 'debootstrap --foreign' et du code de "
+#~ "pbuilder."
+
+#~ msgid ""
+#~ "The Emdebian rootfs, as generated by <command>emsandbox</command> is not "
+#~ "fully configured - packages are unpacked and certain support files are "
+#~ "created but none of the packages are configured (not even the pre-install "
+#~ "scripts). This last stage is the only process that <emphasis>must</"
+#~ "emphasis> be run on the actual device <emphasis>before the first boot</"
+#~ "emphasis>, using the <command>emsecondstage</command> script which "
+#~ "requires a working <command>chroot</command> environment.  Typically, "
+#~ "<command>emsecondstage</command> is run from some kind of minimal "
+#~ "bootloader environment that has sufficient support for mounting "
+#~ "subsystems like proc and filesystems like the root filesystem partition "
+#~ "and can chroot into the root filesystem. This method means that the "
+#~ "majority of the work of creating the root filesystem can be done on the "
+#~ "build machine."
+#~ msgstr ""
+#~ "Le système de fichiers racine Emdebian, tel qu'il est créé par "
+#~ "<command>emsandbox</command> n'est pas entièrement configuré - des "
+#~ "paquets sont dépaquetés et certains fichiers d'assistance sont créés mais "
+#~ "aucun paquet n'est configuré (y compris les scripts de pré-installation). "
+#~ "Cette dernière étape est le seul processus qui <emphasis>doit</emphasis> "
+#~ "fonctionner sur l'appareil <emphasis>avant le premier démarrage</"
+#~ "emphasis>, en utilisant le script <command>emsecondstage</command> qui "
+#~ "nécessite un environnement <command>chroot</command> fonctionnel. "
+#~ "Typiquement, <command>emsecondstage</command> est exécuté à partir d'un "
+#~ "programme d'amorçage minimal, capable de monter des sous-systèmes comme "
+#~ "proc et des systèmes de fichiers comme le système de fichiers racine et "
+#~ "créer un chroot dans le système de fichiers racine. Cette méthode "
+#~ "signifie que l'essentiel de la création du système de fichiers racine "
+#~ "peut être effectué sur la machine de construction."
+
+#~ msgid ""
+#~ "The tarball created by <command>emsandbox</command> should be copied onto "
+#~ "the target device and unpacked using:"
+#~ msgstr ""
+#~ "Le tarball créé par <command>emsandbox</command> devrait être copié sur "
+#~ "l'appareil cible et dépaqueté en utilisant :"
+
+#~ msgid ""
+#~ "# cd /mnt/target/dir\n"
+#~ "# tar -xzpf emdebian-arm.tgz\n"
+#~ "    "
+#~ msgstr ""
+#~ "# cd /mnt/target/dir\n"
+#~ "# tar -xzpf emdebian-arm.tgz\n"
+#~ "    "
+
+#~ msgid ""
+#~ "Immediately after unpacking, start the package configuration by running "
+#~ "<command>./emsecondstage</command> on the target device.  (Configuration "
+#~ "involves running the cross-built binaries and is the only part of the "
+#~ "process that must be run on the target device.)"
+#~ msgstr ""
+#~ "Immédiatement après le dépaquetage, démarrez la configuration du paquet "
+#~ "en exécutant <command>./emsecondstage</command> sur le périphérique "
+#~ "cible. (La configuration implique l'exécution de binaires créés grâce à "
+#~ "la construction croisée et elle est la seule partie du processus qui doit "
+#~ "être exécuté sur le périphérique cible.)"
+
+#~ msgid ""
+#~ "<command>emsecondstage</command> should <emphasis>always</emphasis> be "
+#~ "run from the directory into which it was installed."
+#~ msgstr ""
+#~ "<command>emsecondstage</command> devrait <emphasis>toujours</emphasis> "
+#~ "être exécuté à partir du répertoire où il a été installé."
+
+#~ msgid ""
+#~ "# ./emsecondstage\n"
+#~ "   "
+#~ msgstr ""
+#~ "# ./emsecondstage\n"
+#~ "   "
+
+#~ msgid "COMMANDS"
+#~ msgstr "COMMANDES"
+
+#~ msgid "<option>--create</option>|<option>create</option>"
+#~ msgstr "<option>--create</option>|<option>create</option>"
+
+#~ msgid ""
+#~ "Runs <command>debootstrap</command> <option>--foreign</option> with a "
+#~ "modified suite rule set to create a basic Emdebian rootfs."
+#~ msgstr ""
+#~ "Exécute <command>debootstrap</command> <option>--foreign</option> avec "
+#~ "une suite de règles modifiées définies pour créer un système de fichiers "
+#~ "racine Emdebian de base."
+
+#~ msgid "Checks for an existing chroot and exits if one is found."
+#~ msgstr "Vérifie l'existence d'un chroot et quitte s'il en trouve un."
+
+#~ msgid "<option>-h</option>|<option>--help</option>"
+#~ msgstr "<option>-h</option>|<option>--help</option>"
+
+#~ msgid "print the usage message and exit."
+#~ msgstr "Imprime le message d'utilisation et quitte."
+
+#~ msgid "<option>--version</option>"
+#~ msgstr "<option>--version</option>"
+
+#~ msgid "OPTIONS"
+#~ msgstr "OPTIONS"
+
+#~ msgid ""
+#~ "<option>-a</option>|<option>--arch</option><replaceable> ARCHITECTURE</"
+#~ "replaceable>"
+#~ msgstr ""
+#~ "<option>-a</option>|<option>--arch</option><replaceable> ARCHITECTURE</"
+#~ "replaceable>"
+
+#~ msgid ""
+#~ "Override the <command>dpkg-cross</command> default architecture for this "
+#~ "operation on the chroot."
+#~ msgstr ""
+#~ "Surcharge l'architecture par defaut de <command>dpkg-cross</command> pour "
+#~ "cette opération sur le chroot."
+
+#~ msgid ""
+#~ "<option>-s</option>|<option>--script</option><replaceable> FILENAME</"
+#~ "replaceable>"
+#~ msgstr ""
+#~ "<option>-s</option>|<option>--script</option><replaceable>FICHIER</"
+#~ "replaceable>"
+
+#~ msgid ""
+#~ "Override the default package selection and installation script with a "
+#~ "customised debootstrap suite script (written in shell and compatible with "
+#~ "whichever shell interpreter is to be installed on the target)."
+#~ msgstr ""
+#~ "Modifie la sélection des paquets par défaut et le script d'installation "
+#~ "avec un script debootstrap personnalisé (écrit en shell et compatible "
+#~ "avec n'importe quel interpréteur shell pouvant être installé  sur la "
+#~ "cible)."
+
+#~ msgid ""
+#~ "Some customised scripts are provided with emdebian-tools. The default "
+#~ "uses the standard Emdebian 'busybox' package with 'dpkg' and 'apt'. "
+#~ "Replacement scripts need to be full debootstrap suite shell scripts that "
+#~ "specify how to complete the first and second stage installations."
+#~ msgstr ""
+#~ "Certains scripts personnalisés sont fournis avec emdebian-tools. Par "
+#~ "défaut, le paquet Emdebian standard « busybox » est utilisé avec « dpkg » "
+#~ "and « apt ». Des scripts de remplacement doivent être des scripts shell  "
+#~ "appartenant à une suite (ou distribution) complète pour debootstrap qui "
+#~ "spécifient la manière dont les deux premières étapes d'installation sont "
+#~ "réalisées."
+
+#~ msgid ""
+#~ "Customised scripts packages with <emphasis>emdebian-tools</emphasis> "
+#~ "include scripts for a root filesystem including libgtk2.0-0 and a "
+#~ "complete GPE root filesystem."
+#~ msgstr ""
+#~ "Les scripts de paquets personnalisés avec <emphasis>emdebian-tools</"
+#~ "emphasis> incluent des scripts pour le système de fichiers racine y "
+#~ "compris libgtk2.0-0 et un système de fichiers racine GPE complet."
+
+#~ msgid "<option>--machine-path</option> <replaceable> PATH</replaceable>"
+#~ msgstr "<option>--machine-path</option> <replaceable> CHEMIN</replaceable>"
+
+#~ msgid ""
+#~ "Override the default path to machine and variant configuration. By "
+#~ "default, emsandbox uses <filename>${WORK}/machine</filename> where "
+#~ "<userinput>$WORK</userinput> is the working directory specified to "
+#~ "<emphasis>emdebian-tools</emphasis> in the debconf configuration.  The "
+#~ "specified path must already exist and contain the relevant "
+#~ "<filename>packages.conf</filename> configuration as well as the "
+#~ "<filename>setup.sh</filename> and <filename>config.sh</filename> shell "
+#~ "scripts (which may be empty)."
+#~ msgstr ""
+#~ "Modifie le chemin par défaut de la machine et des variantes. Par défaut, "
+#~ "emsandbox utilise <filename>${WORK}/machine</filename> où <userinput>"
+#~ "$WORK</userinput> est le répertoire de travail spécifié à "
+#~ "<emphasis>emdebian-tools</emphasis> lors de la configuration debconf. Le "
+#~ "chemin spécifié doit déjà exister et contenir une configuration de "
+#~ "<filename>packages.conf</filename> pertinente, de même pour les scripts "
+#~ "shell <filename>setup.sh</filename> et <filename>config.sh</filename> "
+#~ "(pouvant être vide)."
+
+#~ msgid ""
+#~ "Examples of <filename>packages.conf</filename>, <filename>setup.sh</"
+#~ "filename> and <filename>config.sh</filename> are in <filename>/usr/share/"
+#~ "doc/emdebian-rootfs/examples/</filename>"
+#~ msgstr ""
+#~ "Des exemples de <filename>packages.conf</filename>, <filename>setup.sh</"
+#~ "filename> et <filename>config.sh</filename> sont disponibles dans "
+#~ "<filename>/usr/share/doc/emdebian-rootfs/examples/</filename>"
+
+#~ msgid ""
+#~ "<option>-m</option>|<option>--machine</option><replaceable> MACHINE</"
+#~ "replaceable>"
+#~ msgstr ""
+#~ "<option>-m</option>|<option>--machine</option><replaceable> MACHINE</"
+#~ "replaceable>"
+
+#~ msgid ""
+#~ "Load machine specific configuration data from your Emdebian working "
+#~ "directory. If no variant is specified, config is read from <filename>"
+#~ "$WORK/machine/$MACHINE/default/</filename> where $WORK is the work "
+#~ "directory specified in debconf for emdebian-tools."
+#~ msgstr ""
+#~ "Charge les données de configuration spécifiques à une machine à partir de "
+#~ "votre répertoire de travail Emdebian. Si aucune variante n'est spécifiée, "
+#~ "config est lue à partir de <filename>$WORK/machine/$MACHINE/default/</"
+#~ "filename> où $WORK est le répertoire de travail spécifié dans debconf "
+#~ "pour emdebian-tools."
+
+#~ msgid ""
+#~ "<option>-v</option>|<option>--variant</option><replaceable> VARIANT</"
+#~ "replaceable>"
+#~ msgstr ""
+#~ "<option>-v</option>|<option>--variant</option><replaceable> VARIANTE</"
+#~ "replaceable>"
+
+#~ msgid ""
+#~ "Load variant specific configuration data from your Emdebian working "
+#~ "directory. Requires <option>--machine</option>. Configuration data is "
+#~ "read from <filename>$WORK/machine/$MACHINE/$VARIANT/</filename> where "
+#~ "$WORK is the work directory specified in debconf for emdebian-tools."
+#~ msgstr ""
+#~ "Charge les données de configuration spécifiques à une variante à partir "
+#~ "de votre répertoire de travail Emdebian. Nécessite <option>--machine</"
+#~ "option>. Les données de configuration sont lues à partir de <filename>"
+#~ "$WORK/machine/$MACHINE/$VARIANT/</filename> où $WORK est le répertoire de "
+#~ "travail spécifié dans debconf pour emdebian-tools."
+
+#~ msgid ""
+#~ "<option>-S</option>|<option>--suite</option><replaceable> NAME</"
+#~ "replaceable>"
+#~ msgstr ""
+#~ "<option>-S</option>|<option>--suite</option><replaceable> NOM</"
+#~ "replaceable>"
+
+#~ msgid ""
+#~ "Override the default suite [unstable] and specify another supported "
+#~ "suite. Note that if the Emdebian repository is used, the suite chosen "
+#~ "<emphasis>must</emphasis> be a normal Emdebian/Debian suite name from "
+#~ "'unstable, testing or sid', or a Debian release codename for a release "
+#~ "including or later than lenny. No other suite name is supported in "
+#~ "Emdebian."
+#~ msgstr ""
+#~ "Modifie la version de la distribution (ou suite) par défaut [unstable] et "
+#~ "indique une autre version possible. Notez que si le dépôt Emdebian est "
+#~ "utilisé, la version choisie <emphasis>doit</emphasis> être un nom de "
+#~ "distribution Emdebian/Debian ordinaire (unstable, testing ou sid) ou un "
+#~ "nom de code d'une version de Debian (lenny ou supérieure). Aucun autre "
+#~ "nom de version n'est accepté dans Emdebian."
+
+#~ msgid ""
+#~ "The selected suite is set in the root filesystem as the default suite for "
+#~ "apt to use when looking for updates."
+#~ msgstr ""
+#~ "La version sélectionnée est définie dans le système de fichiers racine en "
+#~ "tant que version par défaut pour apt lors de la recherche de mises à jour."
+
+#~ msgid ""
+#~ "<command>emsandbox</command> supports a set of customisation routines for "
+#~ "each combination of machine and variant, allowing the rootfs to be "
+#~ "customised to specific variants of a specific machine. Configuration data "
+#~ "is stored in the <filename>machine</filename> subdirectory of your "
+#~ "Emdebian work directory.  Using the <option>-m</option> option to "
+#~ "<command>emsandbox</command> loads <filename>packages.conf</filename> "
+#~ "from the <filename>$WORK/machine/$MACHINE/default</filename> subdirectory "
+#~ "prior to starting debootstrap. Once the first stage install is complete, "
+#~ "<command>emsandbox</command> calls <filename>setup.sh</filename> from the "
+#~ "same directory, passing the location and architecture of the tarball, so "
+#~ "that other fine tuning can take place prior to creating the tarball. At "
+#~ "this stage, any operations inside the rootfs must not try to execute any "
+#~ "binaries within the rootfs. Immediately before creating the tarball, "
+#~ "<filename>config.sh</filename> is copied into the <filename>/machine/"
+#~ "$MACHINE/default/</filename> directory of the rootfs, ready to be called "
+#~ "when <command>emsecondstage</command> has completed the second stage of "
+#~ "the debootstrap process."
+#~ msgstr ""
+#~ "<command>emsandbox</command> permet un ensemble de routines de "
+#~ "personnalisation pour chaque combinaison de machine et de variante. Le "
+#~ "système de fichiers racine peut être personnalisé en des variantes "
+#~ "spécifiques d'une machine spécifique. Les données de configuration sont "
+#~ "stockées dans le sous-répertoire <filename>machine</filename> de votre "
+#~ "répertoire de travail Emdebian. L'utilisation de l'option <option>-m</"
+#~ "option> à <command>emsandbox</command> charge <filename>packages.conf</"
+#~ "filename> à partir du sous-répertoire <filename>$WORK/machine/$MACHINE/"
+#~ "default</filename> avant de démarrer debootstrap. Une fois que la "
+#~ "première étape d'installation est achevée, <command>emsandbox</command> "
+#~ "appelle <filename>setup.sh</filename> à partir du même répertoire, "
+#~ "passant l'emplacement et l'architecture du tarball, ce qui permet "
+#~ "d'affiner les réglages avant de créer le tarball. À ce stade, toutes les "
+#~ "opérations à l'intérieur du système de fichiers racine ne doivent pas "
+#~ "essayer d'exécuter d'autre binaires au sein du système de fichiers "
+#~ "racine. Immédiatement avant la création du tarball, <filename>config.sh</"
+#~ "filename> est copié dans le répertoire <filename>/machine/$MACHINE/"
+#~ "default/</filename> du système de fichiers racine, prêt à être appelé "
+#~ "quand <command>emsecondstage</command> a terminé la seconde étape du "
+#~ "processus debootstrap."
+
+#~ msgid ""
+#~ "Skeleton versions of <filename>packages.conf</filename>, <filename>setup."
+#~ "sh</filename> and <filename>config.sh</filename> are available in "
+#~ "<filename>/usr/share/emdebian-tools/machine/</filename>."
+#~ msgstr ""
+#~ "Des versions squelette de <filename>packages.conf</filename>, "
+#~ "<filename>setup.sh</filename> et <filename>config.sh</filename> sont "
+#~ "disponibles dans <filename>/usr/share/emdebian-tools/machine/</filename>."
+
+#~ msgid ""
+#~ "<filename>packages.conf</filename> is intended to be the principal place "
+#~ "for adjusting the emsandbox tarball to suit the needs of specific machine "
+#~ "variants.  <filename>setup.sh</filename> and <filename>config.sh</"
+#~ "filename> can fine tune the results but in order to avoid reinventing the "
+#~ "wheel, if more than a few machines need similar adjustments to the same "
+#~ "files, future versions of <filename>packages.conf</filename> will collate "
+#~ "those into a single configuration parameter available to all."
+#~ msgstr ""
+#~ "<filename>packages.conf</filename> est le meilleur moyen  pour adapter le "
+#~ "tarball emsandbox aux besoins des variantes de machines spécifiques. "
+#~ "<filename>setup.sh</filename> et <filename>config.sh</filename> peuvent "
+#~ "affiner les résultats mais, afin de ne pas réinventer la roue, si "
+#~ "plusieurs machines nécessitent des adaptations aux même fichiers, les "
+#~ "futures versions de <filename>packages.conf</filename> les rassemblera en "
+#~ "un seul paramètre de configuration, disponible pour tous."
+
+#~ msgid "<filename>packages.conf</filename> supports:"
+#~ msgstr "<filename>packages.conf</filename> gère :"
+
+#~ msgid "<option>INCLUDE</option>"
+#~ msgstr "<option>INCLUDE</option>"
+
+#~ msgid ""
+#~ "Add a comma separated list of package names to the list of packages added "
+#~ "to the tarball and installed in the second stage. Currently, debootstrap "
+#~ "has problems with multiple repositories so either upload this package to "
+#~ "the same repository as your other packages or create an apt-proxy that "
+#~ "can serve as a local repository, set it in <option>PROXY</option> and "
+#~ "specify a usable mirror for the device in <option>MIRROR</option>."
+#~ msgstr ""
+#~ "Ajoute une liste de noms de paquets séparés par une virgule à la liste "
+#~ "des paquets ajoutés au tarball et installés à la deuxième étape. "
+#~ "Actuellement, debootstrap a des problèmes avec les dépôts multiples. Il "
+#~ "faut donc, soit uploader ce paquet dans le même dépôt que vos autres "
+#~ "paquets soit créer un apt-proxy qui peut servir de dépôt local. On peut "
+#~ "le définir dans <option>PROXY</option> et spécifier un miroir utilisable "
+#~ "pour le périphérique dans <option>MIRROR</option>."
+
+#~ msgid "DEFAULT: empty"
+#~ msgstr "PAR DÉFAUT : vide"
+
+#~ msgid "<option>SCRIPT</option>"
+#~ msgstr "<option>SCRIPT</option>"
+
+#~ msgid ""
+#~ "Overrides the default emsandbox suite-script that debootstrap uses to "
+#~ "determine the base and required packages and the all important sequence "
+#~ "in which the packages can be installed. SCRIPT can be overridden on the "
+#~ "emsandbox command line."
+#~ msgstr ""
+#~ "Modifie le script par défaut de emsandbox que debootstrap utilise pour "
+#~ "déterminer les paquets de base et les paquets exigés, ainsi que l'ordre "
+#~ "très important dans lequel les paquets peuvent être installés. SCRIPT "
+#~ "peut être modifié par emsandbox depuis la ligne de commande."
+
+#~ msgid ""
+#~ "DEFAULT: <filename>/usr/share/emdebian-tools/emdebian.crossd</filename>"
+#~ msgstr ""
+#~ "PAR DÉFAUT : <filename>/usr/share/emdebian-tools/emdebian.crossd</"
+#~ "filename>"
+
+#~ msgid "<option>MIRROR</option>"
+#~ msgstr "<option>MIRROR</option>"
+
+#~ msgid ""
+#~ "Overrides the default emsandbox mirror. This repository will be set in "
+#~ "<filename>/etc/apt/sources.list</filename> and will also be used by "
+#~ "debootstrap to obtain all packages for the tarball unless <option>PROXY</"
+#~ "option> is also set."
+#~ msgstr ""
+#~ "Surchage le miroir par défaut de emsandbox. Ce dépôt sera défini dans "
+#~ "<filename>/etc/apt/sources.list</filename> et sera aussi utilisé par "
+#~ "debootstrap pour obtenir tous les paquets nécessaires pour le tarball à "
+#~ "moins que <option>PROXY</option> ne soit également définie."
+
+#~ msgid "DEFAULT: http://www.emdebian.org/crush/"
+#~ msgstr "PAR DÉFAUT : http://www.emdebian.org/crush/"
+
+#~ msgid "<option>PROXY</option>"
+#~ msgstr "<option>PROXY</option>"
+
+#~ msgid ""
+#~ "Specifies a separate repository to pass to debootstrap that may be local "
+#~ "or otherwise not intended for use once the tarball is installed. Use "
+#~ "<option>MIRROR</option> to set the same value in debootstrap and "
+#~ "<filename>/etc/apt/sources.list</filename>.  If <option>PROXY</option> is "
+#~ "specified without <option>MIRROR</option>, the default emsandbox MIRROR "
+#~ "(http://buildd.emdebian.org/emdebian/) will be written into <filename>/"
+#~ "etc/apt/sources.list</filename>."
+#~ msgstr ""
+#~ "Spécifie un dépôt distinct à passer à debootstrap qui peut être local ou "
+#~ "ne pas être destiné à l'utilisation une fois que le tarball est installé. "
+#~ "Il faut utiliser <option>MIRROR</option> pour définir la même valeur à "
+#~ "debootstrap et <filename>/etc/apt/sources.list</filename>. Si "
+#~ "<option>PROXY</option> est spécifiée sans <option>MIRROR</option>, le "
+#~ "MIRROR (miroir) par défaut de emsandbox (http://buildd.emdebian.org/"
+#~ "emdebian/) sera écrit dans <filename>/etc/apt/sources.list</filename>."
+
+#~ msgid "<option>TARBALL_NAME</option>"
+#~ msgstr "<option>TARBALL_NAME</option>"
+
+#~ msgid ""
+#~ "Overrides the default name (emdebian-$ARCH) of the tarball. Do not "
+#~ "specify a path here, just a filename with the .tgz suffix."
+#~ msgstr ""
+#~ "Modifie le nom par défaut (emdebian-$ARCH) du tarball. Il ne faut pas "
+#~ "indiquer un chemin mais juste un nom de fichier ayant .tgz pour suffixe."
+
+#~ msgid ""
+#~ "DEFAULT: emdebian-$ARCH.tgz where $ARCH is specified to emsandbox or as "
+#~ "the dpkg-cross default architecture."
+#~ msgstr ""
+#~ "PAR DÉFAUT : emdebian-$ARCH.tgz où $ARCH est spécifié à emsandbox ou "
+#~ "comme l'architecture par défaut de dpkg-cross."
+
+#~ msgid "<option>SUITE</option>"
+#~ msgstr "<option>SUITE</option>"
+
+#~ msgid "Not recommended to be changed."
+#~ msgstr "Changement non recommandé."
+
+#~ msgid "DEFAULT: unstable"
+#~ msgstr "PAR DÉFAUT : unstable"
+
+#~ msgid ""
+#~ "Due to limitations in the current debootstrap support, the only way of "
+#~ "adding packages to the first stage is by providing a customised suite "
+#~ "script. Even if emsandbox migrates to using a tool from Stag to overcome "
+#~ "shortcomings in debootstrap, support for packages.conf, setup.sh and "
+#~ "config.sh will remain."
+#~ msgstr ""
+#~ "À cause de certaines limitations du debootstrap actuel, la seule manière "
+#~ "d'ajouter des paquets à la première étape est de fournir un script de "
+#~ "distribution personnalisée. Même si emsandbox migre pour utiliser un "
+#~ "outil provenant de Stag pour surmonter des lacunes de debootstrap, "
+#~ "l'assistance pour packages.conf, setup.sh et config.sh demeurera."
+
+#~ msgid "Automating rootfs builds"
+#~ msgstr "Automatisation de la construction de système de fichiers racine"
+
+#~ msgid ""
+#~ "Providing you are trying to build a root filesystem for an architecture "
+#~ "supported within Debian, <emphasis>emdebian-tools</emphasis> can help you "
+#~ "automate the package builds.  See <filename>em_autobuild</filename> (1)"
+#~ msgstr ""
+#~ "Si vous êtes en train d'essayer de construire un système de fichiers "
+#~ "racine pour une architecture gérée dans Debian, <emphasis>emdebian-tools</"
+#~ "emphasis> peut vous aider à automatiser la construction des paquets. Voir "
+#~ "<filename>em_autobuild</filename> (1)"
+
+#~ msgid "SHELL variables"
+#~ msgstr "Variables SHELL"
+
+#~ msgid ""
+#~ "Note that the Debian chroot program from coreutils expects you to want "
+#~ "the same shell outside the chroot as you want to use inside the chroot. "
+#~ "The typical Debian default shell in <filename>/etc/passwd</filename> is "
+#~ "bash which is not present in the Emdebian rootfs so <command>chroot</"
+#~ "command> needs the <option>/bin/sh</option> option."
+#~ msgstr ""
+#~ "Notez que le programme Debian chroot de coreutils s'attend à ce que "
+#~ "vouliez le même shell à l'extérieur et à l'intérieur du chroot. "
+#~ "Typiquement, le shell par défaut dans <filename>/etc/passwd</filename> "
+#~ "est bash qui n'est pas présent dans le système de fichiers racine de "
+#~ "Emdebian, ainsi <command>chroot</command> nécessite l'option <option>/bin/"
+#~ "sh</option>."
+
+#~ msgid "FILES"
+#~ msgstr "FICHIERS"
+
+#~ msgid ""
+#~ "Most <emphasis>emdebian-tools</emphasis> use configuration data from "
+#~ "<filename>apt-cross</filename> and <filename>dpkg-cross</filename>.  "
+#~ "<command>emsource</command> and <command>emsandbox </command> also "
+#~ "support configuration using <filename>debconf</filename> to set a "
+#~ "subversion username and default working directory (which must be "
+#~ "writable) for unpacking source downloads. Default debconf values can be "
+#~ "overridden with user-specific values using <filename>~/.apt-cross/"
+#~ "emsource</filename> or <filename>~/.apt-cross/emsandbox</filename> "
+#~ "respectively."
+#~ msgstr ""
+#~ "La plupart des <emphasis>emdebian-tools</emphasis> utilisent des données "
+#~ "de configuration de <filename>apt-cross</filename> et <filename>dpkg-"
+#~ "cross</filename>. <command>emsource</command> et <command>emsandbox </"
+#~ "command> permettent également la configuration à l'aide de "
+#~ "<filename>debconf</filename> pour définir un nom d'utilisateur subversion "
+#~ "et un répertoire de travail par défaut (qui doit avoir les droits "
+#~ "d'écriture) pour le dépaquetage des sources des téléchargements. Les "
+#~ "valeurs par défaut de Debconf peuvent être surchargées par des valeurs "
+#~ "spécifiques à l'utilisateur à l'aide de <filename>~/.apt-cross/emsource</"
+#~ "filename> ou <filename>~/.apt-cross/emsandbox</filename> respectivement."
+
+#~ msgid "/etc/emsandbox.conf"
+#~ msgstr "/etc/emsandbox.conf"
+
+#~ msgid ""
+#~ "System-wide configuration file handled by <command>debconf</command> "
+#~ "controlling unpacking source archives to a default working directory. Can "
+#~ "also include a subversion username setting, intended for single-user "
+#~ "installations. <filename>/etc/emsandbox.conf</filename> settings can be "
+#~ "overridden on a per-user basis by copying the current file to "
+#~ "<filename>~/.apt-cross/emsandbox</filename> and editing the values."
+#~ msgstr ""
+#~ "Fichier de configuration à l'échelle du système manipulé par "
+#~ "<command>debconf</command>. Il contrôle le dépaquetage des sources des "
+#~ "archives dans un répertoire de travail par défaut. Il peut également "
+#~ "inclure un nom d'utilisateur subversion, destiné aux installations mono-"
+#~ "utilisateur. Les paramètres de <filename>/etc/emsandbox.conf</filename> "
+#~ "peuvent être modifiés pour chaque utilisateur en copiant le fichier "
+#~ "actuel dans <filename>~/.apt-cross/emsandbox</filename> et en éditant les "
+#~ "valeurs."
+
+#~ msgid ""
+#~ "Two variables can be set (see also <filename>/etc/emsandbox.conf</"
+#~ "filename>):"
+#~ msgstr ""
+#~ "Deux variables peuvent être définies (voir aussi <filename>/etc/emsandbox."
+#~ "conf</filename>) :"
+
+#~ msgid ""
+#~ "<emphasis>workingdir</emphasis>: A simple default location for "
+#~ "<command>emsandbox</command> to create a source tree to download and "
+#~ "unpack prebuilt binary packages. If left blank, a new top level directory "
+#~ "tree is used but this is intended for chroot support only."
+#~ msgstr ""
+#~ "<emphasis>workingdir</emphasis> : un simple emplacement par défaut afin "
+#~ "que <command>emsandbox</command> puisse créer un arbre source pour "
+#~ "télécharger et dépaqueter des paquets binaires pré-construits. S'il est "
+#~ "laissé vide, un nouveau répertoire haut niveau de l'arbre est utilisé "
+#~ "mais est destiné uniquement au support du chroot."
+
+#~ msgid ""
+#~ "<emphasis>targetsuite</emphasis>: Emdebian follows Debian by defaulting "
+#~ "to building against unstable. This setting determines the versions of "
+#~ "libraries and packages linked against the cross-built emdebian packages."
+#~ msgstr ""
+#~ "<emphasis>targetsuite</emphasis> : Emdebian suit Debian en imposant par "
+#~ "défaut la construction à partir d'unstable. Ce paramètre détermine les "
+#~ "versions des bibliothèques et paquets liés aux paquets emdebian "
+#~ "construits à l'aide de la construction croisée."
+
+#~ msgid "~/.apt-cross/emsandbox"
+#~ msgstr "~/.apt-cross/emsandbox"
+
+#~ msgid ""
+#~ "User-specific version of <filename>/etc/emsandbox.conf</filename>, "
+#~ "supporting the same variables to provide user-specific overrides."
+#~ msgstr ""
+#~ "Version de <filename>/etc/emsandbox.conf</filename> spécifique à "
+#~ "l'utilisateur, utilisant les mêmes variables modifiables par "
+#~ "l'utilisateur."
+
+#~ msgid ""
+#~ "<command>emsandbox</command> was written by Neil Williams "
+#~ "<email>codehelp@debian.org</email>."
+#~ msgstr ""
+#~ "<command>emsandbox</command> a été écrit par Neil Williams "
+#~ "<email>codehelp@debian.org</email>."
+
+#~ msgid ""
+#~ "See also <filename>apt-cross</filename> (1), <filename>em_make</filename> "
+#~ "(1), <filename>dpkg-cross</filename> (1), <emphasis>emdebian-tools</"
+#~ "emphasis> (1)."
+#~ msgstr ""
+#~ "Voir aussi <filename>apt-cross</filename> (1), <filename>em_make</"
+#~ "filename> (1), <filename>dpkg-cross</filename> (1), <emphasis>emdebian-"
+#~ "tools</emphasis> (1)."
+
+#, fuzzy
+#~ msgid "example configuration file"
+#~ msgstr "Exemple de configuration :"
+
+#, fuzzy
+#~ msgid "An example configuration file is available at:"
+#~ msgstr "Exemple de configuration :"
+
+#, fuzzy
+#~ msgid "<option>--pot-only</option>"
+#~ msgstr "<option>--version</option>"
+
+#, fuzzy
+#~ msgid ""
+#~ "<option>-f</option>|<option>--file</option><replaceable> FILE</"
+#~ "replaceable>"
+#~ msgstr ""
+#~ "<option>-S</option>|<option>--suite</option><replaceable> NOM</"
+#~ "replaceable>"
+
+#~ msgid ""
+#~ "Eventually, multistrap will either replace em_multistrap or call "
+#~ "em_multistrap with --arch and take over native duties."
+#~ msgstr ""
+#~ "Éventuellement, multistrap va soit remplacer em_mulitstrap, soit appeler "
+#~ "em_multistrap avec l'option --arch et prendre en charge des fonctions "
+#~ "natives."

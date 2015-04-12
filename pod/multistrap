@@ -1,0 +1,867 @@
+=pod
+
+=head1 Name
+
+multistrap - multiple repository bootstraps
+
+=head1 Synopsis
+
+ multistrap [-a ARCH] [-d DIR] -f CONFIG_FILE
+ multistrap [--simulate] -f CONFIG_FILE
+ multistrap -?|-h|--help|--version
+
+=head1 Options
+
+-?|-h|--help|--version - output the help text and exit successfully.
+
+--dry-run - collate all the configuration settings and output a
+bare summary.
+
+--simulate - same as --dry-run
+
+(The following options can also be set in the configuration file.)
+
+-a|--arch - architecture of the packages to put into the multistrap.
+
+-d|--dir - directory into which the bootstrap will be installed.
+
+-f|--file - configuration file for multistrap [required]
+
+-s|--shortcut - shortened version of -f for files in known locations.
+
+--tidy-up - remove apt cache data, downloaded Packages files and
+the apt package cache. Same as cleanup=true.
+
+--no-auth - allow the use of unauthenticated repositories. Same
+as noauth=true
+
+--source-dir DIR - move the contents of var/cache/apt/archives/ from
+inside the chroot to the specified external directory, then add the
+Debian source packages for each used binary. Same as retainsources=DIR
+If the specified directory does not exist, nothing is done. Requires
+--tidy-up in order to calculate the full list of source packages, 
+including dependencies.
+
+=head1 Description
+
+multistrap provides a debootstrap-like method based on apt and
+extended to provide support for multiple repositories, using a
+configuration file to specify the relevant suites, architecture,
+extra packages and the mirror to use for each bootstrap.
+
+The aim is to create a complete bootstrap / root filesystem with
+all packages installed and configured, instead of just the base
+system.
+
+In most cases, users will need to create a configuration file for
+each different multistrap usage.
+
+Example configuration:
+
+ [General]
+ arch=armel
+ directory=/opt/multistrap/
+ # same as --tidy-up option if set to true
+ cleanup=true
+ # same as --no-auth option if set to true
+ # keyring packages listed in each bootstrap will
+ # still be installed.
+ noauth=false
+ # extract all downloaded archives (default is true)
+ unpack=true
+ # whether to add the /suite to be explicit about where apt
+ # needs to look for packages. Default is false.
+ explicitsuite=false
+ # enable MultiArch for the specified architectures
+ # default is empty
+ multiarch=
+ # aptsources is a list of sections to be used
+ # the /etc/apt/sources.list.d/multistrap.sources.list
+ # of the target. Order is not important
+ aptsources=Debian
+ # the bootstrap option determines which repository
+ # is used to calculate the list of Priority: required packages
+ # and which packages go into the rootfs.
+ # The order of sections is not important.
+ bootstrap=Debian
+ 
+ [Debian]
+ packages=
+ source=http://ftp.uk.debian.org/debian
+ keyring=debian-archive-keyring
+ suite=lenny
+
+This will result in a completely normal bootstrap of Debian lenny from
+the specified mirror, for armel in '/opt/multistrap/'. (This configuration
+is retained in the package as F</usr/share/multistrap/lenny.conf>)
+
+Specify a package to extend the multistrap to include that package and
+all dependencies of that package.
+
+Specify more repositories for the bootstrap by adding new sections.
+Section names need to be listed in the bootstrap general option for the
+packages to be included in the bootstrap.
+
+Specify which repositories will be available to the final system at
+boot by listing the section names in the aptsources general option,
+e.g. to exclude some internal sources or when using a local mirror when
+building the rootfs.
+
+Section names are case-insensitive.
+
+All dependencies are resolved only by apt, using all bootstrap
+repositories, to use only the most recent and most suitable
+dependencies. Note that multistrap turns off Install-Recommends
+so if the multistrap needs a package that is only a Recommended
+dependency, the recommended package needs to be specified in the
+packages line explicitly. See C<Explicit suite specification> for
+more information on getting specific packages from specific suites.
+
+'Architecture' and 'directory' can be overridden on the command line.
+Some other general options also have command line options.
+
+=head1 Online examples and documentation
+
+C<multistrap> supports a range of permutations, see the wiki and the
+emdebian website for more information and example configurations:
+
+http://wiki.debian.org/Multistrap
+
+http://www.emdebian.org/multistrap/
+
+C<multistrap> includes an example configuration file with a full list
+of all supported config file options: F</usr/share/doc/multistrap/examples/full.conf>
+
+=head1 Shortcuts
+
+In a similar manner to C<debootstrap>, C<multistrap> supports referring
+to configuration files in known locations by shortcuts. When using the
+C<--shortcut> option, C<multistrap> will look for files in
+F</usr/share/multistrap> and then F</etc/multistrap.d/>, appending a
+'.conf' suffix to the specified shortcut.
+
+These two commands are equivalent:
+
+ $ sudo multistrap -s sid
+ $ sudo multistrap -f /usr/share/multistrap/sid.conf
+ 
+Note that C<multistrap> will still fail if the configuration file
+itself does not set the directory or the architecture.
+
+=head1 Repositories
+
+C<aptsources> lists the sections which should be used to create the
+F</etc/apt/sources.list.d/multistrap.list> apt sources in the final
+system. Not all C<aptsources> have to appear in the C<bootstrap>
+section if you have some internal or local sources which are not
+accessible to the installed root filesystem.
+
+C<bootstrap> lists the sections which will be used to create the
+multistrap itself. Only packages listed in C<bootstrap> will be
+downloaded and unpacked by multistrap.
+
+Make sure C<bootstrap> lists all sections you need for apt to be
+able to find all the packages to be unpacked for the multistrap.
+
+(Older versions of multistrap supported the same option under the
+C<debootstrap> name - this spelling is still supported but new
+configuration files should be C<bootstrap> instead.
+
+=head1 General settings:
+
+'arch' can be overridden on the command line using the C<--arch> option.
+
+'directory' specifies the top level directory where the bootstrap
+will be created - it is not packed into a .tgz once complete.
+
+'bootstrap' lists the Sections which will be used to specify the packages
+which will be downloaded (and optionally unpacked) into the bootstrap.
+
+'aptsources' lists the Sections which will be used to specify the apt
+sources in the final system, e.g. if you need to use a local repository
+to generate the rootfs which will not be available to the device at
+runtime, list that section in C<bootstrap> but not in C<aptsources>.
+
+If you want a package to be in the rootfs, it B<must> be specified in
+the C<bootstrap> list under General.
+
+The order of section names in either list is not important.
+
+If C<markauto> is set to true, C<multistrap> will request apt to mark
+all packages specified in the combined C<packages> list as manually
+installed and all dependencies not explicitly listed as automatically
+installed in the APT extended state database. C<markauto> can be used
+independently of C<unpack>.
+
+As with debootstrap, multistrap will continue after errors, as long
+as the configuration file can be correctly parsed.
+
+multistrap also implements the machine:variant support originally
+used in Emdebian Crush, although in a different implementation. Using
+the cascading configuration support, particular machine:variant
+combinations can be supported by simple changes on the command line.
+
+Setting C<tarballname> to true also packs up the final filesystem into
+a tarball.
+
+Note that multistrap ignores any unrecognised options in the config
+file - this allows for backwards-compatible behaviour as well as
+overloading the multistrap config files to support other tools
+(like pbuilder). Use the C<--simulate> option to see the combined
+configuration settings.
+
+However, if the config file itself cannot be parsed, multistrap will
+abort. Check that the config file has a key and a value for each line,
+other than comments. Values must all on the same line as the key.
+
+=head1 Section settings
+
+ [Debian]
+ packages=
+ source=http://ftp.uk.debian.org/debian
+ keyring=debian-archive-keyring
+ suite=lenny
+
+The section name (in [] brackets) needs to be unique for this
+configuration file and any configuration files which this file
+includes. Section names are case insensitive (all comparisons happen
+after conversion to lower case).
+
+'packages' is the list of packages to be added when this Section
+is listed in C<bootstrap> - all package names must be listed on a
+single line or the file will fail to parse. One alternative is to define
+your list of packages as multiple groups with packages separated on a
+functional / dependency basis, e.g. base, Xorg, networking etc. and list
+each group under 'bootstrap'.
+
+ bootstrap=base networking
+
+ [base]
+ packages=udev mtd-utils
+ source=http://www.emdebian.org/grip
+ keyring=emdebian-archive-keyring
+ suite=lenny
+
+ [networking]
+ packages=netbase ifupdown iproute net-tools samba
+ source=http://www.emdebian.org/grip
+ keyring=emdebian-archive-keyring
+ suite=lenny
+
+As a special case, C<multistrap> also supports multiple packages keys
+per section, one line for each. Other keys cannot be repeated in this
+manner.
+
+ [Emdebian]
+ packages=udev mtd-utils netbase ifupdown iproute
+ packages=busybox net-tools samba
+ source=http://www.emdebian.org/grip
+ keyring=emdebian-archive-keyring
+ suite=lenny
+
+'source' is the apt source to use for this Section. To use a local
+source on the same machine, ensure you use C<copy://> not C<file://>,
+so that apt is told to copy the packages into the rootfs instead of
+assuming it can try to download them later - because that "later" will
+never actually happen.
+
+'keyring' lists the package which contains the key used by the source
+listed in this Section. If no keyring is specified, the C<noauth>
+option must be set to B<true>. See Secure Apt.
+
+'suite' is the suite to use from this source. Note that this should
+be the suite, not the codename.
+
+Suites change from time to time: (oldstable, stable, testing, sid)
+The codename (etch, lenny, squeeze, sid) does not change.
+
+=head1 Secure Apt
+
+To use authenticated apt repositories, multistrap needs to be able to
+install an appropriate keyring package from the existing apt
+sources B<outside the multistrap environment> into the destination
+system. Unfortunately, keyring packages cannot be downloaded from
+the repositories specified in the multistrap configuration - this is
+because C<apt> needs the keyring to be updated before being able to
+use repositories not previously known.
+
+If relevant packages exist, specify them in the 'keyring' option for
+each repository. multistrap will then check that apt has already
+installed this package so that the repository can be authenticated
+before any packages are downloaded from it.
+
+Note that B<all> repositories to be used with multistrap must be
+authenticated or apt will fail. Similarly, secure apt can only be
+disabled for all repositories (by using the --no-auth command line
+option or setting the general noauth option in the configuration
+file), even if only one repository does not have a suitable keyring
+available.
+
+The keyring package(s) will also be installed inside the multistrap
+environment to match the installed apt sources for the multistrap.
+
+=head1 State
+
+multistrap is stateless - if the directory exists, it will simply
+proceed as normal and apt will try to pick up where it left off.
+
+=head1 Root Filesystem Configuration
+
+multistrap unpacks the downloaded packages but other stages of
+system configuration are not attempted. Examples include:
+
+ /etc/inittab
+ /etc/fstab
+ /etc/hosts
+ /etc/securetty
+ /etc/modules
+ /etc/hostname
+ /etc/network/interfaces
+ /etc/init.d
+ /etc/dhcp3 
+
+Any device-specific device nodes will also need to be created using
+MAKEDEV or C<device-table.pl> - a helper script that can work around
+some of the issues with MAKEDEV. F<device-table.pl> requires a device
+table file along the lines of the one in the mtd-utils source package.
+See F</usr/share/doc/multistrap/examples/device_table.txt>
+
+Once multistrap has successfully created the basic file and
+directory layout, other device-specific scripts are needed before
+the filesystem can be packaged up and installed onto the
+target device.
+
+Once installed, the packages themselves need to be configured
+using the package maintainer scripts and C<dpkg --configure -a>,
+unless this is a native multistrap.
+
+For C<dpkg> to work, F</proc> and F</sysfs> must be mounted (or
+mountable), F</dev/pts> is also recommended.
+
+See also: http://wiki.debian.org/Multistrap
+
+=head1 Environment
+
+To configure the unpacked packages (whether in native or cross mode),
+certain environment variables are needed:
+
+Debconf needs to be told to accept that user interaction is not
+desired:
+
+ DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+
+Perl needs to be told to accept that no locales are available inside
+the chroot and not to complain:
+
+ LC_ALL=C LANGUAGE=C LANG=C
+
+Then, dpkg can configure the packages:
+
+chroot method (PATH = top directory of chroot):
+
+ DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
+ LC_ALL=C LANGUAGE=C LANG=C chroot /PATH/ dpkg --configure -a
+
+at a login shell:
+
+ # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+ # export LC_ALL=C LANGUAGE=C LANG=C 
+ # dpkg --configure -a
+
+(As above, dpkg needs F</proc> and F</sysfs> mounted first.)
+
+=head1 Native mode - multistrap
+
+multistrap was not intended for native support, it was developed for
+cross architecture support. In order for multiple repositories to be
+used, multistrap only unpacks the packages selected by apt.
+
+In native mode, various post-multistrap operations are likely to be
+needed that debootstrap would do for you:
+
+ 1. copy /etc/hosts into the chroot
+ 2. clean the environment to unset LANGUAGE, LC_ALL and LANG
+    to silence nuisance perl warnings that obscure other errors
+
+(An alternative to unset the localisation variables is to add
+locales to your multistrap configuration file in the 'packages'
+option.
+
+A native multistrap can be used directly with chroot, so
+C<multistrap> runs C<dpkg --configure -a> at the end of the
+multistrap process, unless the B<ignorenativearch> option is set
+to true in the B<General> section of the configuration file.
+
+=head1 Daemons in chroots
+
+Depending on which system you using to provide the packages for
+C<multistrap>, native chroots should generally not allow daemons to
+start inside the chroot. Use the F</usr/share/multistrap/chroot.sh>
+as your C<setupscript> or include that script in your own setup script.
+
+ setupscript=/usr/share/multistrap/chroot.sh
+
+F<chroot.sh> copes with systems using F<sysvinit> and F<upstart>.
+
+See also
+
+ http://people.debian.org/~hmh/invokerc.d-policyrc.d-specification.txt
+
+=head1 Cascading configuration
+
+To support multiple variants of a basic (common) configuration,
+C<multistrap> allows configuration files to include other (more general)
+configuration files. i.e. the most detailed / specific configuration
+file is specified on the command line and that file includes another
+file which is shared by other configurations.
+
+Base file:
+
+ /usr/share/multistrap/crosschroot.conf
+
+Variations:
+
+ /usr/share/multistrap/armel.conf
+
+Specifying just the armel.conf file will get the rest of the settings
+from crosschroot.conf so that common changes only need to be made in a
+single file.
+
+It is B<strongly> recommended that any changes to the configuration files
+involved in any particular cascade are tested using the C<--simulate>
+option to multistrap which will output a summary of the options that
+have been set once the cascade is complete. Note that multistrap does
+B<not warn you> if a configuration file contains an unrecognised
+option (for future compatibility with backported configurations), so a
+simple typo can result in an option not being set.
+
+=head1 Machine:variant support
+
+The old packages.conf variables from emsandbox can all be converted
+into C<multistrap> configuration variables. The machine:variant
+support in C<multistrap> concentrates on the scripts, 
+F<config.sh> and F<setup.sh>
+
+Note: B<machine:variant support is likely to be replaced by the
+hook functionality described below.>
+
+Once C<multistrap> has unpacked the downloaded packages, the 
+C<setup.sh> can be called, passing the location and architecture of
+the root filesystem, so that other fine tuning can take place. At
+this stage, any operations inside a foreign architecture rootfs must
+not try to execute any binaries within the rootfs. As the final stage
+of the multistrap process, C<config.sh> is copied into the root
+directory of the rootfs.
+
+One advantage of using machine:variant support is that the entire
+rootfilesystem can be managed by a single call to multistrap - this
+is useful when building root filesystems in userspace.
+
+To enable machine:variant support, specify the path to the scripts to
+be called in the variant configuration file (General section):
+
+ [General]
+ include=/path/to/general.conf
+ setupscript=/path/to/setup.sh
+ configscript=/path/to/config.sh
+
+Ensure that both the setupscript and the configscript are executable
+or C<multistrap> will ignore the script.
+
+=over 1 
+
+=item Example configscript.sh
+
+ #!/bin/sh
+ 
+ set -e
+ 
+ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+ export LC_ALL=C LANGUAGE=C LANG=C
+ /var/lib/dpkg/info/dash.preinst install
+ dpkg --configure -a
+ mount proc -t proc /proc
+ dpkg --configure -a
+ umount /proc
+
+For more information, see the Wiki:
+http://wiki.debian.org/Multistrap
+
+=item Mounting /dev and /proc for chroot configuration
+
+/proc can be mounted inside the chroot, as above:
+
+ mount proc -t proc /proc
+
+However, /dev should be mounted from outside the chroot, before
+running any C<configscript.sh> in the chroot:
+
+ cd /path/chroot/
+ sudo tar -xzf /path/multistrap.tgz
+ sudo mount /dev -o bind ./dev/
+ sudo chroot . ./configscript.sh || true
+
+=back
+
+=head1 Restricting package selection
+
+C<multistrap> includes Required packages by default, the current list
+of packages on your own machine can be seen using:
+
+ grep-available  -FPriority 'required' -sPackage
+
+(The actual list is calculated from the downloaded Packages files
+and may differ from the output of C<grep-available>.)
+
+If the OmitRequired option is set to true, these packages will not be
+added - whilst useful, this option can easily lead to a useless
+rootfs. Only the packages specified manually in the configuration
+files will be used in the calculations - dependencies of those packages
+will be added but no others.
+
+=head1 Adding Priority: important packages
+
+C<multistrap> can imitate C<debootstrap> by automatically adding all
+packages from all sections where the downloaded Packages file lists
+the package as Priority: important. The default is not to add such
+packages unless individually included in a C<packages=> option in
+a section specified in the C<bootstrap> general option. To add
+all such packages, set the addimportant option to true in the general
+section.
+
+ addimportant=true
+
+Priority: important can only operate for all sections listed in the
+C<bootstrap> option. This may cause some confusion when mixing suites.
+
+It is not possible to enable addimportant and omitrequired in the
+same configuration. C<multistrap> will exit with error code 7 if
+any configuration results in addimportant and omitrequired both being
+set to true. (This includes the effects of including other configuration
+files.)
+
+=head1 Recommends behaviour
+
+The Debian default behaviour after the Lenny release was to consider
+recommended packages as extra packages to be installed when any one
+package is selected. Recommended packages are those which the maintainer
+considers that would be present on C<most> installations of that package
+and allowing Recommends means allowing Recommends of recommended packages
+and so on.
+
+The multistrap default is to turn recommends OFF.
+
+Set the allowrecommends option to true in the General section
+to use typical Debian behaviour.
+
+=head1 Default release
+
+C<multistrap> supports an option to explicitly set the default release
+to use with apt: C<aptdefaultrelease>. This determines which release apt
+will use for the base system packages and is not the same as pinning
+(which relates to the use of apt after installation). Multistrap sets
+the default-release to the wildcard * unless a release is named in the
+C<aptdefaultrelease> field. Any release specified here must also be
+defined in a stanza referenced in the bootstrap list or apt will fail.
+
+To install a specific version of a package from a newer release than
+the one specified as default, C<explicitsuite> must also be set to true
+if the package exists at any version in the default release. Also, any
+packages upon which that package has a strict dependency (i.e. = rather
+than >=) must also be explicitly added to the packages line in the
+stanza for the desired version, even though that package does not need
+to be listed to get it from the default release. This is typical apt
+behaviour and is not a bug in multistrap.
+
+The combination of default release, explicit suite and apt preferences
+can quickly become complex and bugs can be very hard to identify.
+C<multistrap> always outputs the complete apt command line, so test
+this command yourself (using the files written out by C<multistrap>) to
+see what is going on. Remember that all dependency resolution and all
+the logic to determine which version of a specific package gets installed
+in your C<multistrap> chroot is entirely down to apt and all C<multistrap>
+can do is pass files and command line options to apt.
+
+See also: apt preferences.
+
+=head1 Explicit suite specification
+
+Sometimes, apt needs to be told to get a particular package from a
+particular suite, ignoring a more recent version in another suite
+in the same set of sources.
+
+C<multistrap> can operate with and without the explicit suite option,
+the default is to let apt use the most recent version from the collection
+of specified F<bootstrap> sources.
+
+Explicit suite specification has no effect on the final installed
+system - if your aptsources includes a repository which in turn includes
+a newer version of the package(s) specified explicitly, the next
+C<apt-get upgrade> on the device will bring in the newer version.
+
+Also, when specifying packages to get from a specific suite, apt will
+also try and ensure that the dependencies for that package are also
+from the same suite and this can cause apt to be unable to resolve the
+complete set of dependencies. In this situation, being explicit about
+one package selection may require being explicit about some (not
+necessarily all) of the dependencies of that package as well.
+
+When using this support in Lenny, ensure that each section uses the
+suite (oldstable, stable, testing, sid) and B<not> the codename
+(etch, lenny, squeeze, sid) in the C<suite> configuration item
+as the version of apt in Lenny and previous cannot use the codename.
+
+To test, on Lenny, try:
+
+ $ sudo apt-get install apt/stable
+
+Compare with
+
+ $ sudo apt-get install apt/lenny
+
+When using explicitsuite, take care in using stable-proposed-updates
+or other temporary locations - if the package migrates into another
+suite and is removed from the temporary suite (as with 
+*-proposed-updates), multistrap will not be able to find the
+package.
+
+Explicit suite handling can be very hard to get right. In general, it
+is best to create a small bootstrap chroot of your native arch, then
+chroot into it, add the relevant apt sources and work out exactly
+what commands are necessary to get the correct mix of packages. Avoid
+specifying explicit versions to sort out problems, work with suites
+only. Apt preferences / pinning may be useful here, see Apt preferences.
+
+=head1 Apt preferences
+
+If a suitable file is listed in the B<aptpreferences> option of the
+B<General> section of the configuration file, this file will be copied
+into the apt preferences directory of the bootstrap before apt is first
+used.
+
+When an apt preferences file B<is> provided, the C<Default-Release>
+behaviour of C<multistrap> is disabled.
+
+As with other external scripts and files, the content of the apt
+preferences file is beyond the scope of this manpage. C<multistrap>
+does not try to verify the supplied file other than ensuring that it
+can be read.
+
+=head1 Omitting deb-src listings
+
+Some multistrap environments do not need access to the Debian sources
+of packages being installed, typically this is required when preparing
+a build (or cross-build) chroot using multistrap.
+
+To turn off this additional source (and save both download time and
+apt-cache size), use the omitdebsrc field in each Section.
+
+ [Baked]
+ packages=
+ source=http://www.emdebian.org/baked
+ keyring=emdebian-archive-keyring
+ suite=testing
+ omitdebsrc=true
+
+omitdebsrc is necessary when using packages from debian-ports where
+packages do not have sources, except "unreleased".
+
+=head1 fakeroot
+
+Foreign architecture bootstraps can operate under C<fakeroot> (C<multistrap>
+is designed to do as much as it can within a single call to make this
+easier) but the configuration stage which normally happens with a native
+architecture bootstrap requires C<chroot> and C<chroot> itself will
+not operate under C<fakeroot>.
+
+Therefore, if C<multistrap> detects that C<fakeroot> is in use, native
+mode configuration is skipped with a reminder warning.
+
+The same problem applies to C<apt-get install> and therefore the
+installation of the keyring package on the host system is also skipped
+if fakeroot is detected.
+
+=head1 Handling problematic packages
+
+Sometimes, a particular package will fail to even unpack properly if
+other packages have not already been unpacked. This can happen if
+dpkg diversions are not setup correctly or if the package Pre-Depends
+on an executable in another package.
+
+Multistrap offers two ways to handle these problems. A package can be
+listed as C<reinstall> or as C<additional>. Each section in the
+C<multistrap> configuration file can have a single C<reinstall> or
+C<additional> listing or both.
+
+Reinstall means that the package will be downloaded and unpacked as
+normal - alongside all the other packages, but will then be reinstalled
+at the end by running the C<preinst> maintainer script with the
+C<upgrade> argument. C<dpkg> will then continue the rest of the
+configuration of that package.
+
+Additional adds a second round of C<apt-get install> to the multistrap
+process - after the initial unpacking. The additional package will
+then be downloaded and unpacked. If running natively, the additional
+package is downloaded, unpacked and configured after all the
+rest of the packages have been downloaded, unpacked and configured.
+
+Neither C<reinstall> nor C<additional> should be seen as more than
+just workarounds and wishlist bugs should be filed in Debian against
+packages which require the use of these mechanisms (or the packages
+which would prevent the particular package from operating normally).
+
+=head1 Debconf preseeding
+
+Adding a debconf seed can help in configuring packages to a particular
+setting instead of the package default when running the configuration
+non-interactively. See http://www.debian-administration.org/articles/394
+for information on how to create seed files.
+
+Multiple seed files can be specified using the debconfseed field in
+the [General] section, separated by spaces:
+
+ debconfseed=seed1 seed2
+
+Files which do not exist or which cannot be opened will be silently
+ignored. Check the results of the parsing using the C<--simulate>
+option to C<multistrap>. The preseeding files will be copied to a
+preseed directory in /tmp inside the rootfs.
+
+To use the preseeding, add a section to the configscript.sh,
+prior to any calls to B<dpkg --configure -a>. e.g. :
+
+ #!/bin/sh
+ 
+ set -e
+ 
+ export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
+ export LC_ALL=C LANGUAGE=C LANG=C
+ if [ -d /tmp/preseeds/ ]; then
+    for file in `ls -1 /tmp/preseeds/*`; do
+    debconf-set-selections $file
+    done
+ fi
+ dpkg --configure -a
+
+=head1 Hooks
+
+If a hook directory (hookdir=) is specified in the General section of the
+C<multistrap> configuration file, the hook scripts which are executable
+will be run from outside the multistrap directory at the following stages:
+
+=over 1
+
+=item download hooks
+
+Executed before unpacking is started, immediately after the packages
+have been downloaded. Download hooks are executable scripts in the
+specified hook directory with a filename beginning with B<download>.
+
+=item native hooks
+
+Native hook scripts are executed only in native mode, immediately before
+starting the configuration of the downloaded packages and again upon
+completion of the package configuration. Native hooks will be called
+the absolute path and the current progress state, start or end.
+
+Native scripts are executable scripts in the specified hook directory
+with a filename beginning with B<native>.
+
+=item completion hooks
+
+Executed immediately before the tarball is created or C<multistrap> exits
+if not configured to create a tarball.
+
+Completion scripts are executable scripts in the specified hook directory
+with a filename beginning with B<completion>.
+
+=back
+
+Hooks are passed the absolute path to the directory which will be the
+top level directory of the chroot or multistrap system. Hooks which
+cannot be resolved using realpath or which are not executable will be
+ignored.
+
+All hooks of one type are sorted into alphabetical order before being
+run. 
+
+Note that C<multistrap> does not rollback the effects of hooks in the
+case of errors. However, C<multistrap> will report the accumulated
+errors as warnings. If a hook exits non-zero, the exit value is converted
+to a positive number and added to the total warning count, reported at
+the end of the operation.
+
+=head1 Output
+
+C<multistrap> can produce a lot of output - informational messages
+appear on STDOUT, errors and warnings on STDERR. Calls to C<apt> and
+C<dpkg> respect the same pattern, so it is simple to trim the combined
+C<multistrap> output to just the errors, if desired.
+
+C<multistrap> accumulates error states from non-fatal processes within
+the operation and reports these as warnings on STDERR as well as exiting
+with the accumulated error count. This includes hooks which report
+non-zero exit values.
+
+=head1 Bugs
+
+As C<multistrap> gets more complex, bugs will creep into the package.
+Please report all bugs to the Debian BTS using the C<reportbug> tool
+and B<please> attach all configuration files. If your configuration
+needs to access local or private apt repositories, please check your
+configuration with the latest version of C<multistrap> in Debian using
+the C<--simulate> option and include that report in your bug report.
+
+The C<--simulate> option output is regularly expanded to help users
+debug problems in the configuration files.
+
+Please also check (and update) the Multistrap wiki at
+http://wiki.debian.org/Multistrap and the Multistrap webpage content
+at http://www.emdebian.org/multistrap/ before filing bugs. Various
+people on the debian-embedded@lists.debian.org mailing list and
+#emdebian IRC channel on irc.oftc.net can also help if your config file
+does not parse correctly. You would need to put the C<--simulate> output
+on a pastebin website and put the URL in your message.
+
+=head1 MultiArch support
+
+Multiarch support is experimental - please report issues and file bugs
+with full details of your setup, the full multistrap config file and
+the errors reported.
+
+C<multistrap> overrides the existing multiarch support of the external
+system so that a MultiArch aware system can still create a non-MultiArch
+chroot from repositories which do not support all of the architectures
+supported by the external dpkg.
+
+If multiarch is enabled within the multistrap chroot, C<multistrap>
+writes out the list into F</var/lib/dpkg/arch> inside the chroot.
+
+For multiple architectures, specify the option once and use a space
+separated list for the architecture list. Ensure you include what will
+be the host architecture of the chroot.
+
+See also http://wiki.debian.org/Multiarch/
+
+ [General]
+ ...
+ multiarch=i386 armel armhf
+
+Each Section will install packages from the base architecture unless
+the C<Architecture> option is specified for particular sections.
+
+ [Foreign]
+ packages=libgcc1 libc6
+ architecture=armel
+ source=http://ftp.uk.debian.org/debian
+ keyring=debian-archive-keyring
+ suite=sid
+
+In the C<--simulate> output, the architecture(s) specified in the
+MultiArch option will be listed under the "Foreign architectures"
+listing. Packages for a specific architecture will be listed as the
+package name followed by a colon followed by the architecture.
+
+ libgcc1:armel libc6:armel
+
+=cut

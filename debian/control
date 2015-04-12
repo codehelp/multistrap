@@ -1,0 +1,40 @@
+Source: multistrap
+Section: utils
+Priority: optional
+Maintainer: Neil Williams <codehelp@debian.org>
+Uploaders: Wookey <wookey@debian.org>
+Build-Depends: cdbs, debhelper (>= 7), po4a (>= 0.37.1)
+Build-Depends-Indep: intltool
+Standards-Version: 3.9.4
+Homepage: http://www.emdebian.org/multistrap
+Vcs-Browser: http://www.emdebian.org/trac/browser/current/host/trunk/multistrap/trunk/
+Vcs-Svn: http://www.emdebian.org/svn/current/host/trunk/multistrap/trunk/
+
+Package: multistrap
+Section: admin
+Architecture: all
+Depends: ${perl:Depends}, ${misc:Depends}, apt, libconfig-auto-perl, 
+ liblocale-gettext-perl, libparse-debian-packages-perl
+Recommends: emdebian-archive-keyring
+Suggests: fakeroot
+Description: multiple repository bootstrap based on apt
+ A debootstrap replacement with multiple repository support,
+ using apt to handle all dependency issues and conflicts.
+ .
+ Multistrap includes support for native and foreign architecture
+ bootstrap environments. Foreign bootstraps only need minimal
+ configuration on the final device. Also supports cleaning up the
+ generated bootstrap filesystem to remove downloaded packages and
+ hooks to modify the files in the bootstrap filesystem after the
+ packages have been unpacked but before being configured.
+ .
+ Unlike debootstrap, multistrap relies on working versions of
+ dpkg and apt outside the final filesystem. If dpkg supports
+ MultiArch, foreign architecture libraries can be installed,
+ where available.
+ .
+ Multistrap supercedes emdebian-rootfs and replaces the previous
+ support for preparing root filesystems for specific machines and
+ variants. Multistrap includes the previous emdebian-rootfs support
+ for customisation of package selection and of files created
+ within the root filesystem.

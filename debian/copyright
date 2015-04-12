@@ -1,0 +1,32 @@
+This package was downloaded from
+http://buildd.emdebian.org/svn/browser/current/host/trunk/multistrap/trunk/
+
+Files: debian/*
+Licence: GPL-3+
+Copyright: 2006-2010 Neil Williams <codehelp@debian.org>
+
+Files: *
+Licence: GPL-3+
+Copyright:   Copyright 2006-2010 Neil Williams <codehelp@debian.org>
+             Copyright 2008 Hands.com Ltd <phil@hands.com>
+             Copyright 2006-2007 Wookey <wookey@debian.org>
+             Copyright 2001-2006 Junichi Uekawa <dancer@netfort.gr.jp>
+             Copyright 2001-2002 Erik Andersen <andersen@codepoet.org>
+
+License:
+
+    This package is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL-3'.

@@ -1,0 +1,7 @@
+2009-11-09  Neil Williams  <linux@codehelp.co.uk>
+
+	patch by: Pedro Ribeiro <p.m42.ribeiro@gmail.com>
+
+	* LINGUAS:
+	* pt.po: Add Portuguese multistrap output translation.
+
