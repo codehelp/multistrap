@@ -89,11 +89,11 @@ Example configuration:
  packages=
  source=http://ftp.uk.debian.org/debian
  keyring=debian-archive-keyring
- suite=lenny
+ suite=jessie
 
-This will result in a completely normal bootstrap of Debian lenny from
+This will result in a completely normal bootstrap of Debian Jessie from
 the specified mirror, for armel in '/opt/multistrap/'. (This configuration
-is retained in the package as F</usr/share/multistrap/lenny.conf>)
+is retained in the package as F</usr/share/multistrap/jessie.conf>)
 
 Specify a package to extend the multistrap to include that package and
 all dependencies of that package.
@@ -220,7 +220,7 @@ other than comments. Values must all on the same line as the key.
  packages=
  source=http://ftp.uk.debian.org/debian
  keyring=debian-archive-keyring
- suite=lenny
+ suite=jessie
 
 The section name (in [] brackets) needs to be unique for this
 configuration file and any configuration files which this file
@@ -238,15 +238,15 @@ each group under 'bootstrap'.
 
  [base]
  packages=udev mtd-utils
- source=http://www.emdebian.org/grip
- keyring=emdebian-archive-keyring
- suite=lenny
+ source=http://http.debian.net/debian
+ keyring=debian-archive-keyring
+ suite=jessie
 
  [networking]
  packages=netbase ifupdown iproute net-tools samba
- source=http://www.emdebian.org/grip
- keyring=emdebian-archive-keyring
- suite=lenny
+ source=http://http.debian.net/debian
+ keyring=debian-archive-keyring
+ suite=jessie
 
 As a special case, C<multistrap> also supports multiple packages keys
 per section, one line for each. Other keys cannot be repeated in this
@@ -255,9 +255,9 @@ manner.
  [Emdebian]
  packages=udev mtd-utils netbase ifupdown iproute
  packages=busybox net-tools samba
- source=http://www.emdebian.org/grip
- keyring=emdebian-archive-keyring
- suite=lenny
+ source=http://http.debian.net/debian
+ keyring=debian-archive-keyring
+ suite=jessie
 
 'source' is the apt source to use for this Section. To use a local
 source on the same machine, ensure you use C<copy://> not C<file://>,
@@ -273,7 +273,7 @@ option must be set to B<true>. See Secure Apt.
 be the suite, not the codename.
 
 Suites change from time to time: (oldstable, stable, testing, sid)
-The codename (etch, lenny, squeeze, sid) does not change.
+The codename (squeeze, wheezy, jessie, sid) does not change.
 
 =head1 Secure Apt
 
@@ -605,19 +605,6 @@ from the same suite and this can cause apt to be unable to resolve the
 complete set of dependencies. In this situation, being explicit about
 one package selection may require being explicit about some (not
 necessarily all) of the dependencies of that package as well.
-
-When using this support in Lenny, ensure that each section uses the
-suite (oldstable, stable, testing, sid) and B<not> the codename
-(etch, lenny, squeeze, sid) in the C<suite> configuration item
-as the version of apt in Lenny and previous cannot use the codename.
-
-To test, on Lenny, try:
-
- $ sudo apt-get install apt/stable
-
-Compare with
-
- $ sudo apt-get install apt/lenny
 
 When using explicitsuite, take care in using stable-proposed-updates
 or other temporary locations - if the package migrates into another
