@@ -5,10 +5,10 @@ Maintainer: Neil Williams <codehelp@debian.org>
 Uploaders: Wookey <wookey@debian.org>
 Build-Depends: cdbs, debhelper (>= 7), po4a (>= 0.37.1)
 Build-Depends-Indep: intltool
-Standards-Version: 3.9.4
-Homepage: http://www.emdebian.org/multistrap
-Vcs-Browser: http://www.emdebian.org/trac/browser/current/host/trunk/multistrap/trunk/
-Vcs-Svn: http://www.emdebian.org/svn/current/host/trunk/multistrap/trunk/
+Standards-Version: 3.9.6
+Homepage: https://github.com/codehelp/multistrap
+Vcs-Git: https://github.com/codehelp/multistrap.git
+Vcs-Browser: https://github.com/codehelp/multistrap
 
 Package: multistrap
 Section: admin

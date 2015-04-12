@@ -1,3 +1,9 @@
+multistrap (2.2.1) UNRELEASED; urgency=medium
+
+  * Move to github
+
+ -- Neil Williams <codehelp@debian.org>  Sun, 12 Apr 2015 18:15:30 +0100
+
 multistrap (2.2.0) unstable; urgency=low
 
   * Add option to specify the apt default release directly and
