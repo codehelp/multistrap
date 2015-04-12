@@ -2,13 +2,13 @@
 # Copyright (C) 2009 Free Software Foundation, Inc.
 # This file is distributed under the same license as the multistrap package.
 #
-# Américo Monteiro <a_monteiro@netcabo.pt>, 2009, 2010, 2011, 2012.
+# Américo Monteiro <a_monteiro@gmx.com>, 2009 - 2014.
 msgid ""
 msgstr ""
-"Project-Id-Version: multistrap 2.1.18\n"
+"Project-Id-Version: multistrap 2.2.0\n"
 "POT-Creation-Date: 2013-07-27 15:47+0200\n"
-"PO-Revision-Date: 2012-04-21 17:36+0100\n"
-"Last-Translator: Américo Monteiro <a_monteiro@netcabo.pt>\n"
+"PO-Revision-Date: 2014-07-27 17:55+0100\n"
+"Last-Translator: Américo Monteiro <a_monteiro@gmx.com>\n"
 "Language-Team: Portuguese <traduz@debianpt.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -328,7 +328,7 @@ msgstr ""
 #. type: =head1
 #: pod/multistrap:123
 msgid "Online examples and documentation"
-msgstr ""
+msgstr "Exemplos e documentação online"
 
 #. type: textblock
 #: pod/multistrap:125
@@ -336,20 +336,20 @@ msgid ""
 "C<multistrap> supports a range of permutations, see the wiki and the "
 "emdebian website for more information and example configurations:"
 msgstr ""
+"C<multistrap> suporta uma gama de permutações, veja a wiki e o site web "
+"emdebian para mais informação e exemplos de configuração:"
 
 #. type: textblock
 #: pod/multistrap:128
-#, fuzzy
 #| msgid "See also: http://wiki.debian.org/Multistrap"
 msgid "http://wiki.debian.org/Multistrap"
-msgstr "Veja também: http://wiki.debian.org/Multistrap"
+msgstr "http://wiki.debian.org/Multistrap"
 
 #. type: textblock
 #: pod/multistrap:130
-#, fuzzy
 #| msgid "See also: http://wiki.debian.org/Multistrap"
 msgid "http://www.emdebian.org/multistrap/"
-msgstr "Veja também: http://wiki.debian.org/Multistrap"
+msgstr "http://www.emdebian.org/multistrap/"
 
 #. type: textblock
 #: pod/multistrap:132
@@ -358,6 +358,9 @@ msgid ""
 "supported config file options: F</usr/share/doc/multistrap/examples/full."
 "conf>"
 msgstr ""
+"C<multistrap> inclui um exemplo de ficheiro de configuração com uma lista "
+"completa de todas as opções do ficheiro de configuração suportadas. "
+"F</usr/share/doc/multistrap/examples/full.conf>"
 
 #. type: =head1
 #: pod/multistrap:135
@@ -522,6 +525,11 @@ msgid ""
 "APT extended state database. C<markauto> can be used independently of "
 "C<unpack>."
 msgstr ""
+"Se C<markauto> estiver definido para verdadeiro, o C<multistrap> irá pedir "
+"ao apt para marcar todos os pacotes especificados na lista C<packages> "
+"combinada como instalados manualmente e todas as dependências não listadas "
+"explicitamente como instaladas automaticamente na base de dados de estado "
+"extenso do APT. C<markauto> pode ser usado independentemente de C<unpack>."
 
 #. type: textblock
 #: pod/multistrap:196
@@ -1276,13 +1284,14 @@ msgid ""
 "Ensure that both the setupscript and the configscript are executable or "
 "C<multistrap> will ignore the script."
 msgstr ""
+"Assegure que ambos setupscript e configscript são executáveis ou o "
+"C<multistrap> irá ignorar os scripts."
 
 #. type: =item
 #: pod/multistrap:473
-#, fuzzy
 #| msgid "Example configuration:"
 msgid "Example configscript.sh"
-msgstr "Exemplo de configuração:"
+msgstr "Exemplo de configscript.sh"
 
 #. type: verbatim
 #: pod/multistrap:475 pod/multistrap:733
@@ -1291,6 +1300,8 @@ msgid ""
 " #!/bin/sh\n"
 " \n"
 msgstr ""
+" #!/bin/sh\n"
+" \n"
 
 #. type: verbatim
 #: pod/multistrap:477 pod/multistrap:735
@@ -1299,10 +1310,12 @@ msgid ""
 " set -e\n"
 " \n"
 msgstr ""
+" set -e\n"
+" \n"
 
 #. type: verbatim
 #: pod/multistrap:479
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| " # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
 #| " # export LC_ALL=C LANGUAGE=C LANG=C \n"
@@ -1318,27 +1331,30 @@ msgid ""
 " umount /proc\n"
 "\n"
 msgstr ""
-" # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
-" # export LC_ALL=C LANGUAGE=C LANG=C \n"
-" # dpkg --configure -a\n"
+" export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" export LC_ALL=C LANGUAGE=C LANG=C\n"
+" /var/lib/dpkg/info/dash.preinst install\n"
+" dpkg --configure -a\n"
+" mount proc -t proc /proc\n"
+" dpkg --configure -a\n"
+" umount /proc\n"
 "\n"
 
 #. type: textblock
 #: pod/multistrap:487
-#, fuzzy
 #| msgid "See also: http://wiki.debian.org/Multistrap"
 msgid "For more information, see the Wiki: http://wiki.debian.org/Multistrap"
-msgstr "Veja também: http://wiki.debian.org/Multistrap"
+msgstr "Para mais informações, veja a Wiki: http://wiki.debian.org/Multistrap"
 
 #. type: =item
 #: pod/multistrap:490
 msgid "Mounting /dev and /proc for chroot configuration"
-msgstr ""
+msgstr "Montar /dev e /proc para configuração da chroot"
 
 #. type: textblock
 #: pod/multistrap:492
 msgid "/proc can be mounted inside the chroot, as above:"
-msgstr ""
+msgstr "/proc pode ser montado dentro da chroot, como em cima:"
 
 #. type: verbatim
 #: pod/multistrap:494
@@ -1347,6 +1363,8 @@ msgid ""
 " mount proc -t proc /proc\n"
 "\n"
 msgstr ""
+" mount proc -t proc /proc\n"
+"\n"
 
 #. type: textblock
 #: pod/multistrap:496
@@ -1354,6 +1372,8 @@ msgid ""
 "However, /dev should be mounted from outside the chroot, before running any "
 "C<configscript.sh> in the chroot:"
 msgstr ""
+"No entanto, /dev deve ser montado de fora da chroot, antes de correr "
+"qualquer C<configscript.sh> na chroot."
 
 #. type: verbatim
 #: pod/multistrap:499
@@ -1365,6 +1385,11 @@ msgid ""
 " sudo chroot . ./configscript.sh || true\n"
 "\n"
 msgstr ""
+" cd /path/chroot/\n"
+" sudo tar -xzf /path/multistrap.tgz\n"
+" sudo mount /dev -o bind ./dev/\n"
+" sudo chroot . ./configscript.sh || true\n"
+"\n"
 
 #. type: =head1
 #: pod/multistrap:506
@@ -1520,6 +1545,14 @@ msgid ""
 "C<aptdefaultrelease> field. Any release specified here must also be defined "
 "in a stanza referenced in the bootstrap list or apt will fail."
 msgstr ""
+"C<multistrap> suporta uma opção para definir explicitamente o lançamento "
+"predefinido a usar com o apt: C<aptdefaultrelease>. Isto determina qual "
+"o lançamento o apt irá usar para os pacotes do sistema base e não é o mesmo "
+"que fazer 'pinning' (o que se relaciona com o uso do apt após a instalação). "
+"Multistrap define o lançamento predefinido para a wildcard * a menos que "
+"um lançamento seja nomeado no capo C<aptdefaultrelease>. Qualquer "
+"lançamento especificado aqui deve também ser definido na estrofe "
+"referenciada na lista bootstrap ou o apt irá falhar."
 
 #. type: textblock
 #: pod/multistrap:567
@@ -1533,6 +1566,14 @@ msgid ""
 "the default release. This is typical apt behaviour and is not a bug in "
 "multistrap."
 msgstr ""
+"Para instalar uma versão específica de um pacote de um lançamento mais "
+"recente que aquele especificado como predefinido, C<explicitsuite> deve "
+"também ser definido para verdadeiro se o pacote existir em qualquer versão "
+"no lançamento predefinido. Também, quaisquer pacotes do qual esse pacote "
+"tenha uma dependência estrita (isto é = em vez de >=) devem também ser "
+"adicionados à linha packages na estrofe para a versão desejada, mesmo que "
+"esses pacotes não precisem de ser listados para serem obtidos do lançamento "
+"predefinido. Isto é comportamento típico do apt e não é um bug do multistrap."
 
 #. type: textblock
 #: pod/multistrap:576
@@ -1546,13 +1587,21 @@ msgid ""
 "entirely down to apt and all C<multistrap> can do is pass files and command "
 "line options to apt."
 msgstr ""
+"A combinação do lançamento predefinido, suite explícita e preferências do "
+"apt pode facilmente tornar-se complexa e os bugs podem ser difíceis de "
+"identificar. C<multistrap> escreve sempre a linha de comandos do apt "
+"completa, portante teste você mesmo este comando (usando os ficheiros "
+"escritos pelo C<multistrap>) para ver o que se passa. Lembre-se que todas "
+"as resoluções de dependências e toda a lógica para determinar qual a versão "
+"de um pacote especifico vai ser instalada na sua chroot C<multistrap> é "
+"feita inteiramente pelo apt e todo o que o C<multistrap> pode fazer é "
+"passar ficheiros e opções de linha de comandos ao apt."
 
 #. type: textblock
 #: pod/multistrap:585
-#, fuzzy
 #| msgid "Apt preferences"
 msgid "See also: apt preferences."
-msgstr "Preferências do Apt"
+msgstr "Veja também: Preferências do Apt"
 
 #. type: =head1
 #: pod/multistrap:587
@@ -1930,7 +1979,6 @@ msgstr ""
 
 #. type: textblock
 #: pod/multistrap:725
-#, fuzzy
 #| msgid ""
 #| "Files which do not exist or which cannot be opened will be silently "
 #| "ignored. Check the results of the parsing using the C<--simulate> option "
@@ -1943,7 +1991,8 @@ msgid ""
 msgstr ""
 "Os ficheiros que não existem ou não podem ser abertos serão ignorados em "
 "silêncio. Verifique os resultados da análise usando a opção C<--simulate> "
-"para o C<multistrap>."
+"para o C<multistrap>. Os ficheiros precedentes serão copiados para um "
+"directório precedente em /tmp dentro da rootfs."
 
 #. type: textblock
 #: pod/multistrap:730
@@ -1951,10 +2000,12 @@ msgid ""
 "To use the preseeding, add a section to the configscript.sh, prior to any "
 "calls to B<dpkg --configure -a>. e.g. :"
 msgstr ""
+"Para usar o precedente, adicione uma secção ao configscript.sh, antes de "
+"quaisquer chamadas a B<dpkg --configure -a>. ex. :"
 
 #. type: verbatim
 #: pod/multistrap:737
-#, fuzzy, no-wrap
+#, no-wrap
 #| msgid ""
 #| " # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
 #| " # export LC_ALL=C LANGUAGE=C LANG=C \n"
@@ -1971,9 +2022,14 @@ msgid ""
 " dpkg --configure -a\n"
 "\n"
 msgstr ""
-" # export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
-" # export LC_ALL=C LANGUAGE=C LANG=C \n"
-" # dpkg --configure -a\n"
+" export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true\n"
+" export LC_ALL=C LANGUAGE=C LANG=C\n"
+" if [ -d /tmp/preseeds/ ]; then\n"
+"    for file in `ls -1 /tmp/preseeds/*`; do\n"
+"    debconf-set-selections $file\n"
+"    done\n"
+" fi\n"
+" dpkg --configure -a\n"
 "\n"
 
 #. type: =head1
@@ -1983,7 +2039,6 @@ msgstr "Hooks"
 
 #. type: textblock
 #: pod/multistrap:748
-#, fuzzy
 #| msgid ""
 #| "If a hook directory is specified in the General section of the "
 #| "C<multistrap> configuration file, the hook scripts which are executable "
@@ -1993,9 +2048,10 @@ msgid ""
 "C<multistrap> configuration file, the hook scripts which are executable will "
 "be run from outside the multistrap directory at the following stages:"
 msgstr ""
-"Se um directório hook for especificado na secção General do ficheiro de "
-"configuração do C<multistrap>, os scripts hook que são executáveis serão "
-"executados a partir de fora do directório multistrap nos seguintes estágios:"
+"Se um directório (hookdir=) hook for especificado na secção General do "
+"ficheiro de configuração do C<multistrap>, os scripts hook que são "
+"executáveis serão executados a partir de fora do directório multistrap nos "
+"seguintes estágios:"
 
 #. type: =item
 #: pod/multistrap:754
@@ -2057,7 +2113,6 @@ msgstr ""
 
 #. type: textblock
 #: pod/multistrap:775
-#, fuzzy
 #| msgid ""
 #| "Completion scripts are executable scripts in the specified hook directory "
 #| "with a filename beginning with C<completion>."
@@ -2066,7 +2121,7 @@ msgid ""
 "with a filename beginning with B<completion>."
 msgstr ""
 "Scripts de acabamento são scripts executáveis no directório de hook "
-"especificado com o nome de ficheiro a começar com C<completion>."
+"especificado com o nome de ficheiro a começar com B<completion>."
 
 #. type: textblock
 #: pod/multistrap:780
@@ -2334,7 +2389,6 @@ msgstr ""
 
 #. type: textblock
 #: device-table.pl:179
-#, fuzzy
 #| msgid ""
 #| "multistrap contains a default device-table file, use the file option to "
 #| "override the default F</usr/share/multistrap/device-table.txt>"
@@ -2343,7 +2397,8 @@ msgid ""
 "override the default F</usr/share/doc/multistrap/examples/device_table.txt>"
 msgstr ""
 "o multistrap contém um ficheiro device-table predefinido, use a opção file "
-"para sobrepor a predefinição F</usr/share/multistrap/device-table.txt>"
+"para sobrepor a predefinição F</usr/share/doc/multistrap/examples/"
+"device_table.txt>"
 
 #. type: textblock
 #: device-table.pl:182

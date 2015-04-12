@@ -3,6 +3,8 @@ multistrap (2.2.1) UNRELEASED; urgency=medium
   * Move to github
   * Switch example mirror in usage information. (Closes: #774476)
   * Update for Jessie release
+  * [INTL:pt] Updated Portuguese translation of manpage
+    (Closes: #756217)
 
  -- Neil Williams <codehelp@debian.org>  Sun, 12 Apr 2015 18:15:30 +0100
 
