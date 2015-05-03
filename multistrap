@@ -36,7 +36,7 @@ use vars qw/ $progname $ourversion $dstrap $extra @aptsources
  $explicit_suite $allow_recommends %omitdebsrc @dsclist @sectoutput
  %flatfile %important $addimportant @debconf $hookdir %hooks
  $warn_count $use_shortcut @foreignarches $olddpkg $ignorenative
- %foreignpkgs $markauto $default_release /;
+ %foreignpkgs $markauto $default_release $pre_config_str/;
 
 setlocale(LC_MESSAGES, "");
 textdomain("multistrap");
@@ -241,6 +241,9 @@ foreach $repo (sort keys %suites) {
 	if (not -e "$dir/${cachedir}archives/partial") {
 		mkdir_fatal ("$dir/${cachedir}archives/partial");
 	}
+	if (not -e "${dir}${etcdir}apt.conf.d") {
+		mkdir_fatal ("${dir}${etcdir}apt.conf.d");
+	}
 }
 foreach my $aptsrc (@debootstrap) {
 	if (defined $deflist) {
@@ -329,6 +332,19 @@ if ((defined $k) and (not defined $noauth)) {
 		die (_g("Secure Apt handling failed - try without authentication.")."\n");
 	}
 }
+
+$pre_config_str = '';
+$pre_config_str .= "Dir::Etc \"${dir}${etcdir}\";\n";
+$pre_config_str .= "Dir::Etc::Parts \"${dir}${etcdir}apt.conf.d/\";\n";
+$pre_config_str .= "Dir::Etc::PreferencesParts \"${dir}${etcdir}preferences.d/\";\n";
+
+my $tmp_apt_conf = `mktemp -t multistrap.XXXXXX`;
+chomp ($tmp_apt_conf);
+
+open CONFIG, ">$tmp_apt_conf";
+print CONFIG $pre_config_str;
+close CONFIG;
+
 $config_str = '';
 $config_str .= " -o Apt::Architecture=$arch";
 $config_str .= " -o Dir::Etc::TrustedParts=${dir}${etcdir}trusted.gpg.d";
@@ -351,8 +367,12 @@ if (defined $deflist) {
 $config_str .= " -o Dir::State=${dir}${libdir}";
 $config_str .= " -o Dir::State::Status=${dir}${dpkgdir}status";
 $config_str .= " -o Dir::Cache=${dir}${cachedir}";
-printf (_g("Getting package lists: apt-get %s update\n"), $config_str);
-$retval = system ("apt-get $config_str update");
+
+my $apt_get = "APT_CONFIG=\"$tmp_apt_conf\" apt-get $config_str";
+my $apt_mark = "APT_CONFIG=\"$tmp_apt_conf\" apt-mark $config_str";
+printf (_g("Getting package lists: %s update\n"), $apt_get);
+
+$retval = system ("$apt_get update");
 $retval >>= 8;
 die (sprintf (_g("apt update failed. Exit value: %d\n"), $retval))
 	if ($retval != 0);
@@ -397,9 +417,9 @@ chomp($str);
 @s = split (/ /, $str);
 uniq_sort (\@s);
 $str = join (' ', @s);
-print "apt-get -y $config_str install $str\n";
+print "$apt_get -y install $str\n";
 $retval = 0;
-$retval = system ("apt-get -y $config_str install $str");
+$retval = system ("$apt_get -y install $str");
 $retval >>= 8;
 die (sprintf (_g("apt download failed. Exit value: %d\n"),$retval))
 	if ($retval != 0);
@@ -425,7 +445,7 @@ if (defined $err and $err != 0) {
 &add_extra_packages;
 system ("cp $configsh $dir/") if ((defined $configsh) and (-f $configsh));
 &handle_source_packages;
-(not defined $tidy) ? system ("apt-get $config_str update") : &tidy_apt;
+(not defined $tidy) ? system ("$apt_get update") : &tidy_apt;
 &guard_lib64($dir);
 
 # cleanly separate the bootstrap sources from the final apt sources.
@@ -470,9 +490,10 @@ foreach my $aptsrc (@aptsources) {
 	}
 }
 # altered the sources, so get apt to update.
-(not defined $tidy) ? system ("apt-get $config_str update") : &tidy_apt;
+(not defined $tidy) ? system ("$apt_get update") : &tidy_apt;
 # run second set of hooks
 &run_completion_hooks(sort @{$hooks{'A'}}) if (defined ($hooks{'A'}));
+unlink $tmp_apt_conf;
 if (not defined $warn_count) {
 	printf (_g("\nMultistrap system installed successfully in %s.\n"), $dir);
 } else {
@@ -515,8 +536,8 @@ sub our_version {
 sub add_extra_packages {
 	if (scalar @extrapkgs > 0) {
 		$str = join (' ', @extrapkgs);
-		print "apt-get -y $config_str install $str\n";
-		system ("apt-get -y $config_str install $str");
+		print "$apt_get -y install $str\n";
+		system ("$apt_get -y install $str");
 		&force_unpack (@extrapkgs) if ($unpack eq "true");
 		system ("touch ${dir}${libdir}lists/lock");
 		&native if (not defined ($foreign));
@@ -537,7 +558,7 @@ sub mark_manual_install {
 	my @auto = grep {my $pkg = $_; ! grep /$pkg/, @manual} @all;
 	printf(ngettext ("Found %d package to mark.\n",
 		"Found %d packages to mark.\n", scalar @auto), scalar @auto);
-	system ("apt-mark $config_str auto " . join (" ", sort @auto)) if (scalar @auto > 0);
+	system ("$apt_mark auto " . join (" ", sort @auto)) if (scalar @auto > 0);
 	printf (_g("Marking automatically installed packages completed.\n"));
 }
 
@@ -889,9 +910,9 @@ sub handle_source_packages {
 	my $olddir = getcwd();
 	chdir ($sourcedir);
 	if (scalar @dsclist > 0) {
-		print "apt-get -d $config_str source " . join (" ", @dsclist) . "\n";
+		print "$apt_get -d source " . join (" ", @dsclist) . "\n";
 		foreach my $srcpkg (@dsclist) {
-			system ("apt-get -d $config_str source $srcpkg");
+			system ("$apt_get -d source $srcpkg");
 		}
 	}
 	chdir ($olddir);

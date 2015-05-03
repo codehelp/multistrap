@@ -1,11 +1,13 @@
 multistrap (2.2.1) UNRELEASED; urgency=medium
 
-  * Move to github
+  * Move to github with alioth copy.
   * Switch example mirror in usage information. (Closes: #774476)
   * Update for Jessie release
   * [INTL:pt] Updated Portuguese translation of manpage
     (Closes: #756217)
   * Drop old crossbuild support reliant on outdated support.
+  * Use environment variables for apt configuration instead of Dir::Etc.
+    Patch from Pip Cet <pipcet@gmail.com> (Closes: #774698)
 
  -- Neil Williams <codehelp@debian.org>  Sun, 12 Apr 2015 18:15:30 +0100
 
