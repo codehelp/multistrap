@@ -15,7 +15,6 @@ Section: admin
 Architecture: all
 Depends: ${perl:Depends}, ${misc:Depends}, apt, libconfig-auto-perl, 
  liblocale-gettext-perl, libparse-debian-packages-perl
-Recommends: emdebian-archive-keyring
 Suggests: fakeroot
 Description: multiple repository bootstrap based on apt
  A debootstrap replacement with multiple repository support,
@@ -32,9 +31,3 @@ Description: multiple repository bootstrap based on apt
  dpkg and apt outside the final filesystem. If dpkg supports
  MultiArch, foreign architecture libraries can be installed,
  where available.
- .
- Multistrap supercedes emdebian-rootfs and replaces the previous
- support for preparing root filesystems for specific machines and
- variants. Multistrap includes the previous emdebian-rootfs support
- for customisation of package selection and of files created
- within the root filesystem.

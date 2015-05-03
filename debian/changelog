@@ -5,6 +5,7 @@ multistrap (2.2.1) UNRELEASED; urgency=medium
   * Update for Jessie release
   * [INTL:pt] Updated Portuguese translation of manpage
     (Closes: #756217)
+  * Drop old crossbuild support reliant on outdated support.
 
  -- Neil Williams <codehelp@debian.org>  Sun, 12 Apr 2015 18:15:30 +0100
 
